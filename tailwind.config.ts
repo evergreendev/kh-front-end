@@ -7,7 +7,14 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      'ptserif': ['var(--font-ptserif)'],
+      'opensans': ['var(--font-open-sans)'],
+    },
     extend: {
+      colors: {
+        "brand-yellow": "#ffde00"
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
