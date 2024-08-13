@@ -1,5 +1,6 @@
 import Image from "next/image";
 import MegaMenu from "@/app/components/MegaMenu";
+import qs from "qs";
 import React from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClock, faTicket} from "@awesome.me/kit-2a2dc088e2/icons/classic/regular";
@@ -13,6 +14,8 @@ import {
 } from "@awesome.me/kit-2a2dc088e2/icons/classic/brands"
 import Link from "next/link";
 import Button, {buttonConfig} from "@/app/components/Button";
+import {notFound} from "next/navigation";
+import JumpMenu from "@/app/components/JumpMenu";
 
 async function getMeta() {
     const res = await fetch(
@@ -25,13 +28,37 @@ async function getMeta() {
     return await res.json();
 }
 
+async function getData(query:any, tag:string, page?:string){
+    const stringifiedQuery = qs.stringify(
+        {
+            where: query,
+        },
+        {
+            addQueryPrefix: true
+        }
+    );
+
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/pages/${stringifiedQuery}&depth=2`,
+        {
+            next: {
+                tags: [tag]
+            }
+        }
+    );
+
+    if (res.status !== 200) notFound();
+
+    return res.json();
+}
+
 
 const SideBar = async () => {
-    const data = await getMeta();
+    const meta = await getMeta();
 
     return <div className="border-r-[3px] border-black pr-8">
-        <Image className="max-w-md mb-16" src={`${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}${data.siteLogo.url}`} alt={data.siteLogo.alt}
-               width={data.siteLogo.width} height={data.siteLogo.height}/>
+        <Image className="max-w-md mb-16" src={`${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}${meta.siteLogo.url}`} alt={meta.siteLogo.alt}
+               width={meta.siteLogo.width} height={meta.siteLogo.height}/>
         <div>
             <div className="flex items-center text-xl mb-7">
                 <FontAwesomeIcon className="size-5 mr-6" icon={faClock} size="sm"/>
@@ -70,10 +97,20 @@ const SideBar = async () => {
     </div>
 }
 
-export default function Home() {
+export default async function Home() {
+    const res = await getData({
+        slug:{
+            equals: 'home'
+        }
+    }, "pages_home");
+    const data = res.docs[0]
+
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <SideBar/>
+            <div>
+                <SideBar/>
+            </div>
+            <JumpMenu items={data.jump_menu}/>
         </main>
     );
 }

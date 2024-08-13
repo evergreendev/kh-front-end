@@ -13,7 +13,8 @@ const config: Config = {
     },
     extend: {
       colors: {
-        "brand-yellow": "#ffde00"
+        "brand-yellow": "#ffde00",
+        "grey": "#e5e5e5"
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
