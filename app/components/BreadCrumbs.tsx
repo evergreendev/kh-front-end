@@ -5,7 +5,7 @@ const BreadCrumbs = ({fullPath}: { fullPath: string }) => {
     const pathParts = fullPath.split('/');
     let prevPath = "/";
 
-    return <div className="flex gap-4 items-center text-gray-400">
+    return <div className="flex gap-1 items-center text-gray-400">
         {
             pathParts[0] !== "home" && <><Link className="hover:text-gray-600" href="/">Home</Link> &gt;</>
         }
