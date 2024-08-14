@@ -98,6 +98,8 @@ export interface Page {
         id?: string | null;
     }[]
         | null;
+    parent_page?: (number | null) | Page;
+    full_path?: string | null;
     title: string;
     slug?: string | null;
     publishedAt?: string | null;

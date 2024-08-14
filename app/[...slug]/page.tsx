@@ -98,10 +98,11 @@ const SideBar = async () => {
     </div>
 }
 
-export default async function Home() {
+export default async function Page({params}: {params: {slug: string[]}}) {
+    const slug = params.slug;
     const res = await getData({
         slug: {
-            equals: "home"
+            equals: slug[slug.length - 1]
         }
     }, "pages_");
     const data = res.docs[0];
@@ -111,12 +112,9 @@ export default async function Home() {
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
             <div>
-                <SideBar/>
-            </div>
-            <div className="flex items-center w-full max-w-screen-xl justify-between">
-                <BreadCrumbs fullPath={data.full_path} />
+                <BreadCrumbs fullPath={data.full_path}/>
                 {
-                    data?.jump_menu && <JumpMenu items={data.jump_menu}/>
+                    data?.jump_menu && data.jump_menu.length > 0 && <JumpMenu items={data.jump_menu}/>
                 }
             </div>
 
