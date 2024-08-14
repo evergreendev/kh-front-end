@@ -29,7 +29,7 @@ async function getMeta() {
     return await res.json();
 }
 
-async function getData(query:any, tag:string, page?:string){
+async function getData(query:any, tag:string){
     const stringifiedQuery = qs.stringify(
         {
             where: query,
@@ -60,7 +60,7 @@ const SideBar = async () => {
     return <div className="border-r-[3px] border-black pr-8">
         <Image className="max-w-md mb-16" src={`${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}${meta.siteLogo.url}`} alt={meta.siteLogo.alt}
                width={meta.siteLogo.width} height={meta.siteLogo.height}/>
-        <div>
+        <div className="mb-32">
             <div className="flex items-center text-xl mb-7">
                 <FontAwesomeIcon className="size-5 mr-6" icon={faClock} size="sm"/>
                 Open Today: 8:00am - 8:99pm {/*TODO UPDATE THIS TO PULL FROM THE BACKEND*/}
@@ -109,17 +109,16 @@ export default async function Home() {
     if (!data) notFound();
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <div>
+        <main className="flex min-h-screen flex-col justify-between p-24">
+            <div className="flex w-full mb-4">
                 <SideBar/>
             </div>
-            <div className="flex items-center w-full max-w-screen-xl justify-between">
+            <div className="flex w-full max-w-screen-2xl justify-between">
                 <BreadCrumbs fullPath={data.full_path} />
                 {
                     data?.jump_menu && <JumpMenu items={data.jump_menu}/>
                 }
             </div>
-
         </main>
     );
 }
