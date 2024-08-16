@@ -6,7 +6,7 @@ export const buttonConfig = {
     primary: "bg-black text-white hover:bg-gray-600 transition-colors",
     secondary: "",
     tertiary: "",
-    highlight: "",
+    highlight: "bg-brand-yellow font-bold",
     text: ""
 }
 
@@ -14,8 +14,8 @@ const Button = ({text, href, icon, config}: { text: string, href: string, icon?:
 
     if (!config) config = buttonConfig.primary;
 
-    return <Link href={href} className={`flex w-96 justify-between px-6 py-3 text-xl ${config}`}>
-        <span>{
+    return <Link href={href} className={`flex text-center  w-96 justify-between px-6 py-3 text-xl ${config}`}>
+        <span className="mx-auto">{
             text
         }</span>
         {
