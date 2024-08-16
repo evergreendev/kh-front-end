@@ -14,15 +14,19 @@ import {
     faSquareXTwitter,
     faYoutubeSquare
 } from "@awesome.me/kit-2a2dc088e2/icons/classic/brands";
+import {getCurrentSchedule, getHoursFromSchedule} from "@/app/utilities/hours";
 
 const SideBar = ({meta}:{meta: any}) => {
+
+    const currentSchedule = getCurrentSchedule(meta.hours);
+
     return <div className="border-r-[3px] border-black pr-8">
-        <Image className="max-w-md mb-16" src={`${meta.siteLogo.url}`} alt={meta.siteLogo.alt}
-               width={meta.siteLogo.width} height={meta.siteLogo.height}/>
+        <Image className="max-w-md mb-16" src={`${meta.siteOptions.siteLogo.url}`} alt={meta.siteOptions.siteLogo.alt}
+               width={meta.siteOptions.siteLogo.width} height={meta.siteOptions.siteLogo.height}/>
         <div className="mb-32">
             <div className="flex items-center text-xl mb-7">
                 <FontAwesomeIcon className="size-5 mr-6" icon={faClock} size="sm"/>
-                Open Today: 8:00am - 8:99pm {/*TODO UPDATE THIS TO PULL FROM THE BACKEND*/}
+                Open Today: {currentSchedule?.hours?.[0] ? getHoursFromSchedule(currentSchedule.hours[0]) : ""}
             </div>
             <Link className="flex items-center text-xl mb-7" href={`/plan-your-visit/information/pricing-and-admission`}>
                 <FontAwesomeIcon transform={{rotate:5}} className="size-5 mr-6" icon={faTicket} size="sm"/>
@@ -59,7 +63,7 @@ const SideBar = ({meta}:{meta: any}) => {
 
 const HomeLayout = ({data,meta}:{data:any,meta:any}) => {
     return (
-        <main className="flex min-h-screen flex-col justify-between p-24">
+        <main className="flex min-h-screen flex-col justify-between">
             <div className="flex w-full mb-4">
                 <SideBar meta={meta}/>
             </div>

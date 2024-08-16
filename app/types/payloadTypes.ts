@@ -17,6 +17,7 @@ export interface Config {
     globals: {
         navigation: Navigation;
         'site-options': SiteOption;
+        hours: Hour;
     };
 }
 /**
@@ -87,6 +88,17 @@ export interface Media {
  */
 export interface Page {
     id: number;
+    intro_content?: {
+        video?: string | null;
+        images?:
+            | {
+            media?: number | Media | null;
+            id?: string | null;
+        }[]
+            | null;
+        header?: string | null;
+        content?: string | null;
+    };
     jump_menu?:
         | {
         title?: string | null;
@@ -255,6 +267,30 @@ export interface SiteOption {
     siteDescription: string;
     siteLogo: number | Media;
     siteLogoSmall: number | Media;
+    updatedAt?: string | null;
+    createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hours".
+ */
+export interface Hour {
+    id: number;
+    Schedules?:
+        | {
+        schedule_start?: string | null;
+        schedule_end?: string | null;
+        hours?:
+            | {
+            title?: string | null;
+            hour_start?: string | null;
+            hour_end?: string | null;
+            id?: string | null;
+        }[]
+            | null;
+        id?: string | null;
+    }[]
+        | null;
     updatedAt?: string | null;
     createdAt?: string | null;
 }

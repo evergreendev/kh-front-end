@@ -12,7 +12,20 @@ async function getMeta() {
                 tags: ["siteOptions_"]
             }
         });
-    return await res.json();
+    const hoursRes = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/globals/hours?locale=undefined&draft=false&depth=1`,
+        {
+            next: {
+                tags: ["hours_"]
+            }
+        })
+    const siteOptions = await res.json();
+    const hours = await hoursRes.json();
+
+
+    return {
+        siteOptions: siteOptions,
+        hours: hours
+    };
 }
 
 async function getData(query:any, tag:string){
