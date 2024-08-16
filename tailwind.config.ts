@@ -16,6 +16,9 @@ const config: Config = {
         "brand-yellow": "#ffde00",
         "grey": "#e5e5e5"
       },
+      maxWidth: {
+        'top': '150rem'
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

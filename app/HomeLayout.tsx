@@ -64,7 +64,7 @@ const SideBar = ({meta}:{meta: any}) => {
 const HomeLayout = ({data,meta}:{data:any,meta:any}) => {
     return (
         <main className="flex min-h-screen flex-col justify-between">
-            <div className="flex w-full mb-4">
+            <div className="flex w-full mb-4 max-w-top ml-auto mt-8 pl-7">
                 <SideBar meta={meta}/>
             </div>
             <div className="flex w-full max-w-screen-2xl justify-between">
