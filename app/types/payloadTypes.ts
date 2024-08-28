@@ -112,6 +112,99 @@ export interface Page {
         | null;
     parent_page?: (number | null) | Page;
     full_path?: string | null;
+    layout?:
+        | (
+        | {
+        vertical_separator?: boolean | null;
+        columns?:
+            | {
+            content?:
+                | (
+                | {
+                heading_1?: string | null;
+                heading_2?: string | null;
+                heading_link?: {
+                    link?: string | null;
+                    label?: string | null;
+                };
+                body?: {
+                    text?: {
+                        root: {
+                            type: string;
+                            children: {
+                                type: string;
+                                version: number;
+                                [k: string]: unknown;
+                            }[];
+                            direction: ('ltr' | 'rtl') | null;
+                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                            indent: number;
+                            version: number;
+                        };
+                        [k: string]: unknown;
+                    } | null;
+                    link_list?:
+                        | {
+                        link?: string | null;
+                        label?: string | null;
+                        id?: string | null;
+                    }[]
+                        | null;
+                };
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'TextBlock';
+            }
+                | {
+                media?: number | Media | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'MediaBlock';
+            }
+                )[]
+                | null;
+            width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4') | null;
+            id?: string | null;
+        }[]
+            | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'column';
+    }
+        | {
+        heading_1?: {
+            text?: string | null;
+            highlight?: boolean | null;
+        };
+        heading_2?: {
+            text?: string | null;
+            highlight?: boolean | null;
+        };
+        button?: {
+            text?: string | null;
+            type?: ('primary' | 'secondary' | 'highlight') | null;
+            link?: {
+                title?: string | null;
+                external?: boolean | null;
+                Relation?: {
+                    relationTo: 'pages';
+                    value: number | Page;
+                } | null;
+                external_url?: string | null;
+            };
+        };
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'Breaker';
+    }
+        | {
+        media?: number | Media | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'MediaBlock';
+    }
+        )[]
+        | null;
     title: string;
     slug?: string | null;
     publishedAt?: string | null;
@@ -162,10 +255,12 @@ export interface Navigation {
     id: number;
     items: {
         title?: string | null;
+        external?: boolean | null;
         Relation?: {
             relationTo: 'pages';
             value: number | Page;
         } | null;
+        external_url?: string | null;
         sub_menu_1?: Navigation_Block[] | null;
         id?: string | null;
     }[];

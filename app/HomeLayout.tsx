@@ -15,6 +15,8 @@ import {
     faYoutubeSquare
 } from "@awesome.me/kit-2a2dc088e2/icons/classic/brands";
 import {getCurrentSchedule, getHoursFromSchedule} from "@/app/utilities/hours";
+import {Page} from "@/app/types/payloadTypes";
+import Video from "@/app/components/Video";
 
 const SideBar = ({meta}:{meta: any}) => {
 
@@ -61,17 +63,38 @@ const SideBar = ({meta}:{meta: any}) => {
     </div>
 }
 
-const HomeLayout = ({data,meta}:{data:any,meta:any}) => {
+const HomeLayout = ({data,meta}:{data:Page,meta:any}) => {
     return (
         <main className="flex min-h-screen flex-col justify-between">
-            <div className="flex w-full mb-4 max-w-top ml-auto mt-8 pl-7">
+            <div className="flex flex-wrap w-full mb-4 max-w-top ml-auto mt-8 pl-7">
                 <SideBar meta={meta}/>
-            </div>
-            <div className="flex w-full max-w-screen-2xl justify-between">
-                <BreadCrumbs fullPath={data.full_path} />
-                {
-                    data?.jump_menu && <JumpMenu items={data.jump_menu}/>
-                }
+                <div className="font-ptserif mx-auto font-bold text-center grow pl-10">
+                    {
+                        data.intro_content?.video ?
+                            <div className="w-full">
+                                <Video src={data.intro_content?.video}/>
+                            </div> :
+                            ""
+                    }
+                    <div className="w-full mx-auto max-w-screen-lg mt-6">
+                    <div className="flex justify-center mx-auto">
+                            <h2 className="text-4xl border-b-brand-yellow border-b-4">{data.intro_content?.header}</h2>
+                        </div>
+                        <p className="text-3xl font-normal">
+                            {data.intro_content?.content}
+                        </p>
+                    </div>
+
+                </div>
+                <div className="flex w-full mt-6">
+                    <div className="max-w-md w-full flex items-center mr-14">
+                        <BreadCrumbs fullPath={data.full_path || ""}/>
+                    </div>
+
+                    {
+                        data?.jump_menu && <JumpMenu items={data.jump_menu}/>
+                    }
+                </div>
             </div>
         </main>
     );
