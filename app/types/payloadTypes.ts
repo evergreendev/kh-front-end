@@ -18,6 +18,7 @@ export interface Config {
         navigation: Navigation;
         'site-options': SiteOption;
         hours: Hour;
+        footer: Footer;
     };
 }
 /**
@@ -383,6 +384,37 @@ export interface Hour {
             id?: string | null;
         }[]
             | null;
+        id?: string | null;
+    }[]
+        | null;
+    updatedAt?: string | null;
+    createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+    id: number;
+    columns?:
+        | {
+        content?: {
+            root: {
+                type: string;
+                children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+            };
+            [k: string]: unknown;
+        } | null;
+        content_html?: string | null;
+        width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4') | null;
         id?: string | null;
     }[]
         | null;

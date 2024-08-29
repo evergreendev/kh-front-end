@@ -5,15 +5,21 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClock} from "@awesome.me/kit-2a2dc088e2/icons/classic/regular";
 import Button, {buttonConfig} from "@/app/components/Button";
 import React from "react";
+import {SiteOption} from "@/app/types/payloadTypes";
 
-const TopBar = ({meta}:{meta:any}) => {
+const TopBar = ({siteOption}: { siteOption: SiteOption }) => {
 
     return <div className="flex max-w-screen-2xl w-full">
         <Link href='/' className="border-r-[3px] border-black pr-8 flex mr-8 ">
-            <Image className="max-w-md my-3"
-                   src={`${meta.siteLogoSmall.url}`}
-                   alt={meta.siteLogoSmall.alt}
-                   width={meta.siteLogoSmall.width} height={meta.siteLogoSmall.height}/>
+            {
+                typeof siteOption.siteLogoSmall !== "number" ? <Image className="max-w-md my-3"
+                                                                      src={`${siteOption.siteLogoSmall.url}`}
+                                                                      alt={siteOption.siteLogoSmall.alt || ""}
+                                                                      width={siteOption.siteLogoSmall.width || "0"}
+                                                                      height={siteOption.siteLogoSmall.height || "0"}/>
+                    : ""
+            }
+
         </Link>
 
         <div className="flex flex-col">

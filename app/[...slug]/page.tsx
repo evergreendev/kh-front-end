@@ -11,19 +11,8 @@ import JumpMenu from "@/app/components/JumpMenu";
 import BreadCrumbs from "@/app/components/BreadCrumbs";
 import {Content} from "next/dist/compiled/@next/font/dist/google";
 import PageContent from "@/app/[...slug]/PageContent";
-import {HomeClient} from "@/app/Home.client";
 import PageClient from "@/app/[...slug]/page.client";
-
-async function getMeta() {
-    const res = await fetch(
-        `${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/globals/site-options?locale=undefined&draft=false&depth=1`,
-        {
-            next: {
-                tags: ["siteOptions_"]
-            }
-        });
-    return await res.json();
-}
+import getMeta from "@/app/data/getMeta";
 
 async function getData(query: any, tag: string, page?: string) {
     const stringifiedQuery = qs.stringify(

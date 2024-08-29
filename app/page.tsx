@@ -3,30 +3,7 @@ import React from "react";
 import {notFound} from "next/navigation";
 import {HomeClient} from "@/app/Home.client";
 import HomeLayout from "@/app/HomeLayout";
-
-async function getMeta() {
-    const res = await fetch(
-        `${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/globals/site-options?locale=undefined&draft=false&depth=1`,
-        {
-            next: {
-                tags: ["siteOptions_"]
-            }
-        });
-    const hoursRes = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/globals/hours?locale=undefined&draft=false&depth=1`,
-        {
-            next: {
-                tags: ["hours_"]
-            }
-        })
-    const siteOptions = await res.json();
-    const hours = await hoursRes.json();
-
-
-    return {
-        siteOptions: siteOptions,
-        hours: hours
-    };
-}
+import getMeta from "@/app/data/getMeta";
 
 async function getData(query:any, tag:string){
     const stringifiedQuery = qs.stringify(
