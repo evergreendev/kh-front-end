@@ -16,15 +16,22 @@ async function getMeta() {
         next: {
             tags: ["footer_"]
         }
-    })
+    });
+    const navRes = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/globals/navigation?locale=undefined&draft=false&depth=1`, {
+        next: {
+            tags: ["navigation_"]
+        }
+    });
     const siteOptions = await res.json();
     const hours = await hoursRes.json();
     const footer = await footerRes.json();
+    const nav = await navRes.json();
 
     return {
         siteOptions: siteOptions,
         hours: hours,
-        footer: footer
+        footer: footer,
+        nav: nav
     };
 }
 

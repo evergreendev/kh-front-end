@@ -86,7 +86,7 @@ const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
                 <div className="font-ptserif mx-auto font-bold text-center grow pl-10">
                     <div className="flex justify-between items-start max-w-screen-xl">
                         <div className="flex flex-col justify-start gap-2">
-                            <MegaMenu/>
+                            <MegaMenu nav={meta.nav}/>
                             <div className="flex">Search</div>{/*todo add search bar*/}
                         </div>
                         <Button text="DONATE" href="/donate" config={buttonConfig.highlight}/>

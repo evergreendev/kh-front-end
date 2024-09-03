@@ -1,15 +1,6 @@
-import Image from "next/image";
-import MegaMenu from "@/app/components/MegaMenu";
 import qs from "qs";
 import React from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faClock, faTicket} from "@awesome.me/kit-2a2dc088e2/icons/classic/regular";
-import Link from "next/link";
-import Button, {buttonConfig} from "@/app/components/Button";
 import {notFound} from "next/navigation";
-import JumpMenu from "@/app/components/JumpMenu";
-import BreadCrumbs from "@/app/components/BreadCrumbs";
-import {Content} from "next/dist/compiled/@next/font/dist/google";
 import PageContent from "@/app/[...slug]/PageContent";
 import PageClient from "@/app/[...slug]/page.client";
 import getMeta from "@/app/data/getMeta";

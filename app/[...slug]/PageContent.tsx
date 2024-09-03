@@ -8,7 +8,7 @@ import Footer from "@/app/components/Footer";
 const PageContent = ({data, meta}: { data: Page, meta: any }) => {
     return <main className="flex min-h-screen flex-col items-center justify-between">
         <div className="p-24 flex min-h-screen flex-col items-center">
-            <TopBar siteOption={meta.siteOptions} />
+            <TopBar siteOption={meta.siteOptions} nav={meta.nav}/>
             <div>
                 {
                     data?.full_path &&

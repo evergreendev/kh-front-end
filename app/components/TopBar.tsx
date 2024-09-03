@@ -5,9 +5,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClock} from "@awesome.me/kit-2a2dc088e2/icons/classic/regular";
 import Button, {buttonConfig} from "@/app/components/Button";
 import React from "react";
-import {SiteOption} from "@/app/types/payloadTypes";
+import {Navigation, SiteOption} from "@/app/types/payloadTypes";
 
-const TopBar = ({siteOption}: { siteOption: SiteOption }) => {
+const TopBar = ({siteOption, nav}: { siteOption: SiteOption, nav: Navigation }) => {
 
     return <div className="flex max-w-screen-2xl w-full">
         <Link href='/' className="border-r-[3px] border-black pr-8 flex mr-8 ">
@@ -23,7 +23,7 @@ const TopBar = ({siteOption}: { siteOption: SiteOption }) => {
         </Link>
 
         <div className="flex flex-col">
-            <MegaMenu/>
+            <MegaMenu nav={nav}/>
             <div className="flex items-center text-xl mt-auto">
                 <FontAwesomeIcon className="size-5 mr-6" icon={faClock} size="sm"/>
             </div>
