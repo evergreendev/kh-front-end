@@ -50,13 +50,13 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
         setActiveMenuId(null)
     });
 
-    return <div>
-        <div ref={menuRef}
+    return <div ref={menuRef}>
+        <div
              className={`
              ${isExpanded ? '' : '-translate-x-full'}
-             shadow-lg absolute top-0 left-0 w-full
+             shadow-lg absolute top-0 left-0
              duration-700 
-             max-w-screen-2xl h-full z-50 bg-white transition-all border-r-8 border-r-brand-yellow`}>
+             h-full z-50 bg-white transition-all border-r-8 border-r-brand-yellow`}>
             {
                 nav.items.map((item) => {
                     const internalLink = typeof item.Relation?.value !== "number" && item.Relation?.value ? item.Relation.value["full_path"] : null;
@@ -80,7 +80,10 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
             }
         </div>
         <button className="p-2 flex items-center text-black transition-colors hover:bg-gray-100"
-                onClick={() => setIsExpanded(!isExpanded)}>
+                onClick={() => {
+                    setActiveMenuId(null)
+                    setIsExpanded(!isExpanded)
+                }}>
             <FontAwesomeIcon size="2x" icon={faBars}/>
             <p className="uppercase ml-2 font-opensans">Menu</p>
         </button>
