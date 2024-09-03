@@ -10,12 +10,14 @@ export const buttonConfig = {
     text: ""
 }
 
-const Button = ({text, href, icon, config}: { text: string, href: string, icon?: IconProp, config?: string }) => {
+type Config = (typeof buttonConfig)[keyof typeof buttonConfig];
+
+const Button = ({text, href, icon, config}: { text: string, href: string, icon?: IconProp, config?: Config }) => {
 
     if (!config) config = buttonConfig.primary;
 
-    return <Link href={href} className={`flex text-center  w-96 justify-between px-6 py-3 text-xl ${config}`}>
-        <span className="mx-auto">{
+    return <Link href={href} className={`flex w-80 justify-between px-6 py-2 text-xl ${config}`}>
+        <span className={`font-opensans ${icon ? "" : "mx-auto"}`}>{
             text
         }</span>
         {

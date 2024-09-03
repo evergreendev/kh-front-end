@@ -19,6 +19,7 @@ import {Page} from "@/app/types/payloadTypes";
 import Video from "@/app/components/Video";
 import {Meta} from "@/app/types/types";
 import Footer from "@/app/components/Footer";
+import MegaMenu from "@/app/components/MegaMenu";
 
 const SideBar = ({meta}: { meta: Meta }) => {
 
@@ -80,9 +81,16 @@ const SideBar = ({meta}: { meta: Meta }) => {
 const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
     return (
         <main className="flex min-h-screen flex-col justify-between">
-            <div className="flex flex-wrap w-full mb-4 max-w-top ml-auto mt-8 pl-7">
+            <div className="flex flex-wrap w-full mb-4 max-w-top ml-auto mt-4 pl-7">
                 <SideBar meta={meta}/>
                 <div className="font-ptserif mx-auto font-bold text-center grow pl-10">
+                    <div className="flex justify-between items-start max-w-screen-xl">
+                        <div className="flex flex-col justify-start gap-2">
+                            <MegaMenu/>
+                            <div className="flex">Search</div>{/*todo add search bar*/}
+                        </div>
+                        <Button text="DONATE" href="/donate" config={buttonConfig.highlight}/>
+                    </div>
                     {
                         data.intro_content?.video ?
                             <div className="w-full">
