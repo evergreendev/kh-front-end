@@ -1,13 +1,14 @@
 import MenuButton from "@/app/components/BlockRenderer/blocks/MenuButton";
 import {Page} from "@/app/types/payloadTypes";
+import MenuWithSubMenu from "@/app/components/BlockRenderer/blocks/MenuWithSubMenu";
 
 const BlockRenderer = ({blocks}: { blocks: any }) => {
     return <>{
         blocks.map((block: unknown) => {
-            const {blockType} = block as {blockType:string};
-            switch (blockType) {
+            let typedBlock = block as {blockType:string};
+            switch (typedBlock.blockType) {
                 case "MenuButton":
-                    const typedBlock = block as {
+                    const menuButtonTypedBlock = block as {
                         item?: {
                             relationTo: 'pages';
                             value: number | Page;
@@ -18,11 +19,37 @@ const BlockRenderer = ({blocks}: { blocks: any }) => {
                         blockName?: string | null;
                         blockType: 'MenuButton';
                     };
-                    return <div className="mb-4"><MenuButton block={typedBlock} key={typedBlock.id} /></div>
+                    return <div className="mb-4"><MenuButton block={menuButtonTypedBlock} key={menuButtonTypedBlock.id} /></div>
                 case "MenuWithSubMenu":
-                    return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
+                    const menuWithSubmenuTypedBlock = block as {
+                        headerItem?: {
+                            title?: string | null;
+                            external?: boolean | null;
+                            Relation?: {
+                                relationTo: 'pages';
+                                value: number | Page;
+                            } | null;
+                            external_url?: string | null;
+                        };
+                        items?:
+                            | {
+                            title?: string | null;
+                            external?: boolean | null;
+                            Relation?: {
+                                relationTo: 'pages';
+                                value: number | Page;
+                            } | null;
+                            external_url?: string | null;
+                            id?: string | null;
+                        }[]
+                            | null;
+                        id?: string | null;
+                        blockName?: string | null;
+                        blockType: 'MenuWithSubMenu';
+                    }
+                    return <MenuWithSubMenu block={menuWithSubmenuTypedBlock} key={menuWithSubmenuTypedBlock.id} />
                 case "photoMenu":
-                    return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
+                    return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">a</div>
                 case "SimpleMenu":
                     return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
                 case "Breaker":

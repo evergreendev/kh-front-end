@@ -5,6 +5,7 @@ import {RefObject, useEffect, useRef, useState} from "react";
 import {Navigation} from "@/app/types/payloadTypes";
 import Link from "next/link";
 import BlockRenderer from "@/app/components/BlockRenderer";
+import getUrlFromPageOrExternal from "@/app/utilities/getUrlFromPageOrExternal";
 
 function useOutsideAlerter(ref: RefObject<HTMLDivElement>, action: (...args: any) => void) {
     useEffect(() => {
@@ -23,22 +24,25 @@ function useOutsideAlerter(ref: RefObject<HTMLDivElement>, action: (...args: any
     }, [ref, action]);
 }
 
-const ExpandableButton = ({id, text, href, isExternal, setActiveMenuId}: {
+const ExpandableButton = ({id, text, item, setActiveMenuId}: {
     id: string,
     text: string,
-    href: string,
-    isExternal: boolean,
+    item: any,
     setActiveMenuId: (id: string) => void
 }) => {
+    const linkInfo = getUrlFromPageOrExternal(item);
 
-    return isExternal
-        ? <a href={href}>{text}
+    return linkInfo.isExternal
+        ? <a href={linkInfo.url}>{text}
             <button>Expand</button>
         </a>
-        : <Link key={id} href={href}>{text}<button onClick={(e) => {
-            e.preventDefault();
-            setActiveMenuId(id);
-        }}>Expand</button></Link>
+        : <Link key={id} href={linkInfo.url}>{text}
+            <button onClick={(e) => {
+                e.preventDefault();
+                setActiveMenuId(id);
+            }}>Expand
+            </button>
+        </Link>
 }
 
 const MegaMenu = ({nav}: { nav: Navigation }) => {
@@ -61,7 +65,7 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
 
     return <div ref={menuRef}>
         <div
-             className={`
+            className={`
              ${isExpanded ? '' : '-translate-x-full'}
              shadow-lg absolute top-0 left-0
              flex
@@ -69,26 +73,26 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
              w-full
              max-w-screen-2xl
              items-start
+             font-opensans
              duration-700 
              h-full z-50 bg-white transition-all border-r-8 border-r-brand-yellow`}>
             {
                 nav.items.map((item) => {
-                    const internalLink = typeof item.Relation?.value !== "number" && item.Relation?.value ? item.Relation.value["full_path"] : null;
-
                     return <div key={item.id}>
-                        <ExpandableButton setActiveMenuId={()=> {
+                        <ExpandableButton item={item} setActiveMenuId={() => {
                             setActiveMenuId(item.id || null)
-                        }} id={item.id || ""} href={internalLink || item.external_url || "/#"}
-                                          isExternal={!!item.external_url} text={item.title || ""}/>
+                        }} id={item.id || ""} text={item.title || ""}/>
                     </div>
                 })
             }
             <div className="relative w-full h-full mt-6 overflow-hidden p-6">
                 {
                     nav.items.map(item => {
-                        return <div key={item.id} className={`absolute bg-gray-100 shadow transition-all duration-700 p-6 flex w-full top-0 left-0 ${item.id === activeMenuId ? "" : "-translate-x-full"}`}>
+                        return <div key={item.id}
+                                    className={`absolute bg-gray-100 shadow transition-all duration-700 p-6 flex w-full top-0 left-0 ${item.id === activeMenuId ? "" : "-translate-x-full"}`}>
                             {item.columns?.map((column) => {
-                                return <div key={column.id} className={`flex flex-col ${widths[column.width||"1/4"]}`}>
+                                return <div key={column.id}
+                                            className={`flex flex-col ${widths[column.width || "1/4"]}`}>
                                     <BlockRenderer key={column.id} blocks={column.content}/>
                                 </div>
                             })}
