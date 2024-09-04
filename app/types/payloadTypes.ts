@@ -271,6 +271,8 @@ export interface Navigation {
                     relationTo: 'pages';
                     value: number | Page;
                 } | null;
+                text?: string | null;
+                buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
                 id?: string | null;
                 blockName?: string | null;
                 blockType: 'MenuButton';
