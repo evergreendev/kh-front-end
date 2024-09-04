@@ -83,7 +83,7 @@ const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
         <main className="flex min-h-screen flex-col justify-between">
             <div className="flex flex-wrap w-full mb-4 max-w-top ml-auto mt-4 pl-7">
                 <SideBar meta={meta}/>
-                <div className="font-ptserif mx-auto font-bold grow pl-10">
+                <div className="font-ptserif mx-auto grow pl-10">
                     <div className="flex justify-between items-start max-w-screen-xl">
                         <div className="flex flex-col justify-start gap-2">
                             <MegaMenu nav={meta.nav}/>
@@ -100,7 +100,7 @@ const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
                     }
                     <div className="w-full mx-auto max-w-screen-lg mt-6 text-center">
                         <div className="flex justify-center mx-auto">
-                            <h2 className="text-4xl border-b-brand-yellow border-b-4">{data.intro_content?.header}</h2>
+                            <h2 className="text-4xl font-bold border-b-brand-yellow border-b-4">{data.intro_content?.header}</h2>
                         </div>
                         <p className="text-3xl font-normal">
                             {data.intro_content?.content}

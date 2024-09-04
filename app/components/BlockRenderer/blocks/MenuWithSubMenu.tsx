@@ -32,7 +32,7 @@ const MenuWithSubMenu = ({block}: {
 }) => {
     const linkInfo = getUrlFromPageOrExternal(block.headerItem);
 
-    return <div className="flex flex-col">
+    return <div className="flex flex-col text-2xl">
         {
             linkInfo.isExternal
                 ? <a className="p-2 hover:bg-white block" href={linkInfo.url}>{block.headerItem?.title}</a>

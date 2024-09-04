@@ -1,6 +1,7 @@
 import MenuButton from "@/app/components/BlockRenderer/blocks/MenuButton";
-import {Page} from "@/app/types/payloadTypes";
+import {Media, Page} from "@/app/types/payloadTypes";
 import MenuWithSubMenu from "@/app/components/BlockRenderer/blocks/MenuWithSubMenu";
+import PhotoMenuBlock from "@/app/components/BlockRenderer/blocks/PhotoMenuBlock";
 
 const BlockRenderer = ({blocks}: { blocks: any }) => {
     return <>{
@@ -49,7 +50,32 @@ const BlockRenderer = ({blocks}: { blocks: any }) => {
                     }
                     return <MenuWithSubMenu block={menuWithSubmenuTypedBlock} key={menuWithSubmenuTypedBlock.id} />
                 case "photoMenu":
-                    return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">a</div>
+                    const photoMenuTypedBlock = block as {
+                        title?: string | null;
+                        external?: boolean | null;
+                        Relation?: {
+                            relationTo: 'pages';
+                            value: number | Page;
+                        } | null;
+                        external_url?: string | null;
+                        item?:
+                            | {
+                            image?: number | Media | null;
+                            title?: string | null;
+                            external?: boolean | null;
+                            Relation?: {
+                                relationTo: 'pages';
+                                value: number | Page;
+                            } | null;
+                            external_url?: string | null;
+                            id?: string | null;
+                        }[]
+                            | null;
+                        id?: string | null;
+                        blockName?: string | null;
+                        blockType: 'photoMenu';
+                    }
+                    return <PhotoMenuBlock block={photoMenuTypedBlock} key={photoMenuTypedBlock.id}/>
                 case "SimpleMenu":
                     return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
                 case "Breaker":
