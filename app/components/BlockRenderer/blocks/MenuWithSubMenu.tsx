@@ -2,7 +2,7 @@ import {Page} from "@/app/types/payloadTypes";
 import Link from "next/link";
 import getUrlFromPageOrExternal from "@/app/utilities/getUrlFromPageOrExternal";
 
-const MenuWithSubMenu = ({block}: {
+const MenuWithSubMenu = ({block,tabIndex}: {
     block: {
         headerItem?: {
             title?: string | null;
@@ -28,23 +28,24 @@ const MenuWithSubMenu = ({block}: {
         id?: string | null;
         blockName?: string | null;
         blockType: 'MenuWithSubMenu';
-    }
+    },
+    tabIndex?: number
 }) => {
     const linkInfo = getUrlFromPageOrExternal(block.headerItem);
 
     return <div className="flex flex-col text-2xl">
         {
             linkInfo.isExternal
-                ? <a className="p-2 hover:bg-white block" href={linkInfo.url}>{block.headerItem?.title}</a>
-                : <Link className="p-2 hover:bg-white block" href={linkInfo.url}>{block.headerItem?.title}</Link>
+                ? <a tabIndex={tabIndex} className="p-2 hover:bg-white block" href={linkInfo.url}>{block.headerItem?.title}</a>
+                : <Link tabIndex={tabIndex} className="p-2 hover:bg-white block" href={linkInfo.url}>{block.headerItem?.title}</Link>
         }
         <div className="flex flex-col ml-6">
             {block.items?.map(item => {
                 const childLinkInfo = getUrlFromPageOrExternal(item);
                 if (childLinkInfo.isExternal) {
-                    return <a className="p-2 border-l-2 border-l-gray-200 hover:bg-white block" key={item.id} href={childLinkInfo.url}>{item.title}</a>
+                    return <a tabIndex={tabIndex} className="p-2 border-l-2 border-l-gray-200 hover:bg-white block" key={item.id} href={childLinkInfo.url}>{item.title}</a>
                 }
-                return <Link className="p-2 border-l-2 border-l-gray-200 hover:bg-white block" key={item.id} href={childLinkInfo.url}>{item.title}</Link>
+                return <Link tabIndex={tabIndex} className="p-2 border-l-2 border-l-gray-200 hover:bg-white block" key={item.id} href={childLinkInfo.url}>{item.title}</Link>
             })}
         </div>
 

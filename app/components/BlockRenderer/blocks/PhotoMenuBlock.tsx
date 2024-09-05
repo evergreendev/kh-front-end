@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {useState} from "react";
 
-const PhotoMenuBlock = ({block}: {
+const PhotoMenuBlock = ({block, tabIndex}: {
     block: {
         title?: string | null;
         external?: boolean | null;
@@ -30,15 +30,15 @@ const PhotoMenuBlock = ({block}: {
         id?: string | null;
         blockName?: string | null;
         blockType: 'photoMenu';
-    }
+    },tabIndex?: number
 }) => {
     const [activeMenu, setActiveMenu] = useState<string|null>(block?.item?.[0]?.id||null);
     const linkInfo = getUrlFromPageOrExternal(block);
     return <div className="flex flex-wrap bg-gray-200">
         {
             linkInfo.isExternal
-                ? <a className="w-full font-ptserif text-4xl mb-4 hover:bg-white p-2" key={block.id} href={linkInfo.url}>{block.title}</a>
-                : <Link className="w-full font-ptserif text-4xl mb-4 hover:bg-white p-2" key={block.id} href={linkInfo.url}>{block.title}</Link>
+                ? <a tabIndex={tabIndex} className="w-full font-ptserif text-4xl mb-4 hover:bg-white p-2" key={block.id} href={linkInfo.url}>{block.title}</a>
+                : <Link tabIndex={tabIndex} className="w-full font-ptserif text-4xl mb-4 hover:bg-white p-2" key={block.id} href={linkInfo.url}>{block.title}</Link>
         }
         <div className="flex">
             <div className="flex flex-col aspect-[2/3] w-96 relative">
@@ -58,10 +58,12 @@ const PhotoMenuBlock = ({block}: {
                         const childLinkInfo = getUrlFromPageOrExternal(item);
                         if (childLinkInfo.isExternal) {
                             return <a
+                                tabIndex={tabIndex}
                                 className={`${activeMenu === item.id ? "font-bold":""}`}
                                 onMouseEnter={() => setActiveMenu(item.id||null)} key={item.id} href={childLinkInfo.url}>{item.title}</a>
                         }
                         return <Link
+                            tabIndex={tabIndex}
                             className={`${activeMenu === item.id ? "font-bold":""}`}
                             onMouseEnter={() => setActiveMenu(item.id||null)} href={childLinkInfo.url} key={item.id}>{item.title}</Link>
                     })

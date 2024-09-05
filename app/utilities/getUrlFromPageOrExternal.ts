@@ -8,7 +8,7 @@ function getUrlFromPageOrExternal(item: {
     external_url?: string | null;
 }|null|undefined) {
     if (!item) return {
-        url: "/#",
+        url: "#",
         isExternal: false
     };
 
@@ -16,7 +16,7 @@ function getUrlFromPageOrExternal(item: {
 
     if(internalLink){
         return {
-            url: internalLink,
+            url: "/"+internalLink,
             isExternal: false
         }
     }

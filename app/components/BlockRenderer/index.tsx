@@ -2,10 +2,11 @@ import MenuButton from "@/app/components/BlockRenderer/blocks/MenuButton";
 import {Media, Page} from "@/app/types/payloadTypes";
 import MenuWithSubMenu from "@/app/components/BlockRenderer/blocks/MenuWithSubMenu";
 import PhotoMenuBlock from "@/app/components/BlockRenderer/blocks/PhotoMenuBlock";
+import {ForwardedRef, forwardRef} from "react";
 
-const BlockRenderer = ({blocks}: { blocks: any }) => {
+const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: { blocks: any, tabIndex?: number }, ref: ForwardedRef<any>){
     return <>{
-        blocks.map((block: unknown) => {
+        blocks.map((block: unknown, index:number) => {
             let typedBlock = block as {blockType:string};
             switch (typedBlock.blockType) {
                 case "MenuButton":
@@ -20,7 +21,7 @@ const BlockRenderer = ({blocks}: { blocks: any }) => {
                         blockName?: string | null;
                         blockType: 'MenuButton';
                     };
-                    return <div className="mb-4"><MenuButton block={menuButtonTypedBlock} key={menuButtonTypedBlock.id} /></div>
+                    return <div className="mb-4"><MenuButton tabIndex={tabIndex} block={menuButtonTypedBlock} key={menuButtonTypedBlock.id} /></div>
                 case "MenuWithSubMenu":
                     const menuWithSubmenuTypedBlock = block as {
                         headerItem?: {
@@ -48,7 +49,7 @@ const BlockRenderer = ({blocks}: { blocks: any }) => {
                         blockName?: string | null;
                         blockType: 'MenuWithSubMenu';
                     }
-                    return <MenuWithSubMenu block={menuWithSubmenuTypedBlock} key={menuWithSubmenuTypedBlock.id} />
+                    return <MenuWithSubMenu tabIndex={tabIndex} block={menuWithSubmenuTypedBlock} key={menuWithSubmenuTypedBlock.id} />
                 case "photoMenu":
                     const photoMenuTypedBlock = block as {
                         title?: string | null;
@@ -75,7 +76,7 @@ const BlockRenderer = ({blocks}: { blocks: any }) => {
                         blockName?: string | null;
                         blockType: 'photoMenu';
                     }
-                    return <PhotoMenuBlock block={photoMenuTypedBlock} key={photoMenuTypedBlock.id}/>
+                    return <PhotoMenuBlock tabIndex={tabIndex} block={photoMenuTypedBlock} key={photoMenuTypedBlock.id}/>
                 case "SimpleMenu":
                     return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
                 case "Breaker":
@@ -94,6 +95,6 @@ const BlockRenderer = ({blocks}: { blocks: any }) => {
             }
         })
     }</>
-}
+})
 
 export default BlockRenderer;

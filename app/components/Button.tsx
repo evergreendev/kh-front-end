@@ -12,11 +12,11 @@ export const buttonConfig = {
 
 type Config = (typeof buttonConfig)[keyof typeof buttonConfig];
 
-const Button = ({text, href, icon, config}: { text: string, href: string, icon?: IconProp, config?: Config }) => {
+const Button = ({text, href, icon, config, tabIndex}: { text: string, href: string, icon?: IconProp, config?: Config, tabIndex?: number }) => {
 
     if (!config) config = buttonConfig.primary;
 
-    return <Link href={href} className={`flex w-80 justify-between px-6 py-2 text-xl ${config}`}>
+    return <Link tabIndex={tabIndex} href={href} className={`flex w-80 justify-between px-6 py-2 text-xl ${config}`}>
         <span className={`font-opensans ${icon ? "" : "mx-auto"}`}>{
             text
         }</span>
