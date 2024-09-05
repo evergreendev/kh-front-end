@@ -37,8 +37,8 @@ const PhotoMenuBlock = ({block, tabIndex}: {
     return <div className="flex flex-wrap bg-gray-200">
         {
             linkInfo.isExternal
-                ? <a tabIndex={tabIndex} className="w-full font-ptserif text-4xl mb-4 hover:bg-white p-2" key={block.id} href={linkInfo.url}>{block.title}</a>
-                : <Link tabIndex={tabIndex} className="w-full font-ptserif text-4xl mb-4 hover:bg-white p-2" key={block.id} href={linkInfo.url}>{block.title}</Link>
+                ? <a tabIndex={tabIndex} className="w-full font-ptserif text-4xl hover:bg-white p-4" key={block.id} href={linkInfo.url}>{block.title}</a>
+                : <Link tabIndex={tabIndex} className="w-full font-ptserif text-4xl hover:bg-white p-4" key={block.id} href={linkInfo.url}>{block.title}</Link>
         }
         <div className="flex">
             <div className="flex flex-col aspect-[2/3] w-96 relative">
@@ -52,7 +52,7 @@ const PhotoMenuBlock = ({block, tabIndex}: {
                     })
                 }
             </div>
-            <div className="flex flex-col gap-3 text-2xl bg-white p-6">
+            <div className="flex flex-col gap-3 text-2xl bg-white p-6 min-w-80">
                 {
                     block.item?.map(item => {
                         const childLinkInfo = getUrlFromPageOrExternal(item);
