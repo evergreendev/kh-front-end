@@ -39,7 +39,7 @@ const ExpandableButton = forwardRef(function ExpandableButton({id, text, item, s
     const ExpandButton = () => {
         return <button
             aria-label={`Expand ${text} menu`}
-            className="p-3 hover:bg-gray-800 focus:bg-gray-700 text-2xl"
+            className={`p-3 hover:bg-gray-800 hover:text-white focus:bg-gray-700 text-2xl`}
             tabIndex={tabIndex} onClick={(e) => {
             e.preventDefault();
             setActiveMenuId(isExpanded ? null : id);
@@ -53,12 +53,12 @@ const ExpandableButton = forwardRef(function ExpandableButton({id, text, item, s
     }
 
     return linkInfo.isExternal
-        ? <a className="bg-black text-white text-3xl flex mr-6 group" ref={ref} tabIndex={tabIndex} href={linkInfo.url}>
-            <span className="p-4 hover:bg-gray-900 group-focus:bg-gray-700">{text}</span>
+        ? <a className={`bg-black text-3xl flex mr-6 group ${isExpanded ? "bg-gray-100 text-black": "text-white"}`} ref={ref} tabIndex={tabIndex} href={linkInfo.url}>
+            <span className="p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{text}</span>
             <ExpandButton/>
         </a>
-        : <Link className="bg-black text-white text-3xl flex mr-6 group" ref={ref} tabIndex={tabIndex} key={id} href={linkInfo.url}>
-            <span className="p-4 hover:bg-gray-900 group-focus:bg-gray-700">{text}</span>
+        : <Link className={`bg-black text-3xl flex mr-6 group ${isExpanded ? "bg-gray-100 text-black": "text-white"}`} ref={ref} tabIndex={tabIndex} key={id} href={linkInfo.url}>
+            <span className="p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{text}</span>
             <ExpandButton/>
         </Link>
 })
@@ -100,12 +100,13 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
              items-start
              overflow-hidden
              fixed
+             p-6
              font-opensans
              duration-700 
-             z-50 bg-white bg-opacity-95 transition-all border-r-8 border-r-brand-yellow`}>
+             z-50 bg-white bg-opacity-95 transition-all border-b-8 border-b-brand-yellow`}>
             {
                 nav.items.map((item, index) => {
-                    return <div key={item.id}>
+                    return <div className="mt-6" key={item.id}>
                         <ExpandableButton isExpanded={activeMenuId === item.id} firstFocusable={firstFocusableElements.current[item.id || ""]}
                                           ref={index === 0 ? firstFocusableElementRef : null}
                                           tabIndex={isExpanded ? 0 : -1} item={item} setActiveMenuId={() => {
@@ -114,11 +115,11 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
                     </div>
                 })
             }
-            <div className="relative w-full h-full mt-6 overflow-hidden p-6">
+            <div className="relative w-full h-full overflow-hidden p-6">
                 {
                     nav.items.map(item => {
                         return <div key={item.id}
-                                    className={`absolute bg-gray-100 shadow transition-all duration-700 p-6 flex flex-wrap w-full top-0 left-0 ${item.id === activeMenuId ? "" : "-translate-x-full"}`}>
+                                    className={`absolute bg-gray-200 transition-all duration-700 p-6 flex flex-wrap w-full top-0 left-0 ${item.id === activeMenuId ? "" : "-translate-x-full"}`}>
                             <h2 className="w-full font-ptserif text-5xl text-gray-950 mb-6">{item.title}</h2>
                             {item.columns?.map((column,index) => {
                                 return <div key={column.id}
