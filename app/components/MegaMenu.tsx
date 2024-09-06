@@ -119,15 +119,17 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
                 {
                     nav.items.map(item => {
                         return <div key={item.id}
-                                    className={`absolute bg-gray-200 transition-all duration-700 p-6 flex-wrap w-full top-0 left-0 ${item.id === activeMenuId ? "flex" : "hidden"}`}>
-                            <h2 className="w-full font-ptserif text-5xl text-gray-950 mb-6">{item.title}</h2>
-                            {item.columns?.map((column,index) => {
-                                return <div key={column.id}
-                                            className={`flex flex-col ${widths[column.width || "1/4"]}`}>
-                                    <BlockRenderer ref={index === 0 ? firstFocusableElements.current[item.id||""]:null} tabIndex={item.id === activeMenuId && isExpanded ? 0 : -1} key={column.id}
-                                                   blocks={column.content}/>
-                                </div>
-                            })}
+                                    className={`absolute bg-gray-200 transition-all duration-700 flex-wrap w-full overflow-hidden top-0 left-0 ${item.id === activeMenuId ? "max-h-screen z-10" : "max-h-0"}`}>
+                            <div className="p-6 flex flex-wrap">
+                                <h2 className="w-full font-ptserif text-5xl text-gray-950 mb-6">{item.title}</h2>
+                                {item.columns?.map((column,index) => {
+                                    return <div key={column.id}
+                                                className={`flex flex-col ${widths[column.width || "1/4"]}`}>
+                                        <BlockRenderer ref={index === 0 ? firstFocusableElements.current[item.id||""]:null} tabIndex={item.id === activeMenuId && isExpanded ? 0 : -1} key={column.id}
+                                                       blocks={column.content}/>
+                                    </div>
+                                })}
+                            </div>
                         </div>
                     })
                 }
