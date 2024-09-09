@@ -94,7 +94,8 @@ const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
                     {
                         data.intro_content?.video ?
                             <div className="w-full">
-                                <Video src={data.intro_content?.video}/>
+                                <Video src={data.intro_content?.video}
+                                       thumbnail={typeof data.intro_content?.thumbnail !== "number" ? data.intro_content?.thumbnail?.url : ""}/>
                             </div> :
                             ""
                     }

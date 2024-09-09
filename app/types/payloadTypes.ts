@@ -91,6 +91,7 @@ export interface Page {
     id: number;
     intro_content?: {
         video?: string | null;
+        thumbnail?: number | Media | null;
         images?:
             | {
             media?: number | Media | null;
@@ -123,6 +124,7 @@ export interface Page {
                 | (
                 | {
                 media?: number | Media | null;
+                thumbnail?: number | Media | null;
                 id?: string | null;
                 blockName?: string | null;
                 blockType: 'MediaBlock';
@@ -200,6 +202,7 @@ export interface Page {
     }
         | {
         media?: number | Media | null;
+        thumbnail?: number | Media | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'MediaBlock';
