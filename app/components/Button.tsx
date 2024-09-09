@@ -7,7 +7,7 @@ export const buttonConfig = {
     secondary: "",
     tertiary: "",
     highlight: "bg-brand-yellow font-bold",
-    text: ""
+    text: "bg-transparent hover:bg-gray-100"
 }
 
 type Config = (typeof buttonConfig)[keyof typeof buttonConfig];
