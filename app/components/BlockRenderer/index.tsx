@@ -3,11 +3,15 @@ import {Media, Page} from "@/app/types/payloadTypes";
 import MenuWithSubMenu from "@/app/components/BlockRenderer/blocks/MenuWithSubMenu";
 import PhotoMenuBlock from "@/app/components/BlockRenderer/blocks/PhotoMenuBlock";
 import {ForwardedRef, forwardRef} from "react";
+import Columns from "@/app/components/Columns";
 
-const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: { blocks: any, tabIndex?: number }, ref: ForwardedRef<any>){
+const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
+    blocks: any,
+    tabIndex?: number
+}, ref: ForwardedRef<any>) {
     return <>{
-        blocks.map((block: unknown, index:number) => {
-            let typedBlock = block as {blockType:string};
+        blocks.map((block: unknown, index: number) => {
+            let typedBlock = block as { blockType: string };
             switch (typedBlock.blockType) {
                 case "MenuButton":
                     const menuButtonTypedBlock = block as {
@@ -21,7 +25,8 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: { bl
                         blockName?: string | null;
                         blockType: 'MenuButton';
                     };
-                    return <div className="mb-4"><MenuButton tabIndex={tabIndex} block={menuButtonTypedBlock} key={menuButtonTypedBlock.id} /></div>
+                    return <div className="mb-4"><MenuButton tabIndex={tabIndex} block={menuButtonTypedBlock}
+                                                             key={menuButtonTypedBlock.id}/></div>
                 case "MenuWithSubMenu":
                     const menuWithSubmenuTypedBlock = block as {
                         headerItem?: {
@@ -49,7 +54,8 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: { bl
                         blockName?: string | null;
                         blockType: 'MenuWithSubMenu';
                     }
-                    return <MenuWithSubMenu tabIndex={tabIndex} block={menuWithSubmenuTypedBlock} key={menuWithSubmenuTypedBlock.id} />
+                    return <MenuWithSubMenu tabIndex={tabIndex} block={menuWithSubmenuTypedBlock}
+                                            key={menuWithSubmenuTypedBlock.id}/>
                 case "photoMenu":
                     const photoMenuTypedBlock = block as {
                         title?: string | null;
@@ -76,7 +82,8 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: { bl
                         blockName?: string | null;
                         blockType: 'photoMenu';
                     }
-                    return <PhotoMenuBlock tabIndex={tabIndex} block={photoMenuTypedBlock} key={photoMenuTypedBlock.id}/>
+                    return <PhotoMenuBlock tabIndex={tabIndex} block={photoMenuTypedBlock}
+                                           key={photoMenuTypedBlock.id}/>
                 case "SimpleMenu":
                     return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
                 case "Breaker":
@@ -88,13 +95,71 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: { bl
                 case "TextBlock":
                     return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
                 case "column":
-                    return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
-                default:
-                    return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown Block
-                        Type</div>
-            }
-        })
-    }</>
+                    const columnTypedBlock = block as {
+                        vertical_separator?: boolean | null;
+                        columns?:
+                            | {
+                            content?:
+                                | (
+                                | {
+                                media?: number | Media | null;
+                                thumbnail?: number | Media | null;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'MediaBlock';
+                            }
+                                | {
+                                heading_1?: string | null;
+                                heading_2?: string | null;
+                                heading_link?: {
+                                    link?: string | null;
+                                    label?: string | null;
+                                };
+                                body?: {
+                                    text?: {
+                                        root: {
+                                            type: string;
+                                            children: {
+                                                type: string;
+                                                version: number;
+                                                [k: string]: unknown;
+                                            }[];
+                                            direction: ('ltr' | 'rtl') | null;
+                                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                                            indent: number;
+                                            version: number;
+                                        };
+                                        [k: string]: unknown;
+                                    } | null;
+                                    link_list?:
+                                        | {
+                                        link?: string | null;
+                                        label?: string | null;
+                                        id?: string | null;
+                                    }[]
+                                        | null;
+                                };
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'TextBlock';
+                            }
+                                )[]
+                                | null;
+                            width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4') | null;
+                            id?: string | null;
+                        }[]
+                            | null;
+                        id?: string | null;
+                        blockName?: string | null;
+                        blockType: 'column';
+                    }
+            return <Columns block={columnTypedBlock}/>
+        default:
+            return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown Block
+                Type</div>
+        }
+    })
+        }</>
 })
 
 export default BlockRenderer;

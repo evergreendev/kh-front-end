@@ -20,6 +20,7 @@ import Video from "@/app/components/Video";
 import {Meta} from "@/app/types/types";
 import Footer from "@/app/components/Footer";
 import MegaMenu from "@/app/components/MegaMenu";
+import BlockRenderer from "@/app/components/BlockRenderer";
 
 const SideBar = ({meta}: { meta: Meta }) => {
 
@@ -117,6 +118,9 @@ const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
                     {
                         data?.jump_menu && <JumpMenu items={data.jump_menu}/>
                     }
+                </div>
+                <div className="w-full pr-16 pt-16">
+                    <BlockRenderer blocks={data.layout}/>
                 </div>
             </div>
             <Footer footer={meta.footer}/>
