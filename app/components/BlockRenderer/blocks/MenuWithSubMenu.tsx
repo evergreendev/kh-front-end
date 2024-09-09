@@ -43,9 +43,9 @@ const MenuWithSubMenu = ({block,tabIndex}: {
             {block.items?.map(item => {
                 const childLinkInfo = getUrlFromPageOrExternal(item);
                 if (childLinkInfo.isExternal) {
-                    return <a tabIndex={tabIndex} className="p-2 border-l-2 border-l-gray-200 hover:bg-white block" key={item.id} href={childLinkInfo.url}>{item.title}</a>
+                    return <a tabIndex={tabIndex} className="p-2 border-l-2 border-l-gray-200 hover:bg-white block text-xl" key={item.id} href={childLinkInfo.url}>{item.title}</a>
                 }
-                return <Link tabIndex={tabIndex} className="p-2 border-l-2 border-l-gray-200 hover:bg-white block" key={item.id} href={childLinkInfo.url}>{item.title}</Link>
+                return <Link tabIndex={tabIndex} className="p-2 border-l-2 border-l-gray-200 hover:bg-white block text-xl" key={item.id} href={childLinkInfo.url}>{item.title}</Link>
             })}
         </div>
 
