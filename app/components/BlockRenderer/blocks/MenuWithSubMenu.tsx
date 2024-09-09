@@ -33,7 +33,7 @@ const MenuWithSubMenu = ({block,tabIndex}: {
 }) => {
     const linkInfo = getUrlFromPageOrExternal(block.headerItem);
 
-    return <div className="flex flex-col text-2xl">
+    return <div className="flex flex-col text-xl">
         {
             linkInfo.isExternal
                 ? <a tabIndex={tabIndex} className="p-2 hover:bg-white block" href={linkInfo.url}>{block.headerItem?.title}</a>
@@ -43,9 +43,9 @@ const MenuWithSubMenu = ({block,tabIndex}: {
             {block.items?.map(item => {
                 const childLinkInfo = getUrlFromPageOrExternal(item);
                 if (childLinkInfo.isExternal) {
-                    return <a tabIndex={tabIndex} className="p-2 border-l-2 border-l-gray-200 hover:bg-white block text-xl" key={item.id} href={childLinkInfo.url}>{item.title}</a>
+                    return <a tabIndex={tabIndex} className="p-2 border-l-2 border-l-gray-200 hover:bg-white block text-lg" key={item.id} href={childLinkInfo.url}>{item.title}</a>
                 }
-                return <Link tabIndex={tabIndex} className="p-2 border-l-2 border-l-gray-200 hover:bg-white block text-xl" key={item.id} href={childLinkInfo.url}>{item.title}</Link>
+                return <Link tabIndex={tabIndex} className="p-2 border-l-2 border-l-gray-200 hover:bg-white block text-lg" key={item.id} href={childLinkInfo.url}>{item.title}</Link>
             })}
         </div>
 
