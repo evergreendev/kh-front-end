@@ -3,7 +3,8 @@ import {Media, Page} from "@/app/types/payloadTypes";
 import MenuWithSubMenu from "@/app/components/BlockRenderer/blocks/MenuWithSubMenu";
 import PhotoMenuBlock from "@/app/components/BlockRenderer/blocks/PhotoMenuBlock";
 import {ForwardedRef, forwardRef} from "react";
-import Columns from "@/app/components/Columns";
+import Columns from "@/app/components/BlockRenderer/blocks/Columns";
+import MediaBlock from "@/app/components/BlockRenderer/blocks/MediaBlock";
 
 const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
     blocks: any,
@@ -91,7 +92,15 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
                 case "collectionCards":
                     return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
                 case "MediaBlock":
-                    return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
+                    const typedMediaBlock = block as {
+                        media?: number | Media | null;
+                        thumbnail?: number | Media | null;
+                        id?: string | null;
+                        blockName?: string | null;
+                        blockType: 'MediaBlock';
+                    }
+
+                    return <MediaBlock block={typedMediaBlock}/>
                 case "TextBlock":
                     return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
                 case "column":

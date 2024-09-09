@@ -154,7 +154,13 @@ export interface Page {
                     } | null;
                     link_list?:
                         | {
-                        link?: string | null;
+                        title?: string | null;
+                        external?: boolean | null;
+                        Relation?: {
+                            relationTo: 'pages';
+                            value: number | Page;
+                        } | null;
+                        external_url?: string | null;
                         label?: string | null;
                         id?: string | null;
                     }[]
