@@ -14,7 +14,6 @@ const MediaBlock = ({block}: {
     }
 }) => {
     if (typeof block.media === "number") return null;
-    console.log(block.media?.mimeType)
     if (block.media?.mimeType?.includes("image")) {
         return <Image className="w-full" src={block.media?.url || ""} alt={block.media?.alt || ""}
                       width={block.media?.width || 0}
