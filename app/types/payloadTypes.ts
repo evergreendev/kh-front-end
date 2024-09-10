@@ -196,7 +196,6 @@ export interface Page {
             highlight?: boolean | null;
         };
         button?: {
-            text?: string | null;
             type?: ('primary' | 'secondary' | 'highlight') | null;
             link?: {
                 title?: string | null;

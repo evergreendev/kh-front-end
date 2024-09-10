@@ -6,6 +6,7 @@ import {ForwardedRef, forwardRef} from "react";
 import Columns from "@/app/components/BlockRenderer/blocks/Columns";
 import MediaBlock from "@/app/components/BlockRenderer/blocks/MediaBlock";
 import TextBlock from "@/app/components/BlockRenderer/blocks/TextBlock";
+import BreakerBlock from "@/app/components/BlockRenderer/blocks/BreakerBlock";
 
 const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
     blocks: any,
@@ -89,7 +90,33 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
                 case "SimpleMenu":
                     return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
                 case "Breaker":
-                    return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
+                    const breakerTypedBlock = block as {
+                        heading_1?: {
+                            text?: string | null;
+                            highlight?: boolean | null;
+                        };
+                        heading_2?: {
+                            text?: string | null;
+                            highlight?: boolean | null;
+                        };
+                        button?: {
+                            type?: ('primary' | 'secondary' | 'highlight') | null;
+                            link?: {
+                                title?: string | null;
+                                external?: boolean | null;
+                                Relation?: {
+                                    relationTo: 'pages';
+                                    value: number | Page;
+                                } | null;
+                                external_url?: string | null;
+                            };
+                        };
+                        id?: string | null;
+                        blockName?: string | null;
+                        blockType: 'Breaker';
+                    }
+
+                    return <BreakerBlock block={breakerTypedBlock}/>
                 case "collectionCards":
                     return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
                 case "MediaBlock":
