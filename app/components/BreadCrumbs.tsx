@@ -7,7 +7,7 @@ const BreadCrumbs = ({fullPath}: { fullPath: string }) => {
 
     return <div className="flex gap-1 items-center text-gray-400">
         {
-            pathParts[0] !== "home" && <><Link className="hover:text-gray-600" href="/">Home</Link> &gt;</>
+            pathParts[0] !== "home" && <React.Fragment key={"home"}><Link className="hover:text-gray-600" href="/">Home</Link> &gt;</React.Fragment>
         }
         {pathParts.map((part, i) => {
             if (i !== 0) {

@@ -1,5 +1,6 @@
 import {Page} from "@/app/types/payloadTypes";
 import Button, {buttonConfig} from "@/app/components/Button";
+import {Fragment} from "react";
 
 const MenuButton = ({block, tabIndex}: {
     block: {
@@ -15,7 +16,7 @@ const MenuButton = ({block, tabIndex}: {
     }, tabIndex?: number
 }) => {
     if (typeof block.item?.value === "undefined" || typeof block.item?.value === "number") {
-        return <></>;
+        return <Fragment key={block.id}></Fragment>;
     }
     return <Button tabIndex={tabIndex} text={block.text || block.item?.value.title} href={`/${block.item?.value.full_path}`}
                    config={buttonConfig[block.buttonStyle || "primary"]}/>

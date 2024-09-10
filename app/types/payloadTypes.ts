@@ -133,7 +133,13 @@ export interface Page {
                 heading_1?: string | null;
                 heading_2?: string | null;
                 heading_link?: {
-                    link?: string | null;
+                    title?: string | null;
+                    external?: boolean | null;
+                    Relation?: {
+                        relationTo: 'pages';
+                        value: number | Page;
+                    } | null;
+                    external_url?: string | null;
                     label?: string | null;
                 };
                 body?: {

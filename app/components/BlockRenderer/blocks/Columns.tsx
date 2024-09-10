@@ -83,7 +83,6 @@ const Columns = ({block}:{block:{
 
     return <div className="w-full flex flex-wrap">
         {block.columns.map((column, index: number) => {
-            console.log(column);
             return <Fragment key={column.id}>
                 <div className={`${currWidth[column.width||"1/4"]}`}>
                 <BlockRenderer blocks={column.content}/>
