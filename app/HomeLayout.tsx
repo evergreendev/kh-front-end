@@ -112,7 +112,7 @@ const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
                 </div>
                 <div className="flex w-full mt-6">
                     <div className="max-w-md w-full flex items-center mr-14">
-                        <BreadCrumbs fullPath={data.full_path || ""}/>
+                        <BreadCrumbs fullPath={data?.full_path || ""}/>
                     </div>
 
                     {

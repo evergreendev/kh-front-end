@@ -12,7 +12,7 @@ const PageContent = ({data, meta}: { data: Page, meta: any }) => {
             <div>
                 {
                     data?.full_path &&
-                    <BreadCrumbs fullPath={data.full_path}/>
+                    <BreadCrumbs fullPath={data?.full_path}/>
                 }
                 {
                     data?.jump_menu && data.jump_menu.length > 0 && <JumpMenu items={data.jump_menu}/>

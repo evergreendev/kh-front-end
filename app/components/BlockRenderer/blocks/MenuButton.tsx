@@ -18,7 +18,7 @@ const MenuButton = ({block, tabIndex}: {
     if (typeof block.item?.value === "undefined" || typeof block.item?.value === "number") {
         return <Fragment key={block.id}></Fragment>;
     }
-    return <Button tabIndex={tabIndex} text={block.text || block.item?.value.title} href={`/${block.item?.value.full_path}`}
+    return <Button tabIndex={tabIndex} text={block.text || block.item?.value.title} href={`/${block.item?.value?.full_path}`}
                    config={buttonConfig[block.buttonStyle || "primary"]}/>
 }
 

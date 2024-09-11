@@ -133,14 +133,14 @@ function renderText(root: any, key: number) {
         case "link":
             return root.fields.linkType === "internal" ?
                 <Link key={key} className={`underline text-slate-700 ${alignment[root.format as keyof {}]}`}
-                      href={root.fields.doc.value.full_path}>{root.children.map((child: any) => renderText(child, key + 1))}</Link> :
+                      href={root.fields.doc.value?.full_path}>{root.children.map((child: any) => renderText(child, key + 1))}</Link> :
                 <a key={key} className={`underline text-slate-700 ${alignment[root.format as keyof {}]}`}
                    href={root.fields.url} rel={root.fields.newTab ? "noopener noreferrer" : ""}
                    target={root.fields.newTab ? "_blank" : ""}>
                     {root.children.map((child: any) => renderText(child, key + 1))}
                 </a>
         case "relationship":
-            return <Button key={key} text={root.value.title} href={"/" + root.value.full_path}/>
+            return <Button key={key} text={root.value.title} href={"/" + root.value?.full_path}/>
         case "list":
             if (root.tag === "ol") {
                 return <ol key={key}
@@ -234,7 +234,7 @@ const TextBlock = ({block}: {
                             href={block.heading_link?.external_url || ""}>{block.heading_link?.label ? block.heading_link?.label : block.heading_link?.title}</a></div>
                         : <div className="text-xl text-center font-ptserif italic">{block.heading_link?.label ? block.heading_link?.title + " " : ""}<Link
                             className="font-ptserif underline"
-                            href={"/" + (block.heading_link?.Relation?.value as Page).full_path}>{block.heading_link?.label ? block.heading_link?.label : block.heading_link?.title}</Link>
+                            href={"/" + (block.heading_link?.Relation?.value as Page)?.full_path}>{block.heading_link?.label ? block.heading_link?.label : block.heading_link?.title}</Link>
                         </div>
                     : ""
             }
@@ -250,7 +250,7 @@ const TextBlock = ({block}: {
                         href={item.external_url || ""}>{item.label ? item.label : item.title}</a></div>
                     : <div className="text-xl text-center font-ptserif italic">{item.label ? item.title + " " : ""}<Link
                         className="font-ptserif underline"
-                        href={"/" + (item.Relation?.value as Page).full_path}>{item.label ? item.label : item.title}</Link>
+                        href={"/" + (item.Relation?.value as Page)?.full_path}>{item.label ? item.label : item.title}</Link>
                     </div>
             })
         }
