@@ -12,11 +12,16 @@ export const buttonConfig = {
 
 type Config = (typeof buttonConfig)[keyof typeof buttonConfig];
 
-const Button = ({text, href, icon, config, tabIndex}: { text: string, href: string, icon?: IconProp, config?: Config, tabIndex?: number }) => {
+const Button = ({text, href, icon, config, tabIndex,isExternal}: { text: string, href: string, icon?: IconProp, config?: Config, tabIndex?: number,isExternal?: boolean|null }) => {
 
     if (!config) config = buttonConfig.primary;
 
-    return <Link tabIndex={tabIndex} href={href} className={`inline-flex w-80 justify-between px-6 py-2 text-xl ${config}`}>
+    return <>{
+    isExternal
+        ? <a tabIndex={tabIndex} href={href} className={`inline-flex w-80 justify-between px-6 py-2 text-xl ${config}`}><span className={`font-opensans ${icon ? "" : "mx-auto"}`}>{
+            text
+        }</span></a>
+        : <Link tabIndex={tabIndex} href={href} className={`inline-flex w-80 justify-between px-6 py-2 text-xl ${config}`}>
         <span className={`font-opensans ${icon ? "" : "mx-auto"}`}>{
             text
         }</span>
@@ -25,6 +30,7 @@ const Button = ({text, href, icon, config, tabIndex}: { text: string, href: stri
             <FontAwesomeIcon className="size-6" icon={icon}/>
         }
     </Link>
+    }</>
 }
 
 export default Button;

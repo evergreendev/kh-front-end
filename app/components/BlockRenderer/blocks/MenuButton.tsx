@@ -1,25 +1,34 @@
 import {Page} from "@/app/types/payloadTypes";
 import Button, {buttonConfig} from "@/app/components/Button";
 import {Fragment} from "react";
+import {faChevronCircleRight} from "@awesome.me/kit-2a2dc088e2/icons/classic/thin";
 
 const MenuButton = ({block, tabIndex}: {
     block: {
-        item?: {
+        title?: string | null;
+        external?: boolean | null;
+        Relation?: {
             relationTo: 'pages';
             value: number | Page;
         } | null;
-        text?: string | null;
+        external_url?: string | null;
         buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+        hasIcon?: boolean | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'MenuButton';
     }, tabIndex?: number
 }) => {
-    if (typeof block.item?.value === "undefined" || typeof block.item?.value === "number") {
+    if (block.external) return <Button icon={block.hasIcon ? faChevronCircleRight : undefined} isExternal={block.external} tabIndex={tabIndex} text={block.title||""} href={`${block.external_url}`}
+                                       config={buttonConfig[block.buttonStyle || "primary"]}/>
+
+    if (typeof block.Relation?.value === "undefined" || typeof block.Relation?.value === "number") {
         return <Fragment key={block.id}></Fragment>;
     }
-    return <Button tabIndex={tabIndex} text={block.text || block.item?.value.title} href={`/${block.item?.value?.full_path}`}
-                   config={buttonConfig[block.buttonStyle || "primary"]}/>
+    return <Button icon={block.hasIcon ? faChevronCircleRight : undefined} isExternal={block.external} tabIndex={tabIndex} text={block.title || block.Relation?.value.title} href={`/${block.Relation?.value?.full_path}`}
+            config={buttonConfig[block.buttonStyle || "primary"]}/>
+
+
 }
 
 export default MenuButton;

@@ -18,12 +18,15 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
             switch (typedBlock.blockType) {
                 case "MenuButton":
                     const menuButtonTypedBlock = block as {
-                        item?: {
+                        title?: string | null;
+                        external?: boolean | null;
+                        Relation?: {
                             relationTo: 'pages';
                             value: number | Page;
                         } | null;
-                        text?: string | null;
+                        external_url?: string | null;
                         buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+                        hasIcon?: boolean | null;
                         id?: string | null;
                         blockName?: string | null;
                         blockType: 'MenuButton';
