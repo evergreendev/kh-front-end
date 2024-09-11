@@ -119,10 +119,11 @@ const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
                         data?.jump_menu && <JumpMenu items={data.jump_menu}/>
                     }
                 </div>
-                <div className="w-full pr-16 pt-16">
+            </div>
+                <div className="w-full pt-16">
                     <BlockRenderer blocks={data.layout}/>
                 </div>
-            </div>
+
             <Footer footer={meta.footer}/>
         </main>
     );

@@ -11,16 +11,19 @@ const widths = {
         "3/4": "md:w-[74%]",
     },
     noBorder: {
-        "1/3": "md:w-4/12",
-        "2/3": "md:w-8/12",
-        "1/4": "md:w-3/12",
-        "1/2": "md:w-6/12",
-        "3/4": "md:w-9/12",
+        "1/3": "md:w-[32.33333%]",
+        "2/3": "md:w-[65.66666%]",
+        "1/4": "md:w-[24%]",
+        "1/2": "md:w-[49%]",
+        "3/4": "md:w-[74%]",
     }
 }
 
 const Columns = ({block}:{block:{
         vertical_separator?: boolean | null;
+        fullWidth?: boolean | null;
+        narrowRow?: boolean | null;
+        grayBackground?: boolean | null;
         columns?:
             | {
             content?:
@@ -81,7 +84,11 @@ const Columns = ({block}:{block:{
 
     const currWidth = block.vertical_separator ? widths.withBorder : widths.noBorder;
 
-    return <div className="w-full flex flex-wrap items-center">
+    return <div className={`w-full flex flex-wrap items-center justify-between 
+    ${block.grayBackground ? "bg-gray-200" : ""}
+    ${block.narrowRow && !block.fullWidth ? "max-w-screen-2xl mx-auto" : ""}
+    ${!block.narrowRow && !block.fullWidth ? "max-w-top pl-7 mx-auto" : ""}
+    `}>
         {block.columns.map((column, index: number) => {
             return <Fragment key={column.id}>
                 <div className={`${currWidth[column.width||"1/4"]}`}>

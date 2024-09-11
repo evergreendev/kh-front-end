@@ -182,6 +182,9 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
                 case "column":
                     const columnTypedBlock = block as {
                         vertical_separator?: boolean | null;
+                        fullWidth?: boolean | null;
+                        narrowRow?: boolean | null;
+                        grayBackground?: boolean | null;
                         columns?:
                             | {
                             content?:

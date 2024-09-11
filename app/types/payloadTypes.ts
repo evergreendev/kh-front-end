@@ -118,6 +118,9 @@ export interface Page {
         | (
         | {
         vertical_separator?: boolean | null;
+        fullWidth?: boolean | null;
+        narrowRow?: boolean | null;
+        grayBackground?: boolean | null;
         columns?:
             | {
             content?:
@@ -196,7 +199,7 @@ export interface Page {
             highlight?: boolean | null;
         };
         button?: {
-            type?: ('primary' | 'secondary' | 'highlight') | null;
+            type?: ('primary' | 'secondary' | 'highlight' | 'tertiary') | null;
             link?: {
                 title?: string | null;
                 external?: boolean | null;
