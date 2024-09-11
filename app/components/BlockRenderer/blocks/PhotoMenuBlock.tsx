@@ -37,22 +37,22 @@ const PhotoMenuBlock = ({block, tabIndex}: {
     return <div className="flex flex-wrap bg-gray-200">
         {
             linkInfo.isExternal
-                ? <a tabIndex={tabIndex} className="w-full font-ptserif text-4xl hover:bg-white p-4" key={block.id} href={linkInfo.url}>{block.title}</a>
-                : <Link tabIndex={tabIndex} className="w-full font-ptserif text-4xl hover:bg-white p-4" key={block.id} href={linkInfo.url}>{block.title}</Link>
+                ? <a tabIndex={tabIndex} className="w-full text-4xl hover:bg-white p-4 text-center" key={block.id} href={linkInfo.url}>{block.title}</a>
+                : <Link tabIndex={tabIndex} className="w-full text-4xl hover:bg-white p-4 text-center" key={block.id} href={linkInfo.url}>{block.title}</Link>
         }
-        <div className="flex">
-            <div className="flex flex-col aspect-[2/3] w-96 relative">
+        <div className="flex w-full">
+            <div className="flex flex-col aspect-[4/3] grow relative">
                 {
                     block.item?.map(item => {
                         if (!item.image || typeof item.image === "number") return <Fragment key={item.id}></Fragment>;
 
-                        return <Image className={`aspect-[2/3] duration-700 object-cover w-full absolute  transition-opacity ${activeMenu === item.id ? "opacity-100":"opacity-0"} border-r-8 border-r-brand-yellow`}
+                        return <Image className={`aspect-[4/3] duration-700 object-cover w-full absolute  transition-opacity ${activeMenu === item.id ? "opacity-100":"opacity-0"} border-r-8 border-r-brand-yellow`}
                                       key={item.id} src={item.image.url || ""} alt={item.image.alt || ""}
                                       width={item.image.width || 0} height={item.image.height || 0}/>
                     })
                 }
             </div>
-            <div className="flex flex-col gap-3 text-2xl bg-white p-6 min-w-80">
+            <div className="flex flex-col gap-3 text-2xl p-4 min-w-80">
                 {
                     block.item?.map(item => {
                         const childLinkInfo = getUrlFromPageOrExternal(item);
