@@ -81,7 +81,7 @@ const Columns = ({block}:{block:{
 
     const currWidth = block.vertical_separator ? widths.withBorder : widths.noBorder;
 
-    return <div className="w-full flex flex-wrap">
+    return <div className="w-full flex flex-wrap items-center">
         {block.columns.map((column, index: number) => {
             return <Fragment key={column.id}>
                 <div className={`${currWidth[column.width||"1/4"]}`}>
@@ -89,7 +89,7 @@ const Columns = ({block}:{block:{
             </div>
                 {
                     block.vertical_separator && block.columns && index !== block.columns.length - 1
-                        ? <div className="w-[2%] flex justify-around">
+                        ? <div className="w-[2%] flex justify-around self-stretch">
                         <div className="w-[3px] bg-black"/>
                         </div>
                         : null
