@@ -91,3 +91,27 @@ body {
   opacity: 0;
   pointer-events: none;
 }
+.dots{
+  display: flex!important;
+  justify-content: center;
+}
+.dots li{
+  display: inline;
+  margin: 0 7px;
+}
+
+.dots li:first-child{
+  margin-left: 20%;
+}
+
+.dots li button{
+  width: 20px;
+  height: 20px;
+  border: solid #e5e5e5;
+  border-radius: 50%;
+  font-size: 0;
+}
+
+.dots .slick-active button{
+  background: #e5e5e5;
+}
