@@ -1,6 +1,7 @@
 import React, {Fragment} from "react";
 import Link from "next/link";
 import Button from "@/app/components/Button";
+import BlockRenderer from "@/app/components/BlockRenderer";
 
 function getFormats() {
     const lexicalFormats = [[""]]
@@ -118,13 +119,14 @@ function renderText(root: any, key: number, styleOverride?: string) {
                     return <Fragment key={key}></Fragment>
             }
         case "paragraph":
-            return <p key={key}
-                      className={`${styleOverride||"text-xl max-w-[58ch]"} mb-6 font-ptserif  mx-auto 
+            console.log(root)
+            return root.children.length > 0 ? <p key={key}
+                      className={`${styleOverride||"text-xl max-w-[58ch]"} font-ptserif  mx-auto 
                       ${alignment[root.format as keyof {}]||""}
                       
                       `}>{root.children.map((child: any) => {
                 return renderText(child, key + 1, styleOverride);
-            })}</p>
+            })}</p> : <br/>
         case "text":
             return <FormattedText formats={lexicalFormats[root.format]}>
                 <span key={key} className={`${getStyles(lexicalFormats[root.format])||""}`}>{root.text}</span>
@@ -155,7 +157,6 @@ function renderText(root: any, key: number, styleOverride?: string) {
         case "quote":
             return <blockquote key={key}
                                className={`border-l-2 pl-6 py-4 ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, styleOverride))}</blockquote>
-
         default:
             break;
     }
