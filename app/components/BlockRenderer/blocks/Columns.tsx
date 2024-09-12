@@ -86,8 +86,8 @@ const Columns = ({block}:{block:{
 
     return <div className={`w-full flex flex-wrap items-center justify-between 
     ${block.grayBackground ? "bg-gray-200" : ""}
-    ${block.narrowRow && !block.fullWidth ? "max-w-screen-2xl mx-auto" : ""}
-    ${!block.narrowRow && !block.fullWidth ? "max-w-top pl-7 mx-auto" : ""}
+    ${block.narrowRow && !block.fullWidth ? "max-w-screen-xl mx-auto" : ""}
+    ${!block.narrowRow && !block.fullWidth ? "max-w-[1800px] px-7 mx-auto" : ""}
     `}>
         {block.columns.map((column, index: number) => {
             return <Fragment key={column.id}>

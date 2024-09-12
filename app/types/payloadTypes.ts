@@ -193,6 +193,28 @@ export interface Page {
                 blockName?: string | null;
                 blockType: 'MenuButton';
             }
+                | {
+                text?: {
+                    root: {
+                        type: string;
+                        children: {
+                            type: string;
+                            version: number;
+                            [k: string]: unknown;
+                        }[];
+                        direction: ('ltr' | 'rtl') | null;
+                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                        indent: number;
+                        version: number;
+                    };
+                    [k: string]: unknown;
+                } | null;
+                underlineHighlight?: boolean | null;
+                largeText?: boolean | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'HeaderBlock';
+            }
                 )[]
                 | null;
             width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4') | null;
@@ -251,6 +273,8 @@ export interface Page {
             };
             [k: string]: unknown;
         } | null;
+        underlineHighlight?: boolean | null;
+        largeText?: boolean | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'HeaderBlock';

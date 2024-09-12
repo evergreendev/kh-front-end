@@ -7,6 +7,7 @@ import Columns from "@/app/components/BlockRenderer/blocks/Columns";
 import MediaBlock from "@/app/components/BlockRenderer/blocks/MediaBlock";
 import TextBlock from "@/app/components/BlockRenderer/blocks/TextBlock";
 import BreakerBlock from "@/app/components/BlockRenderer/blocks/BreakerBlock";
+import HeaderBlock from "@/app/components/BlockRenderer/blocks/HeaderBlock";
 
 const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
     blocks: any,
@@ -245,6 +246,30 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
                         blockType: 'column';
                     }
             return <Columns block={columnTypedBlock}/>
+                case "HeaderBlock":
+                    const headerTypedBlock = block as {
+                        text?: {
+                            root: {
+                                type: string;
+                                children: {
+                                    type: string;
+                                    version: number;
+                                    [k: string]: unknown;
+                                }[];
+                                direction: ('ltr' | 'rtl') | null;
+                                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                                indent: number;
+                                version: number;
+                            };
+                            [k: string]: unknown;
+                        } | null;
+                        underlineHighlight?: boolean | null;
+                        largeText?: boolean | null;
+                        id?: string | null;
+                        blockName?: string | null;
+                        blockType: 'HeaderBlock';
+                    }
+                    return <HeaderBlock key={headerTypedBlock.id} block={headerTypedBlock}/>
         default:
             return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown Block
                 Type</div>
