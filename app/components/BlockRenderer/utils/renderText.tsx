@@ -1,7 +1,6 @@
 import React, {Fragment} from "react";
 import Link from "next/link";
 import Button from "@/app/components/Button";
-import BlockRenderer from "@/app/components/BlockRenderer";
 
 function getFormats() {
     const lexicalFormats = [[""]]
@@ -52,7 +51,7 @@ const alignment = {
 function getStyles(formats: string[]) {
     let className = "";
 
-    formats.forEach(format => {
+    formats?.forEach(format => {
         className += " " + styles[format as keyof {}];
     })
 
