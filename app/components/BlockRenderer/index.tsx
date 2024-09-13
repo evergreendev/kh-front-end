@@ -127,6 +127,7 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
                     const typedMediaBlock = block as {
                         media?: number | Media | null;
                         thumbnail?: number | Media | null;
+                        expandImage?: boolean | null;
                         id?: string | null;
                         blockName?: string | null;
                         blockType: 'MediaBlock';
