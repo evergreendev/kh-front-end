@@ -19,8 +19,8 @@ const MediaBlock = ({block}: {
                       width={block.media?.width || 0}
                       height={block.media?.height || 0}/>
     }
-    return <div className="aspect-video">
-        <ReactPlayer width="100%" height="100%" playIcon={<Image src={PlayButton} alt="Play"/>} controls={true}
+    return <div className="aspect-video group">
+        <ReactPlayer width="100%" height="100%" playIcon={<Image className="group-hover:opacity-100 transition-opacity opacity-70" src={PlayButton} alt="Play"/>} controls={true}
                      light={typeof block.thumbnail === "number" ? "" : block.thumbnail?.url || ""}
                      url={block.media?.url || ""}/>
     </div>
