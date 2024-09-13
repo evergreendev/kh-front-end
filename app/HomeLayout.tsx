@@ -21,6 +21,7 @@ import {Meta} from "@/app/types/types";
 import Footer from "@/app/components/Footer";
 import MegaMenu from "@/app/components/MegaMenu";
 import BlockRenderer from "@/app/components/BlockRenderer";
+import Search from "@/app/components/Search";
 
 const SideBar = ({meta}: { meta: Meta }) => {
 
@@ -88,7 +89,10 @@ const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
                     <div className="flex justify-between items-start max-w-screen-xl">
                         <div className="flex flex-col justify-start gap-2">
                             <MegaMenu nav={meta.nav}/>
-                            <div className="flex">Search</div>{/*todo add search bar*/}
+                            <div className="my-8">
+                                <Search/>
+                            </div>
+
                         </div>
                         <Button text="DONATE" href="/donate" config={buttonConfig.highlight}/>
                     </div>

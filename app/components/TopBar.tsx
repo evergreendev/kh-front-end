@@ -1,11 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import MegaMenu from "@/app/components/MegaMenu";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faMagnifyingGlass} from "@awesome.me/kit-2a2dc088e2/icons/classic/regular";
 import Button, {buttonConfig} from "@/app/components/Button";
 import React from "react";
 import {Navigation, SiteOption} from "@/app/types/payloadTypes";
+import Search from "@/app/components/Search";
 
 const TopBar = ({siteOption, nav}: { siteOption: SiteOption, nav: Navigation }) => {
 
@@ -24,10 +23,7 @@ const TopBar = ({siteOption, nav}: { siteOption: SiteOption, nav: Navigation }) 
 
         <div className="flex flex-col">
             <MegaMenu nav={nav}/>
-            <div className="flex text-gray-500 items-center text-xl mt-auto ml-2.5">
-                <FontAwesomeIcon className="size-5 mr-2" icon={faMagnifyingGlass} size="sm"/>
-                <span>Search</span>
-            </div>
+            <Search/>
         </div>
         <Button config={buttonConfig.highlight + " mb-5 self-start ml-auto w-64"} text="DONATE" href="/donate"/>
     </div>
