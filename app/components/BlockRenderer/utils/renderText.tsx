@@ -79,7 +79,7 @@ const FormattedText = ({formats, children}: { formats: string[], children: React
 
     }
 
-    if (formats.length === 0) {
+    if (formats?.length === 0) {
         return <>{children}</>
     }
 }
@@ -118,8 +118,7 @@ function renderText(root: any, key: number, styleOverride?: string) {
                     return <Fragment key={key}></Fragment>
             }
         case "paragraph":
-            console.log(root)
-            return root.children.length > 0 ? <p key={key}
+            return root.children?.length > 0 ? <p key={key}
                       className={`${styleOverride||"text-xl max-w-[58ch]"} font-ptserif  mx-auto 
                       ${alignment[root.format as keyof {}]||""}
                       
