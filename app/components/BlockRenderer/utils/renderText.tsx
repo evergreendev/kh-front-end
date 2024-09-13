@@ -59,7 +59,7 @@ function getStyles(formats: string[]) {
 }
 
 const FormattedText = ({formats, children}: { formats: string[], children: React.ReactNode }) => {
-    const curr = formats.pop();
+    const curr = formats?.pop();
 
     if (curr) {
         switch (curr) {
