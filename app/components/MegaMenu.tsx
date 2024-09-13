@@ -117,6 +117,7 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
         "1/4": "md:w-3/12",
         "1/2": "md:w-6/12",
         "3/4": "md:w-9/12",
+        "1/1": "md:w-full"
     }
 
     return <div className="relative" ref={menuRef}>
