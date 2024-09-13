@@ -53,12 +53,12 @@ const TextBlock = ({block}: {
         blockType: 'TextBlock';
     }
 }) => {
-    return <div>
+    return <div className="p-6">
         <div className="mb-6">
             {
                 block.heading_1 ?
                     <div className="flex justify-center"><h2
-                        className="mb-2 text-center text-4xl font-bold border-b-brand-yellow border-b-4 font-ptserif">{block.heading_1}</h2>
+                        className="mb-2 text-center text-4xl font-bold font-ptserif underline underline-offset-8 decoration-brand-yellow decoration-4">{block.heading_1}</h2>
                     </div> : ""
             }
             {

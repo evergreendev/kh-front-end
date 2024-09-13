@@ -16,11 +16,11 @@ const MediaBlock = ({block}: {
 }) => {
     if (typeof block.media === "number") return null;
     if (block.media?.mimeType?.includes("image")) {
-        return <Image className={`max-w-full my-8 mx-auto ${block.expandImage ? "w-full" : ""}`} src={block.media?.url || ""} alt={block.media?.alt || ""}
+        return <Image className={`max-w-full mx-auto ${block.expandImage ? "w-full" : "my-8"}`} src={block.media?.url || ""} alt={block.media?.alt || ""}
                       width={block.media?.width || 0}
                       height={block.media?.height || 0}/>
     }
-    return <div className="aspect-video group my-8 mx-auto">
+    return <div className={`${block.expandImage ? "aspect-auto h-full w-full" : "aspect-video my-8"} group  mx-auto`}>
         <ReactPlayer width="100%" height="100%" playIcon={<Image className="group-hover:opacity-100 transition-opacity opacity-70" src={PlayButton} alt="Play"/>} controls={true}
                      light={typeof block.thumbnail === "number" ? "" : block.thumbnail?.url || ""}
                      url={block.media?.url || ""}/>

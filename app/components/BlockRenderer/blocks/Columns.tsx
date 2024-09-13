@@ -86,14 +86,14 @@ const Columns = ({block}:{block:{
 
     const currWidth = block.vertical_separator ? widths.withBorder : widths.noBorder;
 
-    return <div className={`w-full flex flex-wrap items-center pb-12 justify-around 
-    ${block.grayBackground ? "bg-gray-200" : ""}
+    return <div className={`w-full flex flex-wrap  justify-around 
+    ${block.grayBackground ? "bg-gray-200" : "pb-12 items-center"}
     ${block.narrowRow && !block.fullWidth ? "max-w-screen-xl mx-auto" : ""}
     ${!block.narrowRow && !block.fullWidth ? "max-w-[1800px] px-7 mx-auto" : ""}
     `}>
         {block.columns.map((column, index: number) => {
             return <Fragment key={column.id}>
-                <div className={`${currWidth[column.width||"1/4"]}`}>
+                <div className={`grow ${currWidth[column.width||"1/4"]}`}>
                 <BlockRenderer blocks={column.content}/>
             </div>
                 {

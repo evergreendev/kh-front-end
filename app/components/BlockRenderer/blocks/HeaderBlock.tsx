@@ -22,8 +22,6 @@ const HeaderBlock = ({block}:{block:{
         blockName?: string | null;
         blockType: 'HeaderBlock';
     }}) => {
-    console.log(block.largeText);
-
     return <div className={
         `
         ${block.underlineHighlight ? "font-bold underline underline-offset-8 decoration-brand-yellow decoration-4" : ""}
