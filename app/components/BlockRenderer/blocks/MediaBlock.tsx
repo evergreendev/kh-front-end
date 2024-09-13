@@ -15,11 +15,11 @@ const MediaBlock = ({block}: {
 }) => {
     if (typeof block.media === "number") return null;
     if (block.media?.mimeType?.includes("image")) {
-        return <Image className="w-full" src={block.media?.url || ""} alt={block.media?.alt || ""}
+        return <Image className="max-w-full my-8" src={block.media?.url || ""} alt={block.media?.alt || ""}
                       width={block.media?.width || 0}
                       height={block.media?.height || 0}/>
     }
-    return <div className="aspect-video group">
+    return <div className="aspect-video group my-8">
         <ReactPlayer width="100%" height="100%" playIcon={<Image className="group-hover:opacity-100 transition-opacity opacity-70" src={PlayButton} alt="Play"/>} controls={true}
                      light={typeof block.thumbnail === "number" ? "" : block.thumbnail?.url || ""}
                      url={block.media?.url || ""}/>

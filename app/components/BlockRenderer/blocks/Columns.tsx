@@ -86,7 +86,7 @@ const Columns = ({block}:{block:{
 
     const currWidth = block.vertical_separator ? widths.withBorder : widths.noBorder;
 
-    return <div className={`w-full flex flex-wrap items-center pb-12 justify-between 
+    return <div className={`w-full flex flex-wrap items-center pb-12 justify-around 
     ${block.grayBackground ? "bg-gray-200" : ""}
     ${block.narrowRow && !block.fullWidth ? "max-w-screen-xl mx-auto" : ""}
     ${!block.narrowRow && !block.fullWidth ? "max-w-[1800px] px-7 mx-auto" : ""}
