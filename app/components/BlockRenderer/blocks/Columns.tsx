@@ -25,6 +25,7 @@ const Columns = ({block}:{block:{
         vertical_separator?: boolean | null;
         fullWidth?: boolean | null;
         narrowRow?: boolean | null;
+        wideSpacing?: boolean | null;
         grayBackground?: boolean | null;
         columns?:
             | {
@@ -93,7 +94,7 @@ const Columns = ({block}:{block:{
     `}>
         {block.columns.map((column, index: number) => {
             return <Fragment key={column.id}>
-                <div className={`grow ${currWidth[column.width||"1/4"]}`}>
+                <div className={`${block.wideSpacing ? "" : "grow"} ${currWidth[column.width||"1/4"]}`}>
                 <BlockRenderer blocks={column.content}/>
             </div>
                 {

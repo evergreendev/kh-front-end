@@ -120,6 +120,7 @@ export interface Page {
         vertical_separator?: boolean | null;
         fullWidth?: boolean | null;
         narrowRow?: boolean | null;
+        wideSpacing?: boolean | null;
         grayBackground?: boolean | null;
         columns?:
             | {
