@@ -8,6 +8,7 @@ import MediaBlock from "@/app/components/BlockRenderer/blocks/MediaBlock";
 import TextBlock from "@/app/components/BlockRenderer/blocks/TextBlock";
 import BreakerBlock from "@/app/components/BlockRenderer/blocks/BreakerBlock";
 import HeaderBlock from "@/app/components/BlockRenderer/blocks/HeaderBlock";
+import CompareSliderBlock from "@/app/components/BlockRenderer/blocks/CompareSliderBlock";
 
 const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
     blocks: any,
@@ -271,6 +272,15 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
                         blockType: 'HeaderBlock';
                     }
                     return <HeaderBlock key={headerTypedBlock.id} block={headerTypedBlock}/>
+                case "CompareSliderBlock":
+                    const compareSliderTypedBlock = block as {
+                        media1?: number | Media | null;
+                        media2?: number | Media | null;
+                        id?: string | null;
+                        blockName?: string | null;
+                        blockType: 'CompareSliderBlock';
+                    }
+                    return <CompareSliderBlock block={compareSliderTypedBlock}/>
         default:
             return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown Block
                 Type</div>

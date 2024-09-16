@@ -216,6 +216,13 @@ export interface Page {
                 blockName?: string | null;
                 blockType: 'HeaderBlock';
             }
+                | {
+                media1?: number | Media | null;
+                media2?: number | Media | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'CompareSliderBlock';
+            }
                 )[]
                 | null;
             width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
@@ -301,6 +308,13 @@ export interface Page {
         id?: string | null;
         blockName?: string | null;
         blockType: 'MenuButton';
+    }
+        | {
+        media1?: number | Media | null;
+        media2?: number | Media | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'CompareSliderBlock';
     }
         )[]
         | null;
