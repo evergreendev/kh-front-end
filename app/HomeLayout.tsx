@@ -21,7 +21,7 @@ import {Meta} from "@/app/types/types";
 import Footer from "@/app/components/Footer";
 import MegaMenu from "@/app/components/MegaMenu";
 import BlockRenderer from "@/app/components/BlockRenderer";
-import Search from "@/app/components/Search";
+import Index from "@/app/components/Search";
 
 const SideBar = ({meta}: { meta: Meta }) => {
 
@@ -90,7 +90,7 @@ const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
                         <div className="flex flex-col justify-start gap-2">
                             <MegaMenu nav={meta.nav}/>
                             <div className="my-8">
-                                <Search/>
+                                <Index/>
                             </div>
 
                         </div>

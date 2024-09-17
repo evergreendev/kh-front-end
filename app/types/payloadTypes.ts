@@ -11,6 +11,7 @@ export interface Config {
         users: User;
         media: Media;
         pages: Page;
+        search: Search;
         'payload-preferences': PayloadPreference;
         'payload-migrations': PayloadMigration;
     };
@@ -326,6 +327,21 @@ export interface Page {
     updatedAt: string;
     createdAt: string;
     _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "search".
+ */
+export interface Search {
+    id: number;
+    title?: string | null;
+    priority?: number | null;
+    doc: {
+        relationTo: 'pages';
+        value: number | Page;
+    };
+    updatedAt: string;
+    createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

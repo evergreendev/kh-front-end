@@ -4,7 +4,7 @@ import MegaMenu from "@/app/components/MegaMenu";
 import Button, {buttonConfig} from "@/app/components/Button";
 import React from "react";
 import {Navigation, SiteOption} from "@/app/types/payloadTypes";
-import Search from "@/app/components/Search";
+import Index from "@/app/components/Search";
 
 const TopBar = ({siteOption, nav}: { siteOption: SiteOption, nav: Navigation }) => {
 
@@ -23,7 +23,7 @@ const TopBar = ({siteOption, nav}: { siteOption: SiteOption, nav: Navigation }) 
 
         <div className="flex flex-col">
             <MegaMenu nav={nav}/>
-            <Search/>
+            <Index/>
         </div>
         <Button config={buttonConfig.highlight + " mb-5 self-start ml-auto w-64"} text="DONATE" href="/donate"/>
     </div>
