@@ -32,7 +32,7 @@ const ImageSlider = ({images, headerText, bodyText}: { images: Media[], headerTe
         </Slider>
         <div className="absolute bottom-0 left-72 w-full max-w-[29rem] p-8 bg-white text-center font-ptserif">
             <h2 className="text-3xl font-bold underline underline-offset-8 decoration-brand-yellow mb-4 decoration-4">{headerText}</h2>
-            <p className="text-2xl">
+            <p className="text-2xl font-opensans">
                 {bodyText}
             </p>
         </div>
