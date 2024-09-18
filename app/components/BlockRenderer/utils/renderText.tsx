@@ -119,7 +119,7 @@ function renderText(root: any, key: number, styleOverride?: string) {
             }
         case "paragraph":
             return root.children?.length > 0 ? <p key={key}
-                      className={`${styleOverride||"text-xl max-w-[58ch] font-opensans"}   mx-auto 
+                      className={`${styleOverride||"text-lg max-w-[58ch] font-opensans"}   mx-auto 
                       ${alignment[root.format as keyof {}]||""}
                       
                       `}>{root.children.map((child: any) => {
