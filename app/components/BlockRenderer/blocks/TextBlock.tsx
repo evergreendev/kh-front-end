@@ -85,11 +85,11 @@ const TextBlock = ({block}: {
         {
             block.body?.link_list?.map(item => {
                 return item.external
-                    ? <div className="text-xl text-center font-ptserif italic">{item.label ? item.title + " " : ""}<a
-                        className="font-ptserif underline"
+                    ? <div className="text-xl text-center font-opensans italic">{item.label ? item.title + " " : ""}<a
+                        className="font-opensans underline"
                         href={item.external_url || ""}>{item.label ? item.label : item.title}</a></div>
-                    : <div className="text-xl text-center font-ptserif italic">{item.label ? item.title + " " : ""}<Link
-                        className="font-ptserif underline"
+                    : <div className="text-xl text-center font-opensans italic">{item.label ? item.title + " " : ""}<Link
+                        className="font-opensans underline"
                         href={"/" + (item.Relation?.value as Page)?.full_path}>{item.label ? item.label : item.title}</Link>
                     </div>
             })
