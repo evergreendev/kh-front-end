@@ -80,7 +80,7 @@ const FormBlock = ({block}: {
     return <div className="max-w-screen-lg w-full mx-auto bg-gray-100">
         {
             state.message && block.form.confirmationType === "message" &&
-            <div className="p-16 min-h-96 flex justify-center flex-col">{renderText(block.form.confirmationMessage?.root,0)}</div>
+            <div className="p-16 min-h-96 flex justify-center flex-col">{renderText(block.form.confirmationMessage?.root,0,block.id+"message"||"0")}</div>
         }
         <form className={`flex flex-wrap w-full ${state.message ? "hidden" : ""}`}
               action={formAction}>
@@ -90,21 +90,21 @@ const FormBlock = ({block}: {
                         case "checkbox":
                             return <CheckBox errors={state.error} field={field} key={field.id}/>
                         case "country":
-                            return <Country field={field} errors={state.error}/>
+                            return <Country field={field} errors={state.error} key={field.id}/>
                         case "email":
-                            return <Email field={field} errors={state.error}/>
+                            return <Email field={field} errors={state.error} key={field.id}/>
                         case "message":
-                            return <div className="w-full p-4">{renderText(field.message?.root, 1, "max-w-full")}</div>
+                            return <div className="w-full p-4" key={field.id}>{renderText(field.message?.root, 1, field.id||"0", "max-w-full")}</div>
                         case "number":
-                            return <Number field={field} errors={state.error}/>
+                            return <Number field={field} errors={state.error} key={field.id}/>
                         case "select":
-                            return <Select field={field} errors={state.error}/>
+                            return <Select field={field} errors={state.error} key={field.id}/>
                         case "state":
-                            return <State field={field} errors={state.error}/>
+                            return <State field={field} errors={state.error} key={field.id}/>
                         case "text":
-                            return <Text field={field} errors={state.error}/>
+                            return <Text field={field} errors={state.error} key={field.id}/>
                         case "textarea":
-                            return <TextArea field={field} errors={state.error}/>
+                            return <TextArea field={field} errors={state.error} key={field.id}/>
                     }
                 })
             }

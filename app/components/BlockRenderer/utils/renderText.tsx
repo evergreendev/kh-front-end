@@ -84,11 +84,11 @@ const FormattedText = ({formats, children}: { formats: string[], children: React
     }
 }
 
-function renderText(root: any, key: number, styleOverride?: string) {
+function renderText(root: any, key: number, id:string, styleOverride?: string) {
     if (!root) return;
 
     const children = root.children?.map((child: any) => {
-        return renderText(child, key + 1, styleOverride);
+        return renderText(child, key + 1, id, styleOverride);
     });
 
     switch (root.type) {
@@ -98,22 +98,22 @@ function renderText(root: any, key: number, styleOverride?: string) {
             switch (root.tag) {
                 case "h1":
                     return <h1 key={key}
-                               className={`mb-6 text-4xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, styleOverride))}</h1>
+                               className={`mb-6 text-4xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride))}</h1>
                 case "h2":
                     return <h2 key={key}
-                               className={`mb-6 text-4xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, styleOverride))}</h2>
+                               className={`mb-6 text-4xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride))}</h2>
                 case "h3":
                     return <h3 key={key}
-                               className={`mb-3 text-3xl font-bold font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, styleOverride))}</h3>
+                               className={`mb-3 text-3xl font-bold font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride))}</h3>
                 case "h4":
                     return <h4 key={key}
-                               className={`mb-3 text-2xl font-bold ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, styleOverride))}</h4>
+                               className={`mb-3 text-2xl font-bold ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride))}</h4>
                 case "h5":
                     return <h5 key={key}
-                               className={`mb-3 text-xl font-bold ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, styleOverride))}</h5>
+                               className={`mb-3 text-xl font-bold ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride))}</h5>
                 case "h6":
                     return <h6 key={key}
-                               className={`mb-2 text-lg ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, styleOverride))}</h6>
+                               className={`mb-2 text-lg ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride))}</h6>
                 default:
                     return <Fragment key={key}></Fragment>
             }
@@ -123,38 +123,38 @@ function renderText(root: any, key: number, styleOverride?: string) {
                       ${alignment[root.format as keyof {}]||""}
                       
                       `}>{root.children.map((child: any) => {
-                return renderText(child, key + 1, styleOverride);
-            })}</p> : <br/>
+                return renderText(child, key + 1, id, styleOverride);
+            })}</p> : <br key={key}/>
         case "text":
-            return <FormattedText formats={lexicalFormats[root.format]}>
-                <span key={key} className={`${getStyles(lexicalFormats[root.format])||""}`}>{root.text}</span>
+            return <FormattedText key={key} formats={lexicalFormats[root.format]}>
+                <span  className={`${getStyles(lexicalFormats[root.format])||""}`}>{root.text}</span>
             </FormattedText>
         case "horizontalrule":
             return <hr key={key} className="my-3"/>
         case "link":
             return root.fields.linkType === "internal" ?
                 <Link key={key} className={`underline text-slate-700 ${alignment[root.format as keyof {}]}`}
-                      href={root.fields.doc.value?.full_path}>{root.children.map((child: any) => renderText(child, key + 1, styleOverride))}</Link> :
+                      href={root.fields.doc.value?.full_path}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride))}</Link> :
                 <a key={key} className={`underline text-slate-700 ${alignment[root.format as keyof {}]}`}
                    href={root.fields.url} rel={root.fields.newTab ? "noopener noreferrer" : ""}
                    target={root.fields.newTab ? "_blank" : ""}>
-                    {root.children.map((child: any) => renderText(child, key + 1, styleOverride))}
+                    {root.children.map((child: any) => renderText(child, key + 1, id, styleOverride))}
                 </a>
         case "relationship":
             return <Button key={key} text={root.value.title} href={"/" + root.value?.full_path}/>
         case "list":
             if (root.tag === "ol") {
                 return <ol key={key}
-                           className={`list-decimal list-inside pl-2 ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, styleOverride))}</ol>
+                           className={`list-decimal list-inside pl-2 ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride))}</ol>
             }
             return <ul key={key}
-                       className={`list-disc pl-2 list-inside ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, styleOverride))}</ul>
+                       className={`list-disc pl-2 list-inside ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride))}</ul>
         case "listitem":
             return <li key={key}
-                       className={`${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, styleOverride))}</li>
+                       className={`${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride))}</li>
         case "quote":
             return <blockquote key={key}
-                               className={`border-l-2 pl-6 py-4 ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, styleOverride))}</blockquote>
+                               className={`border-l-2 pl-6 py-4 ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride))}</blockquote>
         default:
             break;
     }

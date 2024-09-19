@@ -93,7 +93,7 @@ const Columns = ({block}:{block:{
     ${!block.narrowRow && !block.fullWidth ? "max-w-[1800px] px-7 mx-auto" : ""}
     `}>
         {block.columns.map((column, index: number) => {
-            return <Fragment key={column.id}>
+            return <Fragment key={column.id||"0"}>
                 <div className={`${block.wideSpacing ? "" : "grow"} ${currWidth[column.width||"1/4"]}`}>
                 <BlockRenderer blocks={column.content}/>
             </div>

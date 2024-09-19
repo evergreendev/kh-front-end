@@ -80,7 +80,7 @@ const TextBlock = ({block}: {
             }
         </div>
         {
-            renderText(block.body?.text?.root, 1)
+            renderText(block.body?.text?.root, 1, block.id||"0")
         }
         {
             block.body?.link_list?.map(item => {

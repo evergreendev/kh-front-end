@@ -20,276 +20,39 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
             let typedBlock = block as { blockType: string };
             switch (typedBlock.blockType) {
                 case "MenuButton":
-                    const menuButtonTypedBlock = block as {
-                        title?: string | null;
-                        external?: boolean | null;
-                        Relation?: {
-                            relationTo: 'pages';
-                            value: number | Page;
-                        } | null;
-                        external_url?: string | null;
-                        buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
-                        hasIcon?: boolean | null;
-                        id?: string | null;
-                        blockName?: string | null;
-                        blockType: 'MenuButton';
-                    };
-                    return <div className="mb-4"><MenuButton tabIndex={tabIndex} block={menuButtonTypedBlock}
-                                                             key={menuButtonTypedBlock.id}/></div>
+                    return <div key={(block as any).id} className="mb-4"><MenuButton tabIndex={tabIndex}
+                                                                                     block={block as any}
+                    /></div>
                 case "MenuWithSubMenu":
-                    const menuWithSubmenuTypedBlock = block as {
-                        headerItem?: {
-                            title?: string | null;
-                            external?: boolean | null;
-                            Relation?: {
-                                relationTo: 'pages';
-                                value: number | Page;
-                            } | null;
-                            external_url?: string | null;
-                        };
-                        items?:
-                            | {
-                            title?: string | null;
-                            external?: boolean | null;
-                            Relation?: {
-                                relationTo: 'pages';
-                                value: number | Page;
-                            } | null;
-                            external_url?: string | null;
-                            id?: string | null;
-                        }[]
-                            | null;
-                        id?: string | null;
-                        blockName?: string | null;
-                        blockType: 'MenuWithSubMenu';
-                    }
-                    return <MenuWithSubMenu tabIndex={tabIndex} block={menuWithSubmenuTypedBlock}
-                                            key={menuWithSubmenuTypedBlock.id}/>
+                    return <MenuWithSubMenu tabIndex={tabIndex} block={block as any}
+                                            key={(block as any).id}/>
                 case "photoMenu":
-                    const photoMenuTypedBlock = block as {
-                        title?: string | null;
-                        external?: boolean | null;
-                        Relation?: {
-                            relationTo: 'pages';
-                            value: number | Page;
-                        } | null;
-                        external_url?: string | null;
-                        item?:
-                            | {
-                            image?: number | Media | null;
-                            title?: string | null;
-                            external?: boolean | null;
-                            Relation?: {
-                                relationTo: 'pages';
-                                value: number | Page;
-                            } | null;
-                            external_url?: string | null;
-                            id?: string | null;
-                        }[]
-                            | null;
-                        id?: string | null;
-                        blockName?: string | null;
-                        blockType: 'photoMenu';
-                    }
-                    return <PhotoMenuBlock tabIndex={tabIndex} block={photoMenuTypedBlock}
-                                           key={photoMenuTypedBlock.id}/>
+                    return <PhotoMenuBlock tabIndex={tabIndex} block={block as any}
+                                           key={(block as any).id}/>
                 case "SimpleMenu":
-                    return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
+                    return <div key={(block as any).id} className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
                 case "Breaker":
-                    const breakerTypedBlock = block as {
-                        heading_1?: {
-                            text?: string | null;
-                            highlight?: boolean | null;
-                        };
-                        heading_2?: {
-                            text?: string | null;
-                            highlight?: boolean | null;
-                        };
-                        button?: {
-                            type?: ('primary' | 'secondary' | 'highlight') | null;
-                            link?: {
-                                title?: string | null;
-                                external?: boolean | null;
-                                Relation?: {
-                                    relationTo: 'pages';
-                                    value: number | Page;
-                                } | null;
-                                external_url?: string | null;
-                            };
-                        };
-                        id?: string | null;
-                        blockName?: string | null;
-                        blockType: 'Breaker';
-                    }
-
-                    return <BreakerBlock block={breakerTypedBlock}/>
+                    return <BreakerBlock block={block as any} key={(block as any).id}/>
                 case "collectionCards":
-                    return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
+                    return <div key={(block as any).id} className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
                 case "MediaBlock":
-                    const typedMediaBlock = block as {
-                        media?: number | Media | null;
-                        thumbnail?: number | Media | null;
-                        expandImage?: boolean | null;
-                        id?: string | null;
-                        blockName?: string | null;
-                        blockType: 'MediaBlock';
-                    }
-
-                    return <MediaBlock block={typedMediaBlock}/>
+                    return <MediaBlock block={block as any} key={(block as any).id}/>
                 case "TextBlock":
-                    const textBlockTypedBlock = block as {
-                        heading_1?: string | null;
-                        heading_2?: string | null;
-                        heading_link?: {
-                            title?: string | null;
-                            external?: boolean | null;
-                            Relation?: {
-                                relationTo: 'pages';
-                                value: number | Page;
-                            } | null;
-                            external_url?: string | null;
-                            label?: string | null;
-                        };
-                        body?: {
-                            text?: {
-                                root: {
-                                    type: string;
-                                    children: {
-                                        type: string;
-                                        version: number;
-                                        [k: string]: unknown;
-                                    }[];
-                                    direction: ('ltr' | 'rtl') | null;
-                                    format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                    indent: number;
-                                    version: number;
-                                };
-                                [k: string]: unknown;
-                            } | null;
-                            text_html?: string | null;
-                            link_list?:
-                                | {
-                                title?: string | null;
-                                external?: boolean | null;
-                                Relation?: {
-                                    relationTo: 'pages';
-                                    value: number | Page;
-                                } | null;
-                                external_url?: string | null;
-                                label?: string | null;
-                                id?: string | null;
-                            }[]
-                                | null;
-                        };
-                        id?: string | null;
-                        blockName?: string | null;
-                        blockType: 'TextBlock';
-                    }
-                    return <TextBlock block={textBlockTypedBlock}/>
+                    return <TextBlock block={block as any} key={(block as any).id}/>
                 case "column":
-                    const columnTypedBlock = block as {
-                        vertical_separator?: boolean | null;
-                        fullWidth?: boolean | null;
-                        narrowRow?: boolean | null;
-                        grayBackground?: boolean | null;
-                        columns?:
-                            | {
-                            content?:
-                                | (
-                                | {
-                                media?: number | Media | null;
-                                thumbnail?: number | Media | null;
-                                id?: string | null;
-                                blockName?: string | null;
-                                blockType: 'MediaBlock';
-                            }
-                                | {
-                                heading_1?: string | null;
-                                heading_2?: string | null;
-                                heading_link?: {
-                                    link?: string | null;
-                                    label?: string | null;
-                                };
-                                body?: {
-                                    text?: {
-                                        root: {
-                                            type: string;
-                                            children: {
-                                                type: string;
-                                                version: number;
-                                                [k: string]: unknown;
-                                            }[];
-                                            direction: ('ltr' | 'rtl') | null;
-                                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                            indent: number;
-                                            version: number;
-                                        };
-                                        [k: string]: unknown;
-                                    } | null;
-                                    link_list?:
-                                        | {
-                                        link?: string | null;
-                                        label?: string | null;
-                                        id?: string | null;
-                                    }[]
-                                        | null;
-                                };
-                                id?: string | null;
-                                blockName?: string | null;
-                                blockType: 'TextBlock';
-                            }
-                                )[]
-                                | null;
-                            width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4') | null;
-                            id?: string | null;
-                        }[]
-                            | null;
-                        id?: string | null;
-                        blockName?: string | null;
-                        blockType: 'column';
-                    }
-            return <Columns block={columnTypedBlock}/>
+                    return <Columns block={block as any} key={(block as any).id}/>
                 case "HeaderBlock":
-                    const headerTypedBlock = block as {
-                        text?: {
-                            root: {
-                                type: string;
-                                children: {
-                                    type: string;
-                                    version: number;
-                                    [k: string]: unknown;
-                                }[];
-                                direction: ('ltr' | 'rtl') | null;
-                                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                indent: number;
-                                version: number;
-                            };
-                            [k: string]: unknown;
-                        } | null;
-                        underlineHighlight?: boolean | null;
-                        largeText?: boolean | null;
-                        id?: string | null;
-                        blockName?: string | null;
-                        blockType: 'HeaderBlock';
-                    }
-                    return <HeaderBlock key={headerTypedBlock.id} block={headerTypedBlock}/>
+                    return <HeaderBlock key={(block as any).id} block={block as any}/>
                 case "CompareSliderBlock":
-                    const compareSliderTypedBlock = block as {
-                        media1?: number | Media | null;
-                        media2?: number | Media | null;
-                        id?: string | null;
-                        blockName?: string | null;
-                        blockType: 'CompareSliderBlock';
-                    }
-                    return <CompareSliderBlock block={compareSliderTypedBlock}/>
+                    return <CompareSliderBlock block={block as any} key={(block as any).id}/>
                 case "FormBlock":
-                    return <FormBlock block={block as any}/>
-        default:
-            return <div className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown Block
-                Type</div>
-        }
-    })
-        }</>
+                    return <FormBlock key={(block as any).id} block={block as any}/>
+                default:
+                    return <div key={(block as any).id} className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown Block
+                        Type</div>
+            }
+        })
+    }</>
 })
 
 export default BlockRenderer;
