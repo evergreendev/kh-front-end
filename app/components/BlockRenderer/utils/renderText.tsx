@@ -98,10 +98,10 @@ function renderText(root: any, key: number, styleOverride?: string) {
             switch (root.tag) {
                 case "h1":
                     return <h1 key={key}
-                               className={`mb-6 text-4xl font-bold border-b-brand-yellow border-b-4 font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, styleOverride))}</h1>
+                               className={`mb-6 text-4xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, styleOverride))}</h1>
                 case "h2":
                     return <h2 key={key}
-                               className={`mb-6 text-4xl font-bold border-b-brand-yellow border-b-4 font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, styleOverride))}</h2>
+                               className={`mb-6 text-4xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, styleOverride))}</h2>
                 case "h3":
                     return <h3 key={key}
                                className={`mb-3 text-3xl font-bold font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, styleOverride))}</h3>

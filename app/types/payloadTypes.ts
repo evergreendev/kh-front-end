@@ -11,6 +11,8 @@ export interface Config {
         users: User;
         media: Media;
         pages: Page;
+        forms: Form;
+        'form-submissions': FormSubmission;
         search: Search;
         'payload-preferences': PayloadPreference;
         'payload-migrations': PayloadMigration;
@@ -225,6 +227,12 @@ export interface Page {
                 blockName?: string | null;
                 blockType: 'CompareSliderBlock';
             }
+                | {
+                form?: (number | null) | Form;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'FormBlock';
+            }
                 )[]
                 | null;
             width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
@@ -318,6 +326,12 @@ export interface Page {
         blockName?: string | null;
         blockType: 'CompareSliderBlock';
     }
+        | {
+        form?: (number | null) | Form;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'FormBlock';
+    }
         )[]
         | null;
     title: string;
@@ -327,6 +341,187 @@ export interface Page {
     updatedAt: string;
     createdAt: string;
     _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "forms".
+ */
+export interface Form {
+    id: number;
+    title: string;
+    fields?:
+        | (
+        | {
+        name: string;
+        label?: string | null;
+        width?: number | null;
+        required?: boolean | null;
+        defaultValue?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'checkbox';
+    }
+        | {
+        name: string;
+        label?: string | null;
+        width?: number | null;
+        required?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'country';
+    }
+        | {
+        name: string;
+        label?: string | null;
+        width?: number | null;
+        required?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'email';
+    }
+        | {
+        message?: {
+            root: {
+                type: string;
+                children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+            };
+            [k: string]: unknown;
+        } | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'message';
+    }
+        | {
+        name: string;
+        label?: string | null;
+        width?: number | null;
+        defaultValue?: number | null;
+        required?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'number';
+    }
+        | {
+        name: string;
+        label?: string | null;
+        width?: number | null;
+        defaultValue?: string | null;
+        options?:
+            | {
+            label: string;
+            value: string;
+            id?: string | null;
+        }[]
+            | null;
+        required?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'select';
+    }
+        | {
+        name: string;
+        label?: string | null;
+        width?: number | null;
+        required?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'state';
+    }
+        | {
+        name: string;
+        label?: string | null;
+        width?: number | null;
+        defaultValue?: string | null;
+        required?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'text';
+    }
+        | {
+        name: string;
+        label?: string | null;
+        width?: number | null;
+        defaultValue?: string | null;
+        required?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'textarea';
+    }
+        )[]
+        | null;
+    submitButtonLabel?: string | null;
+    confirmationType?: ('message' | 'redirect') | null;
+    confirmationMessage?: {
+        root: {
+            type: string;
+            children: {
+                type: string;
+                version: number;
+                [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+        };
+        [k: string]: unknown;
+    } | null;
+    redirect?: {
+        url: string;
+    };
+    emails?:
+        | {
+        emailTo?: string | null;
+        cc?: string | null;
+        bcc?: string | null;
+        replyTo?: string | null;
+        emailFrom?: string | null;
+        subject: string;
+        message?: {
+            root: {
+                type: string;
+                children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+            };
+            [k: string]: unknown;
+        } | null;
+        id?: string | null;
+    }[]
+        | null;
+    updatedAt: string;
+    createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-submissions".
+ */
+export interface FormSubmission {
+    id: number;
+    form: number | Form;
+    submissionData?:
+        | {
+        field: string;
+        value: string;
+        id?: string | null;
+    }[]
+        | null;
+    updatedAt: string;
+    createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
