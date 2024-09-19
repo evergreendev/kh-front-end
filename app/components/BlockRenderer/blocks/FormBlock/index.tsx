@@ -49,7 +49,7 @@ const CheckBox = ({field, errors}: {
                 className={`${errors?.fieldName === field.name ? "border-2 border-dashed border-red-200" : ""} p-4 flex items-center flex-wrap`}
                 style={{width: `${field.width || "100"}%`}}>
         {errors?.fieldName === field.name ? <FieldError message={errors.message}/> : ""}
-        <label className="mr-2 font-opensans font-bold" htmlFor={field.name}>{field.label || field.name}</label>
+        <label className="mr-2 font-opensans font-normal text-sm" htmlFor={field.name}>{field.label || field.name}</label>
         <input id={field.name} className="size-4" ref={checkRef} value="Yes" required={field.required || false}
                defaultChecked={field.defaultValue || false} name={field.name}
                type={"checkbox"}/>

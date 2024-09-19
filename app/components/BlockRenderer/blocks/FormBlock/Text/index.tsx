@@ -6,9 +6,9 @@ export const Text = ({field, errors}: { field: BaseField & {defaultValue?: strin
                 className={`${errors?.fieldName === field.name ? "border-2 border-dashed border-red-200" : ""} p-4 flex flex-col flex-wrap`}
                 style={{width: `${field.width || "100"}%`}}>
         {errors?.fieldName === field.name ? <FieldError message={errors.message}/> : ""}
-        <label className="mr-2 font-opensans font-bold" htmlFor={field.name}>{field.label || field.name} {field.required ? "(required)" : ""}</label>
-        <div className="max-w-full">
-            <input defaultValue={field.defaultValue||""} className="border-b-2 border-blue-100 p-1 bg-blue-50 w-full" type="text" name={field.name}
+        <label className="mr-2 font-opensans font-normal text-sm" htmlFor={field.name}>{field.label || field.name} {field.required ? "(required)" : ""}</label>
+        <div className="max-w-full mt-auto">
+            <input defaultValue={field.defaultValue||""} className="border border-stone-300 p-1.5 bg-white rounded w-full" type="text" name={field.name}
                    id={field.name}/>
         </div>
 
