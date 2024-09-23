@@ -13,14 +13,8 @@ import {State} from "@/app/components/BlockRenderer/blocks/FormBlock/State";
 import {Text} from "@/app/components/BlockRenderer/blocks/FormBlock/Text";
 import {TextArea} from "@/app/components/BlockRenderer/blocks/FormBlock/TextArea";
 import {useRouter} from "next/navigation";
+import {Upload} from "@/app/components/BlockRenderer/blocks/FormBlock/Upload";
 
-const initialState: {
-    message: boolean | null,
-    error: { message: string, fieldName: string } | null
-} = {
-    message: false,
-    error: null
-}
 const SubmitButton = ({submitText}: { submitText:string }) => {
     const {pending} = useFormStatus();
 
@@ -68,6 +62,16 @@ const FormBlock = ({block}: {
         blockType: 'FormBlock';
     }
 }) => {
+    const initialState: {
+        message: boolean | null,
+        error: { message: string, fieldName: string } | null
+        fields: any
+    } = {
+        message: false,
+        error: null,
+        fields: typeof block.form !== "number" ? block.form?.fields : null,
+    }
+
     const [state, formAction] = useFormState(submitPayloadForm, initialState);
     const router = useRouter();
 
@@ -105,6 +109,8 @@ const FormBlock = ({block}: {
                             return <Text field={field} errors={state.error} key={field.id}/>
                         case "textarea":
                             return <TextArea field={field} errors={state.error} key={field.id}/>
+                        case "FileUpload":
+                            return <Upload field={field} errors={state.error} key={field.id}/>
                     }
                 })
             }
@@ -112,7 +118,9 @@ const FormBlock = ({block}: {
                 state.error?.fieldName === "all" || state.error?.fieldName ?
                     <div className="w-full mx-6 p-2 bg-red-100 border border-red-500 text-red-950 font-bold">{state.error.message}</div> : ""
             }
-            <SubmitButton submitText={block.form.submitButtonLabel||"Submit"}/>
+            <div className="w-full">
+                <SubmitButton submitText={block.form.submitButtonLabel||"Submit"}/>
+            </div>
         </form>
     </div>
 }

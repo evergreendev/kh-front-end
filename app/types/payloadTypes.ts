@@ -455,6 +455,17 @@ export interface Form {
         blockName?: string | null;
         blockType: 'textarea';
     }
+        | {
+        name: string;
+        label?: string | null;
+        width?: number | null;
+        required?: boolean | null;
+        maxSize?: number | null;
+        fileTypes?: ('Images' | 'Video' | 'PDF' | 'WordDocs')[] | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'FileUpload';
+    }
         )[]
         | null;
     submitButtonLabel?: string | null;
