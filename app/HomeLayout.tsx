@@ -83,7 +83,7 @@ const SideBar = ({meta}: { meta: Meta }) => {
 const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
     return (
         <main className="flex min-h-screen flex-col justify-between">
-            <div className="flex flex-wrap w-full mb-4 max-w-top ml-auto mt-4 pl-7">
+            <div className="flex flex-wrap xl:flex-nowrap w-full mb-4 max-w-top ml-auto mt-4 pl-7">
                 <SideBar meta={meta}/>
                 <div className="font-ptserif mx-auto grow pl-10">
                     <div className="flex justify-between items-start max-w-screen-xl">
@@ -104,29 +104,29 @@ const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
                             </div> :
                             ""
                     }
-                    <div className="w-full mx-auto max-w-screen-lg mt-6 text-center">
+                    <div className="w-full flex flex-col mx-auto max-w-screen-lg mt-6 text-center">
                         <div className="flex justify-center mx-auto">
                             <h2 className="text-4xl font-bold border-b-brand-yellow border-b-4">{data.intro_content?.header}</h2>
                         </div>
-                        <p className="text-3xl font-normal">
+                        <p className="text-3xl font-normal max-w-full">
                             {data.intro_content?.content}
                         </p>
                     </div>
 
                 </div>
-                <div className="flex w-full mt-6">
-                    <div className="max-w-md w-full flex items-center mr-14">
-                        <BreadCrumbs fullPath={data?.full_path || ""}/>
-                    </div>
-
-                    {
-                        data?.jump_menu && <JumpMenu items={data.jump_menu}/>
-                    }
-                </div>
             </div>
-                <div className="w-full pt-16">
-                    <BlockRenderer blocks={data.layout}/>
+            <div className="flex w-full mt-6 max-w-top ml-auto pl-7">
+                <div className="max-w-md w-full flex items-center mr-14">
+                    <BreadCrumbs fullPath={data?.full_path || ""}/>
                 </div>
+
+                {
+                    data?.jump_menu && <JumpMenu items={data.jump_menu}/>
+                }
+            </div>
+            <div className="w-full pt-16">
+                <BlockRenderer blocks={data.layout}/>
+            </div>
 
             <Footer footer={meta.footer}/>
         </main>
