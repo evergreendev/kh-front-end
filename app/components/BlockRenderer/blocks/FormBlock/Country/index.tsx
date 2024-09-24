@@ -2,6 +2,7 @@ import FieldError from "@/app/components/BlockRenderer/blocks/FormBlock/FieldErr
 import {BaseField, Errors} from "@/app/components/BlockRenderer/blocks/FormBlock/types";
 import ReactSelect from 'react-select'
 import {countryOptions} from "@/app/components/BlockRenderer/blocks/FormBlock/Country/options";
+import NeedsWindow from "@/app/components/NeedsWindow";
 
 export const Country = ({field, errors}: { field: BaseField, errors: Errors }) => {
     return <div key={field.id}
@@ -10,16 +11,18 @@ export const Country = ({field, errors}: { field: BaseField, errors: Errors }) =
         {errors?.fieldName === field.name ? <FieldError message={errors.message}/> : ""}
         <label className="mr-2 font-opensans font-normal text-sm" htmlFor={field.name}>{field.label || field.name} {field.required ? "(required)" : ""}</label>
         <div className="w-96 max-w-full mt-auto">
-            <ReactSelect
-                id={field.name}
-                isClearable={!field.required}
-                name={field.name}
-                required={field.required || false}
-                instanceId={field.name}
-                options={countryOptions}
-                inputId={field.name}
-                isSearchable
-            />
+            <NeedsWindow>
+                <ReactSelect
+                    id={field.name}
+                    isClearable={!field.required}
+                    name={field.name}
+                    required={field.required || false}
+                    instanceId={field.name}
+                    options={countryOptions}
+                    inputId={field.name}
+                    isSearchable
+                />
+            </NeedsWindow>
         </div>
 
     </div>
