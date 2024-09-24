@@ -49,13 +49,14 @@ const alignment = {
 }
 
 function getStyles(formats: string[]) {
+    if (!formats) return "";
     let className = "";
 
-    formats?.forEach(format => {
-        className += " " + styles[format as keyof {}]||"";
+    formats.forEach(format => {
+        className += " " + styles[format as keyof {}];
     })
 
-    return className;
+    return className.trim();
 }
 
 const FormattedText = ({formats, children}: { formats: string[], children: React.ReactNode }) => {
@@ -127,7 +128,7 @@ function renderText(root: any, key: number, id:string, styleOverride?: string) {
             })}</p> : <br key={key + id}/>
         case "text":
             return <FormattedText key={key + id} formats={lexicalFormats[root.format]}>
-                <span className={`${getStyles(lexicalFormats[root.format])||""}`}>{root.text}</span>
+                <span className={getStyles(lexicalFormats[root.format])?`${getStyles(lexicalFormats[root.format])}`:undefined}>{root.text}</span>
             </FormattedText>
         case "horizontalrule":
             return <hr key={key + id} className="my-3"/>
