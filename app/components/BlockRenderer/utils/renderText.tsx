@@ -52,7 +52,7 @@ function getStyles(formats: string[]) {
     let className = "";
 
     formats?.forEach(format => {
-        className += " " + styles[format as keyof {}];
+        className += " " + styles[format as keyof {}]||"";
     })
 
     return className;
@@ -127,7 +127,7 @@ function renderText(root: any, key: number, id:string, styleOverride?: string) {
             })}</p> : <br key={key + id}/>
         case "text":
             return <FormattedText key={key + id} formats={lexicalFormats[root.format]}>
-                <span  className={`${getStyles(lexicalFormats[root.format])||""}`}>{root.text}</span>
+                <span className={`${getStyles(lexicalFormats[root.format])||""}`}>{root.text}</span>
             </FormattedText>
         case "horizontalrule":
             return <hr key={key + id} className="my-3"/>
