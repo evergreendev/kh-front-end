@@ -11,6 +11,8 @@ export interface Config {
         users: User;
         media: Media;
         pages: Page;
+        userUploadedFormDocuments: UserUploadedFormDocument;
+        employment: Employment;
         forms: Form;
         'form-submissions': FormSubmission;
         search: Search;
@@ -116,6 +118,7 @@ export interface Page {
     }[]
         | null;
     parent_page?: (number | null) | Page;
+    excerpt?: string | null;
     full_path?: string | null;
     layout?:
         | (
@@ -233,6 +236,13 @@ export interface Page {
                 blockName?: string | null;
                 blockType: 'FormBlock';
             }
+                | {
+                company: 'crazy-horse' | 'korczak';
+                positionType: 'year-round' | 'seasonal';
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'EmploymentBlock';
+            }
                 )[]
                 | null;
             width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
@@ -332,12 +342,23 @@ export interface Page {
         blockName?: string | null;
         blockType: 'FormBlock';
     }
+        | {
+        company: 'crazy-horse' | 'korczak';
+        positionType: 'year-round' | 'seasonal';
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'EmploymentBlock';
+    }
         )[]
         | null;
     title: string;
     slug?: string | null;
     publishedAt?: string | null;
-    featuredImage?: number | Media | null;
+    meta?: {
+        title?: string | null;
+        description?: string | null;
+        image?: number | Media | null;
+    };
     updatedAt: string;
     createdAt: string;
     _status?: ('draft' | 'published') | null;
@@ -519,6 +540,50 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "userUploadedFormDocuments".
+ */
+export interface UserUploadedFormDocument {
+    id: number;
+    associatedFormSubmission?: (number | null) | FormSubmission;
+    updatedAt: string;
+    createdAt: string;
+    url?: string | null;
+    filename?: string | null;
+    mimeType?: string | null;
+    filesize?: number | null;
+    width?: number | null;
+    height?: number | null;
+    focalX?: number | null;
+    focalY?: number | null;
+    sizes?: {
+        thumbnail?: {
+            url?: string | null;
+            width?: number | null;
+            height?: number | null;
+            mimeType?: string | null;
+            filesize?: number | null;
+            filename?: string | null;
+        };
+        card?: {
+            url?: string | null;
+            width?: number | null;
+            height?: number | null;
+            mimeType?: string | null;
+            filesize?: number | null;
+            filename?: string | null;
+        };
+        tablet?: {
+            url?: string | null;
+            width?: number | null;
+            height?: number | null;
+            mimeType?: string | null;
+            filesize?: number | null;
+            filename?: string | null;
+        };
+    };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "form-submissions".
  */
 export interface FormSubmission {
@@ -533,6 +598,25 @@ export interface FormSubmission {
         | null;
     updatedAt: string;
     createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "employment".
+ */
+export interface Employment {
+    id: number;
+    description?: string | null;
+    linksToOnlineEmploymentForm?: boolean | null;
+    PDF?: number | Media | null;
+    company: 'crazy-horse' | 'korczak';
+    positionType: 'year-round' | 'seasonal';
+    featuredImage?: number | Media | null;
+    title: string;
+    slug?: string | null;
+    publishedAt?: string | null;
+    updatedAt: string;
+    createdAt: string;
+    _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -1,0 +1,84 @@
+import qs from "qs";
+import {faChevronCircleRight} from "@awesome.me/kit-2a2dc088e2/icons/classic/thin";
+import {Employment, Media} from "@/app/types/payloadTypes";
+import Image from "next/image";
+import Button, {buttonConfig} from "@/app/components/Button";
+
+async function getData(query: any, tag: string, page?: string) {
+    const stringifiedQuery = qs.stringify(
+        {
+            where: query,
+        },
+        {
+            addQueryPrefix: true
+        }
+    );
+
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/employment/${stringifiedQuery}&depth=2&limit=20`,
+        {
+            next: {
+                tags: [tag]
+            }
+        }
+    );
+
+    if (res.status !== 200) return null;
+
+    return res.json();
+}
+
+const EmploymentBlock = async ({block}: {
+    block: {
+        company: 'crazy-horse' | 'korczak';
+        positionType: 'year-round' | 'seasonal';
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'EmploymentBlock';
+    }
+}) => {
+    const res = await getData({
+        and: [
+            {
+                company: {
+                    equals: block.company,
+                }
+            },
+            {
+                positionType: {
+                    equals: block.positionType,
+                }
+            }
+
+        ],
+
+    }, "employment_");
+
+    if (!res || res.docs.length === 0) return null;
+
+    const positions = res.docs;
+
+    return <div className="w-full max-w-screen-md mx-auto my-16">
+        <h2 className="font-ptserif font-bold text-3xl my-4">{block.positionType.split("-").map(x => x.charAt(0).toUpperCase() + x.slice(1)).join("-")} Positions
+            at {block.company === "crazy-horse" ? "Crazy Horse Memorial®" : "Korczak's Heritage"}</h2>
+        {positions.map((position: Employment) => {
+            return <div className="flex flex-wrap border border-slate-400 border-l-transparent border-r-transparent py-2">
+                {
+                    position.featuredImage && typeof position.featuredImage !== "number" ? <div className="w-3/12 mr-2">
+                        <Image className="w-full" src={position.featuredImage.url || ""} alt={position.featuredImage.alt || ""}
+                               width={position.featuredImage.width || 0} height={position.featuredImage.height || 0}/>
+                    </div> : ""
+                }
+                <div className="w-8/12 grow flex flex-col min-h-24">
+                    <h3 className="text-xl font-bold">{position.title}</h3>
+                    {position.description ? <p className="text-slate-600">{position.description}</p> : ""}
+                    <div className="ml-auto mt-auto">
+                        <Button isExternal={position.linksToOnlineEmploymentForm} config={buttonConfig.tertiary} icon={faChevronCircleRight} text="Click Here to Apply" href={(position.linksToOnlineEmploymentForm ? "/about/employment/employment-application":(position.PDF as Media).url)||""}/>
+                    </div>
+                </div>
+            </div>
+        })}
+    </div>
+}
+
+export default EmploymentBlock;

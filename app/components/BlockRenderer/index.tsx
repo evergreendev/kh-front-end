@@ -10,6 +10,7 @@ import BreakerBlock from "@/app/components/BlockRenderer/blocks/BreakerBlock";
 import HeaderBlock from "@/app/components/BlockRenderer/blocks/HeaderBlock";
 import CompareSliderBlock from "@/app/components/BlockRenderer/blocks/CompareSliderBlock";
 import FormBlock from "@/app/components/BlockRenderer/blocks/FormBlock";
+import EmploymentBlock from "@/app/components/BlockRenderer/blocks/EmploymentBlock";
 
 const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
     blocks: any,
@@ -47,6 +48,8 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
                     return <CompareSliderBlock block={block as any} key={(block as any).id}/>
                 case "FormBlock":
                     return <FormBlock key={(block as any).id} block={block as any}/>
+                case "EmploymentBlock":
+                    return <EmploymentBlock key={(block as any).id} block={block as any}/>
                 default:
                     return <div key={(block as any).id} className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown Block
                         Type</div>
