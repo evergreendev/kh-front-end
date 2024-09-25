@@ -62,7 +62,7 @@ const EmploymentBlock = async ({block}: {
         <h2 className="font-ptserif font-bold text-3xl my-4">{block.positionType.split("-").map(x => x.charAt(0).toUpperCase() + x.slice(1)).join("-")} Positions
             at {block.company === "crazy-horse" ? "Crazy Horse Memorial®" : "Korczak's Heritage"}</h2>
         {positions.map((position: Employment) => {
-            return <div className="flex flex-wrap border border-slate-400 border-l-transparent border-r-transparent py-2">
+            return <div key={position.id} className="flex flex-wrap border border-slate-400 border-l-transparent border-r-transparent py-2">
                 {
                     position.featuredImage && typeof position.featuredImage !== "number" ? <div className="w-3/12 mr-2">
                         <Image className="w-full" src={position.featuredImage.url || ""} alt={position.featuredImage.alt || ""}
