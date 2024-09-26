@@ -20,16 +20,27 @@ const ImageSlider = ({images, headerText, bodyText}: { images: Media[], headerTe
         slidesToScroll: 1,
         infinite: true,
     }
+    if(images.length === 0){
+        return <div className="w-full bg-pale-1 p-8 text-center font-ptserif">
+            <h2 className="text-3xl font-bold underline underline-offset-8 decoration-brand-yellow mb-4 decoration-4">{headerText}</h2>
+            <p className="text-2xl font-opensans">
+                {bodyText}
+            </p>
+        </div>
+    }
 
     return <div className="max-h-screen max-w-full relative">
-        <Slider  {...sliderSettings}>
-            {
-                images.map(img => {
-                    return <Image src={img.url || ""} alt={img.alt || ""} width={img.width || 0}
-                                  height={img.height || 0} key={img.url}/>
-                })
-            }
-        </Slider>
+        {images.length === 1
+            ? <Image src={images[0].url || ""} alt={images[0].alt || ""} width={images[0].width || 0}
+                     height={images[0].height || 0} key={images[0].url}/>
+            :         <Slider  {...sliderSettings}>
+                {
+                    images.map(img => {
+                        return <Image src={img.url || ""} alt={img.alt || ""} width={img.width || 0}
+                                      height={img.height || 0} key={img.url}/>
+                    })
+                }
+            </Slider>}
         <div className="absolute bottom-0 left-72 w-full max-w-[29rem] p-8 bg-white text-center font-ptserif">
             <h2 className="text-3xl font-bold underline underline-offset-8 decoration-brand-yellow mb-4 decoration-4">{headerText}</h2>
             <p className="text-2xl font-opensans">

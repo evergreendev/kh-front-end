@@ -14,7 +14,9 @@ const config: Config = {
     extend: {
       colors: {
         "brand-yellow": "#ffde00",
-        "grey": "#e5e5e5"
+        "grey": "#e5e5e5",
+        "pale-1": "#fffcf3",
+        "pale-2": "#f5f5f5"
       },
       maxWidth: {
         'top': '150rem'
