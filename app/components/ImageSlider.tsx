@@ -31,7 +31,7 @@ const ImageSlider = ({images, headerText, bodyText}: { images: Media[], headerTe
 
     return <div className="max-h-screen max-w-full relative">
         {images.length === 1
-            ? <Image src={images[0].url || ""} alt={images[0].alt || ""} width={images[0].width || 0}
+            ? <Image className="max-h-[50vh] w-auto" src={images[0].url || ""} alt={images[0].alt || ""} width={images[0].width || 0}
                      height={images[0].height || 0} key={images[0].url}/>
             :         <Slider  {...sliderSettings}>
                 {
