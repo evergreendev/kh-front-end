@@ -1,5 +1,4 @@
 import MenuButton from "@/app/components/BlockRenderer/blocks/MenuButton";
-import {Media, Page} from "@/app/types/payloadTypes";
 import MenuWithSubMenu from "@/app/components/BlockRenderer/blocks/MenuWithSubMenu";
 import PhotoMenuBlock from "@/app/components/BlockRenderer/blocks/PhotoMenuBlock";
 import {ForwardedRef, forwardRef} from "react";
@@ -11,8 +10,8 @@ import HeaderBlock from "@/app/components/BlockRenderer/blocks/HeaderBlock";
 import CompareSliderBlock from "@/app/components/BlockRenderer/blocks/CompareSliderBlock";
 import FormBlock from "@/app/components/BlockRenderer/blocks/FormBlock";
 import EmploymentBlock from "@/app/components/BlockRenderer/blocks/EmploymentBlock";
-import CollectionCards from "@/app/components/BlockRenderer/blocks/CollectionCardsBlock";
 import CollectionCardsBlock from "@/app/components/BlockRenderer/blocks/CollectionCardsBlock";
+import SingleCollectionBlock from "@/app/components/BlockRenderer/blocks/SingleCollectionBlock";
 
 const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
     blocks: any,
@@ -52,6 +51,8 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
                     return <FormBlock key={(block as any).id} block={block as any}/>
                 case "EmploymentBlock":
                     return <EmploymentBlock key={(block as any).id} block={block as any}/>
+                case "singleCollectionBlock":
+                    return <SingleCollectionBlock block={block as any} key={(block as any).id}/>
                 default:
                     return <div key={(block as any).id} className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown Block
                         Type</div>
