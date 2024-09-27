@@ -168,17 +168,26 @@ const CollectionCardsBlock = ({block}: {
                 collectionItems.map((collectionItem: (Page | MuseumCollection)) => {/*todo add event*/
                     const image = getImage(collectionItem);
                     return <Link href={getSlugFromCollection(collectionItem, block.collectionsToPull || "")}
-                                 className="w-full group grow sm:w-3/12 h-full relative overflow-hidden"
+                                 className="w-full bg-gray-100 group grow sm:w-3/12 relative overflow-hidden"
                                  key={collectionItem.id}>
-                        <p className="bg-pale-1 z-10 text-black text-xl p-4 absolute bottom-0 left-0 right-0 text-center italic bg-opacity-90">{collectionItem.title}</p>
                         {
-                            image ? <Image
+                            image ? <div className="overflow-hidden"><Image
                                 className="aspect-square group-hover:scale-110 duration-1000 transition-all object-cover object-center"
                                 src={image.url || ""}
                                 alt={image.alt || ""} width={image.width || 0}
-                                height={image.height || 0}/> : <div
+                                height={image.height || 0}/></div> : <div
                                 className="aspect-square group-hover:scale-110 bg-pale-2 duration-1000 transition-all object-cover object-center"/>
                         }
+                        <div className="py-7 px-3">
+                            <h2
+                                className="mb-6 text-center text-4xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif">{collectionItem.title}</h2>
+                            {
+                                collectionItem.excerpt ? <p className="text-center">
+                                    {collectionItem.excerpt} <span className="underline italic">More</span>
+                                </p> : ""
+                            }
+                        </div>
+
                     </Link>
                 })
             }
