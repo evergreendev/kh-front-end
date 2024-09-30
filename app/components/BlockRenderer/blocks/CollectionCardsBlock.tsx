@@ -127,11 +127,12 @@ const CollectionCardsBlock = ({block}: {
                 <Slider {...sliderSettings}>{
                     collectionItems.map((collectionItem: (Page | MuseumCollection)) => {/*todo add event*/
                         const image = getImage(collectionItem);
+                        console.log(image);
                         return <Link href={getSlugFromCollection(collectionItem, block.collectionsToPull || "")}
                                      className="w-full h-full relative" key={collectionItem.id}>
                             <p className="bg-pale-1 text-black text-xl p-4 absolute bottom-0 left-0 right-0 text-center italic bg-opacity-90">{collectionItem.title}</p>
                             {
-                                image ? <Image className="aspect-[3/4] object-cover object-center" src={image.url || ""}
+                                image ? <Image style={{objectPosition: `${image.focalX}% ${image.focalY}%`}} className="aspect-[3/4] object-cover" src={image.url || ""}
                                                alt={image.alt || ""} width={image.width || 0}
                                                height={image.height || 0}/> :
                                     <div className="aspect-[3/4] object-cover object-center bg-pale-2"/>
@@ -153,6 +154,7 @@ const CollectionCardsBlock = ({block}: {
                                  key={collectionItem.id}>
                         {
                             image ? <div className="overflow-hidden"><Image
+                                style={{objectPosition: `${image.focalX}% ${image.focalY}%`}}
                                 className="aspect-square group-hover:scale-110 duration-1000 transition-all object-cover object-center"
                                 src={image.url || ""}
                                 alt={image.alt || ""} width={image.width || 0}
