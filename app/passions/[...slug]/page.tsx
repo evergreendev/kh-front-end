@@ -16,7 +16,7 @@ async function getData(query: any, tag: string) {
     );
 
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/passion/${stringifiedQuery}&depth=2`,
+        `${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/passions/${stringifiedQuery}&depth=2`,
         {
             next: {
                 tags: [tag]
