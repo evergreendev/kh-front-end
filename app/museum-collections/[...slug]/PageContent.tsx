@@ -12,7 +12,7 @@ const PageContent = ({data, meta}: { data: Page, meta: any }) => {
         <div className="px-24 py-7 flex flex-col items-center w-full">
             <TopBar siteOption={meta.siteOptions} nav={meta.nav}/>
         </div>
-        <ImageSlider headerText={data.intro_content?.header||""} bodyText={data.intro_content?.content||""} images={data.intro_content?.images?.filter((image): image is { media: Media, id: string } => {
+        <ImageSlider headerText={data.intro_content?.header||data.title} bodyText={data.intro_content?.content||""} images={data.intro_content?.images?.filter((image): image is { media: Media, id: string } => {
             return !!image.media && typeof image.media !== "number"
         }).map(image => {
             return image.media

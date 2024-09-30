@@ -29,10 +29,10 @@ const ImageSlider = ({images, headerText, bodyText}: { images: Media[], headerTe
         </div>
     }
 
-    return <div className="max-h-screen max-w-full relative">
+    return <div className="max-h-screen max-w-full relative w-full">
         {images.length === 1
-            ? <Image className="max-h-[50vh] w-auto" src={images[0].url || ""} alt={images[0].alt || ""} width={images[0].width || 0}
-                     height={images[0].height || 0} key={images[0].url}/>
+            ? <div className="flex w-full"><Image style={{objectPosition: `${images[0].focalX}% ${images[0].focalY}%`}} className="max-h-[80vh] w-full object-cover grow" src={images[0].url || ""} alt={images[0].alt || ""} width={images[0].width || 0}
+                          height={images[0].height || 0} key={images[0].url}/></div>
             :         <Slider  {...sliderSettings}>
                 {
                     images.map(img => {
