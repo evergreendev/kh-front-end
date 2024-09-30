@@ -1,36 +1,457 @@
 import React, {Fragment} from "react";
 import Link from "next/link";
 import Button from "@/app/components/Button";
+import {getSlugFromCollection} from "@/app/components/BlockRenderer/blocks/blockHelpers";
 
-function getFormats() {
-    const lexicalFormats = [[""]]
-    lexicalFormats[1] = ["bold"]
-    lexicalFormats[2] = ["italic"]
-    lexicalFormats[4] = ["strike"]
-    lexicalFormats[8] = ["underline"]
-    lexicalFormats[16] = ["code"]
-    lexicalFormats[32] = ["subscript"]
-    lexicalFormats[64] = ["superscript"]
-
-    let closestSingleI = 1;
-
-    for (let i = 1; i <= 127; i++) {
-        if (lexicalFormats[i]?.length === 1) {
-            closestSingleI = i;
-        }
-
-        if (!lexicalFormats[i]) {
-            lexicalFormats[i] = [lexicalFormats[closestSingleI][0]];
-
-            const indexToFind = i - closestSingleI;
-            lexicalFormats[i] = lexicalFormats[i].concat(lexicalFormats[indexToFind]);
-        }
-    }
-
-    return lexicalFormats;
-}
-
-const lexicalFormats = getFormats();
+const lexicalFormats = [[""]
+,["bold"]
+,["italic"]
+,["italic",
+    "bold"]
+,["strike"]
+,["strike",
+    "bold"]
+,["strike",
+    "italic"]
+,["strike",
+    "italic",
+    "bold"]
+,["underline"]
+,["underline",
+    "bold"]
+,["underline",
+    "italic"]
+,["underline",
+    "italic",
+    "bold"]
+,["underline",
+    "strike"]
+,["underline",
+    "strike",
+    "bold"]
+,["underline",
+    "strike",
+    "italic"]
+,["underline",
+    "strike",
+    "italic",
+    "bold"]
+,["code"]
+,["code",
+    "bold"]
+,["code",
+    "italic"]
+,["code",
+    "italic",
+    "bold"]
+,["code",
+    "strike"]
+,["code",
+    "strike",
+    "bold"]
+,["code",
+    "strike",
+    "italic"]
+,["code",
+    "strike",
+    "italic",
+    "bold"]
+,["code",
+    "underline"]
+,["code",
+    "underline",
+    "bold"]
+,["code",
+    "underline",
+    "italic"]
+,["code",
+    "underline",
+    "italic",
+    "bold"]
+,["code",
+    "underline",
+    "strike"]
+,["code",
+    "underline",
+    "strike",
+    "bold"]
+,["code",
+    "underline",
+    "strike",
+    "italic"]
+,["code",
+    "underline",
+    "strike",
+    "italic",
+    "bold"]
+,["subscript"]
+,["subscript",
+    "bold"]
+,["subscript",
+    "italic"]
+,["subscript",
+    "italic",
+    "bold"]
+,["subscript",
+    "strike"]
+,["subscript",
+    "strike",
+    "bold"]
+,["subscript",
+    "strike",
+    "italic"]
+,["subscript",
+    "strike",
+    "italic",
+    "bold"]
+,["subscript",
+    "underline"]
+,["subscript",
+    "underline",
+    "bold"]
+,["subscript",
+    "underline",
+    "italic"]
+,["subscript",
+    "underline",
+    "italic",
+    "bold"]
+,["subscript",
+    "underline",
+    "strike"]
+,["subscript",
+    "underline",
+    "strike",
+    "bold"]
+,["subscript",
+    "underline",
+    "strike",
+    "italic"]
+,["subscript",
+    "underline",
+    "strike",
+    "italic",
+    "bold"]
+,["subscript",
+    "code"]
+,["subscript",
+    "code",
+    "bold"]
+,["subscript",
+    "code",
+    "italic"]
+,["subscript",
+    "code",
+    "italic",
+    "bold"]
+,["subscript",
+    "code",
+    "strike"]
+,["subscript",
+    "code",
+    "strike",
+    "bold"]
+,["subscript",
+    "code",
+    "strike",
+    "italic"]
+,["subscript",
+    "code",
+    "strike",
+    "italic",
+    "bold"]
+,["subscript",
+    "code",
+    "underline"]
+,["subscript",
+    "code",
+    "underline",
+    "bold"]
+,["subscript",
+    "code",
+    "underline",
+    "italic"]
+,["subscript",
+    "code",
+    "underline",
+    "italic",
+    "bold"]
+,["subscript",
+    "code",
+    "underline",
+    "strike"]
+,["subscript",
+    "code",
+    "underline",
+    "strike",
+    "bold"]
+,["subscript",
+    "code",
+    "underline",
+    "strike",
+    "italic"]
+,["subscript",
+    "code",
+    "underline",
+    "strike",
+    "italic",
+    "bold"]
+,["superscript"]
+,["superscript",
+    "bold"]
+,["superscript",
+    "italic"]
+,["superscript",
+    "italic",
+    "bold"]
+,["superscript",
+    "strike"]
+,["superscript",
+    "strike",
+    "bold"]
+,["superscript",
+    "strike",
+    "italic"]
+,["superscript",
+    "strike",
+    "italic",
+    "bold"]
+,["superscript",
+    "underline"]
+,["superscript",
+    "underline",
+    "bold"]
+,["superscript",
+    "underline",
+    "italic"]
+,["superscript",
+    "underline",
+    "italic",
+    "bold"]
+,["superscript",
+    "underline",
+    "strike"]
+,["superscript",
+    "underline",
+    "strike",
+    "bold"]
+,["superscript",
+    "underline",
+    "strike",
+    "italic"]
+,["superscript",
+    "underline",
+    "strike",
+    "italic",
+    "bold"]
+,["superscript",
+    "code"]
+,["superscript",
+    "code",
+    "bold"]
+,["superscript",
+    "code",
+    "italic"]
+,["superscript",
+    "code",
+    "italic",
+    "bold"]
+,["superscript",
+    "code",
+    "strike"]
+,["superscript",
+    "code",
+    "strike",
+    "bold"]
+,["superscript",
+    "code",
+    "strike",
+    "italic"]
+,["superscript",
+    "code",
+    "strike",
+    "italic",
+    "bold"]
+,["superscript",
+    "code",
+    "underline"]
+,["superscript",
+    "code",
+    "underline",
+    "bold"]
+,["superscript",
+    "code",
+    "underline",
+    "italic"]
+,["superscript",
+    "code",
+    "underline",
+    "italic",
+    "bold"]
+,["superscript",
+    "code",
+    "underline",
+    "strike"]
+,["superscript",
+    "code",
+    "underline",
+    "strike",
+    "bold"]
+,["superscript",
+    "code",
+    "underline",
+    "strike",
+    "italic"]
+,["superscript",
+    "code",
+    "underline",
+    "strike",
+    "italic",
+    "bold"]
+,["superscript",
+    "subscript"]
+,["superscript",
+    "subscript",
+    "bold"]
+,["superscript",
+    "subscript",
+    "italic"]
+,["superscript",
+    "subscript",
+    "italic",
+    "bold"]
+,["superscript",
+    "subscript",
+    "strike"]
+,["superscript",
+    "subscript",
+    "strike",
+    "bold"]
+,["superscript",
+    "subscript",
+    "strike",
+    "italic"]
+,["superscript",
+    "subscript",
+    "strike",
+    "italic",
+    "bold"]
+,["superscript",
+    "subscript",
+    "underline"]
+,["superscript",
+    "subscript",
+    "underline",
+    "bold"]
+,["superscript",
+    "subscript",
+    "underline",
+    "italic"]
+,["superscript",
+    "subscript",
+    "underline",
+    "italic",
+    "bold"]
+,["superscript",
+    "subscript",
+    "underline",
+    "strike"]
+,["superscript",
+    "subscript",
+    "underline",
+    "strike",
+    "bold"]
+,["superscript",
+    "subscript",
+    "underline",
+    "strike",
+    "italic"]
+,["superscript",
+    "subscript",
+    "underline",
+    "strike",
+    "italic",
+    "bold"]
+,["superscript",
+    "subscript",
+    "code"]
+,["superscript",
+    "subscript",
+    "code",
+    "bold"]
+,["superscript",
+    "subscript",
+    "code",
+    "italic"]
+,["superscript",
+    "subscript",
+    "code",
+    "italic",
+    "bold"]
+,["superscript",
+    "subscript",
+    "code",
+    "strike"]
+,["superscript",
+    "subscript",
+    "code",
+    "strike",
+    "bold"]
+,["superscript",
+    "subscript",
+    "code",
+    "strike",
+    "italic"]
+,["superscript",
+    "subscript",
+    "code",
+    "strike",
+    "italic",
+    "bold"]
+,["superscript",
+    "subscript",
+    "code",
+    "underline"]
+,["superscript",
+    "subscript",
+    "code",
+    "underline",
+    "bold"]
+,["superscript",
+    "subscript",
+    "code",
+    "underline",
+    "italic"]
+,["superscript",
+    "subscript",
+    "code",
+    "underline",
+    "italic",
+    "bold"]
+,["superscript",
+    "subscript",
+    "code",
+    "underline",
+    "strike"]
+,["superscript",
+    "subscript",
+    "code",
+    "underline",
+    "strike",
+    "bold"]
+,["superscript",
+    "subscript",
+    "code",
+    "underline",
+    "strike",
+    "italic"]
+,["superscript",
+    "subscript",
+    "code",
+    "underline",
+    "strike",
+    "italic",
+    "bold"]];
 
 const styles = {
     bold: "font-bold",
@@ -127,15 +548,16 @@ function renderText(root: any, key: number, id:string, styleOverride?: string) {
                 return renderText(child, key + i, id, styleOverride);
             })}</p> : <br key={key + id}/>
         case "text":
-            return <FormattedText key={key + id} formats={lexicalFormats[root.format]}>
-                <span className={getStyles(lexicalFormats[root.format])?`${getStyles(lexicalFormats[root.format])}`:undefined}>{root.text}</span>
+            if(!root.format) return <span>{root.text}</span>;
+            return <FormattedText key={key + id} formats={lexicalFormats[root.format].concat([])}>
+                <span className={getStyles(lexicalFormats[root.format].concat([]))?`${getStyles(lexicalFormats[root.format].concat([]))}`:undefined}>{root.text}</span>
             </FormattedText>
         case "horizontalrule":
             return <hr key={key + id} className="my-3"/>
         case "link":
             return root.fields.linkType === "internal" ?
                 <Link key={key + id} className={`underline text-slate-700 ${alignment[root.format as keyof {}]}`}
-                      href={root.fields.doc.value?.full_path}>{root.children.map((child: any,i:number) => renderText(child, key + i, id, styleOverride))}</Link> :
+                      href={getSlugFromCollection(root.fields.doc.value, root.fields.doc.relationTo)}>{root.children.map((child: any,i:number) => renderText(child, key + i, id, styleOverride))}</Link> :
                 <a key={key + id} className={`underline text-slate-700 ${alignment[root.format as keyof {}]}`}
                    href={root.fields.url} rel={root.fields.newTab ? "noopener noreferrer" : ""}
                    target={root.fields.newTab ? "_blank" : ""}>

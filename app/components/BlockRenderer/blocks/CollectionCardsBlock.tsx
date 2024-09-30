@@ -127,7 +127,6 @@ const CollectionCardsBlock = ({block}: {
                 <Slider {...sliderSettings}>{
                     collectionItems.map((collectionItem: (Page | MuseumCollection)) => {/*todo add event*/
                         const image = getImage(collectionItem);
-                        console.log(image);
                         return <Link href={getSlugFromCollection(collectionItem, block.collectionsToPull || "")}
                                      className="w-full h-full relative" key={collectionItem.id}>
                             <p className="bg-pale-1 text-black text-xl p-4 absolute bottom-0 left-0 right-0 text-center italic bg-opacity-90">{collectionItem.title}</p>
