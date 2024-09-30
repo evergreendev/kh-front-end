@@ -45,7 +45,7 @@ const SingleCollectionBlock = ({block}: {
                 </p>
             </div>
             {
-                img ? <Image className="max-h-screen aspect-auto w-auto" src={img.url || ""} alt={img.alt||""} width={img.width || 0} height={img.height || 0}/> : ""
+                img ? <Image className="max-h-screen aspect-auto w-auto grow" src={img.url || ""} alt={img.alt||""} width={img.width || 0} height={img.height || 0}/> : ""
             }
         </div>
     } else {
