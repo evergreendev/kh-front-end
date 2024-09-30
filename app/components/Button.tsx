@@ -26,7 +26,7 @@ const Button = ({text, href, icon, config, tabIndex, isExternal}: {
     return <>{
         isExternal
             ? <a tabIndex={tabIndex} href={href}
-                 className={`inline-flex mx-auto w-80 justify-between px-6 py-2 text-xl ${config}`}><span
+                 className={`flex mx-auto w-80 justify-between px-6 py-2 text-xl ${config}`}><span
                 className={`font-opensans ${icon ? "" : "mx-auto"}`}>{
                 text
             }</span>
@@ -36,7 +36,7 @@ const Button = ({text, href, icon, config, tabIndex, isExternal}: {
                 }
             </a>
             : <Link tabIndex={tabIndex} href={href}
-                    className={`inline-flex mx-auto w-80 justify-between px-6 py-2 text-xl ${config}`}>
+                    className={`flex mx-auto w-80 justify-between px-6 py-2 text-xl ${config}`}>
         <span className={`font-opensans ${icon ? "" : "mx-auto"}`}>{
             text
         }</span>
