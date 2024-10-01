@@ -1,6 +1,6 @@
 import {Impact, Media, MuseumCollection, Page, Passion, StudentSpotlight} from "@/app/types/payloadTypes";
 
-export function getImage(item: Page | MuseumCollection|StudentSpotlight|Passion|Impact): Media | null {
+export function getImage(item: Page | MuseumCollection | StudentSpotlight | Passion | Impact): Media | null {
     if (item.intro_content?.thumbnail) return item.intro_content.thumbnail as Media;
     if (item.intro_content?.images?.[0]) return item.intro_content.images[0].media as Media;
     return null;
@@ -11,10 +11,13 @@ export function camelCaseToKebabCase(str: string) {
 }
 
 
-export function getSlugFromCollection(item: (Page | MuseumCollection|StudentSpotlight|Passion|Impact), collectionSlug: string): string {
+export function getSlugFromCollection(item: (Page | MuseumCollection | StudentSpotlight | Passion | Impact | Media), collectionSlug: string): string {
     if (collectionSlug === "pages") {
         return `/${(item as Page)?.full_path}`
+    }
+    if (collectionSlug === "media") {
+        return `${(item as Media)?.url}`
     } else {
-        return `/${camelCaseToKebabCase(collectionSlug)}/${item?.slug}`
+        return `/${camelCaseToKebabCase(collectionSlug)}/${(item as Impact)?.slug}`
     }
 }
