@@ -506,11 +506,11 @@ const FormattedText = ({formats, children}: { formats: string[], children: React
     }
 }
 
-function renderText(root: any, key: number, id:string, styleOverride?: string) {
+function renderText(root: any, key: number, id:string, styleOverride?: string, linkStyleOverride?: string) {
     if (!root) return;
 
     const children = root.children?.map((child: any,i:number) => {
-        return renderText(child, key + i, id, styleOverride);
+        return renderText(child, key + i, id,styleOverride,linkStyleOverride);
     });
 
     switch (root.type) {
@@ -520,22 +520,22 @@ function renderText(root: any, key: number, id:string, styleOverride?: string) {
             switch (root.tag) {
                 case "h1":
                     return <h1 key={key + id}
-                               className={`mb-6 text-4xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride))}</h1>
+                               className={`mb-6 text-4xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h1>
                 case "h2":
                     return <h2 key={key + id}
-                               className={`mb-6 text-4xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride))}</h2>
+                               className={`mb-6 text-4xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h2>
                 case "h3":
                     return <h3 key={key + id}
-                               className={`mb-3 text-3xl font-bold font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride))}</h3>
+                               className={`mb-3 text-3xl font-bold font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h3>
                 case "h4":
                     return <h4 key={key + id}
-                               className={`mb-3 text-2xl font-bold ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride))}</h4>
+                               className={`mb-3 text-2xl font-bold ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h4>
                 case "h5":
                     return <h5 key={key + id}
-                               className={`mb-3 text-xl font-bold ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride))}</h5>
+                               className={`mb-3 text-xl font-bold ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h5>
                 case "h6":
                     return <h6 key={key + id}
-                               className={`mb-2 text-lg ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride))}</h6>
+                               className={`mb-2 text-lg ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h6>
                 default:
                     return <Fragment key={key + id}></Fragment>
             }
@@ -545,7 +545,7 @@ function renderText(root: any, key: number, id:string, styleOverride?: string) {
                       ${alignment[root.format as keyof {}]||""}
                       
                       `}>{root.children.map((child: any,i:number) => {
-                return renderText(child, key + i, id, styleOverride);
+                return renderText(child, key + i, id,styleOverride,linkStyleOverride);
             })}</p> : <br key={key + id}/>
         case "text":
             if(!root.format) return <span>{root.text}</span>;
@@ -556,28 +556,28 @@ function renderText(root: any, key: number, id:string, styleOverride?: string) {
             return <hr key={key + id} className="my-3"/>
         case "link":
             return root.fields.linkType === "internal" ?
-                <Link key={key + id} className={`underline text-slate-700 ${alignment[root.format as keyof {}]}`}
-                      href={getSlugFromCollection(root.fields.doc.value, root.fields.doc.relationTo)}>{root.children.map((child: any,i:number) => renderText(child, key + i, id, styleOverride))}</Link> :
-                <a key={key + id} className={`underline text-slate-700 ${alignment[root.format as keyof {}]}`}
+                <Link key={key + id} className={`underline text-slate-700 ${linkStyleOverride||""} ${alignment[root.format as keyof {}]}`}
+                      href={getSlugFromCollection(root.fields.doc.value, root.fields.doc.relationTo)}>{root.children.map((child: any,i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</Link> :
+                <a key={key + id} className={`underline text-slate-700 ${linkStyleOverride||""} ${alignment[root.format as keyof {}]}`}
                    href={root.fields.url} rel={root.fields.newTab ? "noopener noreferrer" : ""}
                    target={root.fields.newTab ? "_blank" : ""}>
-                    {root.children.map((child: any,i:number) => renderText(child, key + i, id, styleOverride))}
+                    {root.children.map((child: any,i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}
                 </a>
         case "relationship":
             return <Button key={key + id} text={root.value.title} href={"/" + root.value?.full_path}/>
         case "list":
             if (root.tag === "ol") {
                 return <ol key={key + id}
-                           className={`list-decimal list-inside pl-2 ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride))}</ol>
+                           className={`list-decimal list-inside pl-2 ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</ol>
             }
             return <ul key={key + id}
-                       className={`list-disc pl-2 list-inside ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride))}</ul>
+                       className={`list-disc pl-2 list-inside ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</ul>
         case "listitem":
             return <li key={key + id}
-                       className={`${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride))}</li>
+                       className={`${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</li>
         case "quote":
             return <blockquote key={key + id}
-                               className={`border-l-2 pl-6 py-4 ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride))}</blockquote>
+                               className={`border-l-2 pl-6 py-4 ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</blockquote>
         default:
             break;
     }

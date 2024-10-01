@@ -13,8 +13,8 @@ export function camelCaseToKebabCase(str: string) {
 
 export function getSlugFromCollection(item: (Page | MuseumCollection|StudentSpotlight|Passion|Impact), collectionSlug: string): string {
     if (collectionSlug === "pages") {
-        return `/${(item as Page).full_path}`
+        return `/${(item as Page)?.full_path}`
     } else {
-        return `/${camelCaseToKebabCase(collectionSlug)}/${item.slug}`
+        return `/${camelCaseToKebabCase(collectionSlug)}/${item?.slug}`
     }
 }
