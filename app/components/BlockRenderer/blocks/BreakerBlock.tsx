@@ -36,7 +36,7 @@ const BreakerBlock = ({block}:{block:{
             {
                 block.heading_2 || block.button ? <h3 className={`max-w-[48ch] ${block.heading_2?.highlight ? "text-brand-yellow uppercase":""}`}><span className="mr-6">{block.heading_2?.text}</span>
                     {block.button && (block.button.link?.title || block.button.link?.external_url || block.button.link?.Relation)
-                        ? <Button icon={faChevronCircleRight} config={buttonConfig[block.button.type||"primary"]} text={block.button.link?.title||""} href={block.button.link?.external ? block.button.link.external_url||"" : (block.button.link?.Relation?.value as Page)?.full_path||""}/>
+                        ? <Button isInline icon={faChevronCircleRight} config={buttonConfig[block.button.type||"primary"]} text={block.button.link?.title||""} href={block.button.link?.external ? block.button.link.external_url||"" : (block.button.link?.Relation?.value as Page)?.full_path||""}/>
                         : ""
                     }</h3> : ""
             }

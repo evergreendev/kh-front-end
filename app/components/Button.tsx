@@ -12,13 +12,14 @@ export const buttonConfig = {
 
 type Config = (typeof buttonConfig)[keyof typeof buttonConfig];
 
-const Button = ({text, href, icon, config, tabIndex, isExternal}: {
+const Button = ({text, href, icon, config, tabIndex, isExternal,isInline}: {
     text: string,
     href: string,
     icon?: IconProp,
     config?: Config,
     tabIndex?: number,
     isExternal?: boolean | null
+    isInline?: boolean | null
 }) => {
 
     if (!config) config = buttonConfig.primary;
@@ -26,7 +27,7 @@ const Button = ({text, href, icon, config, tabIndex, isExternal}: {
     return <>{
         isExternal
             ? <a tabIndex={tabIndex} href={href}
-                 className={`flex mx-auto w-80 justify-between px-6 py-2 text-xl ${config}`}><span
+                 className={`${isInline ? "inline-flex":"flex"} mx-auto w-80 justify-between px-6 py-2 text-xl ${config}`}><span
                 className={`font-opensans ${icon ? "" : "mx-auto text-center"}`}>{
                 text
             }</span>
@@ -36,7 +37,7 @@ const Button = ({text, href, icon, config, tabIndex, isExternal}: {
                 }
             </a>
             : <Link tabIndex={tabIndex} href={href}
-                    className={`flex mx-auto w-80 justify-between px-6 py-2 text-xl ${config}`}>
+                    className={`${isInline ? "inline-flex":"flex"} mx-auto w-80 justify-between px-6 py-2 text-xl ${config}`}>
         <span className={`font-opensans ${icon ? "" : "mx-auto text-center"}`}>{
             text
         }</span>
