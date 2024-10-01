@@ -3,10 +3,11 @@ import {faBars} from "@awesome.me/kit-2a2dc088e2/icons/classic/solid";
 import {faChevronCircleRight, faChevronCircleDown} from "@awesome.me/kit-2a2dc088e2/icons/classic/light";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {createRef, ForwardedRef, forwardRef, RefObject, useCallback, useEffect, useRef, useState} from "react";
-import {Navigation} from "@/app/types/payloadTypes";
+import {Navigation, Page} from "@/app/types/payloadTypes";
 import Link from "next/link";
 import BlockRenderer from "@/app/components/BlockRenderer";
 import getUrlFromPageOrExternal from "@/app/utilities/getUrlFromPageOrExternal";
+import {getSlugFromCollection} from "@/app/components/BlockRenderer/blocks/blockHelpers";
 
 function useOutsideAlerter(ref: RefObject<HTMLDivElement>, action: (...args: any) => void) {
     useEffect(() => {
@@ -144,12 +145,30 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
                 {
                     nav.items.map((item, index) => {
                         return <div className="mt-6" key={item.id}>
-                            <ExpandableButton isExpanded={activeMenuId === item.id}
-                                              firstFocusable={firstFocusableElements.current[item.id || ""]}
-                                              ref={index === 0 ? firstFocusableElementRef : null}
-                                              tabIndex={isExpanded ? 0 : -1} item={item} setActiveMenuId={() => {
-                                setActiveMenuId(item.id || null)
-                            }} id={item.id || ""} text={item.title || ""}/>
+                            {
+                                item.columns?.length === 0 ? <>
+                                    {item.external
+                                        ?
+                                        <a className={`bg-gray-900 text-3xl flex mr-6 border-t-8 border-transparent group text-white hover:border-t-brand-yellow`}
+                                           href={item.external_url || ""}>
+                                    <span
+                                        className="p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{item.title || (item.Relation?.value as Page)?.title}</span>
+                                        </a>
+                                        : <Link
+                                            className={`bg-gray-900 text-3xl flex mr-6 border-t-8 border-transparent group text-white hover:border-t-brand-yellow`}
+                                            href={getSlugFromCollection((item.Relation?.value as Page), item.Relation?.relationTo || "page")}>
+                                    <span
+                                        className="p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{item.title || (item.Relation?.value as Page)?.title}</span>
+                                        </Link>}
+                                </> : <>
+                                    <ExpandableButton isExpanded={activeMenuId === item.id}
+                                                      firstFocusable={firstFocusableElements.current[item.id || ""]}
+                                                      ref={index === 0 ? firstFocusableElementRef : null}
+                                                      tabIndex={isExpanded ? 0 : -1} item={item} setActiveMenuId={() => {
+                                        setActiveMenuId(item.id || null)
+                                    }} id={item.id || ""} text={item.title || (item.Relation?.value as Page)?.title}/>
+                                </>
+                            }
                         </div>
                     })
                 }
