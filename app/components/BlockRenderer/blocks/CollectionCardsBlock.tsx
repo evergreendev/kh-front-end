@@ -154,7 +154,7 @@ const CollectionCardsBlock = ({block}: {
                         {
                             image ? <div className="overflow-hidden"><Image
                                 style={{objectPosition: `${image.focalX}% ${image.focalY}%`}}
-                                className="aspect-square group-hover:scale-110 duration-1000 transition-all object-cover object-center"
+                                className="aspect-[4/3] group-hover:scale-110 duration-1000 transition-all object-cover object-center"
                                 src={image.url || ""}
                                 alt={image.alt || ""} width={image.width || 0}
                                 height={image.height || 0}/></div> : <div
