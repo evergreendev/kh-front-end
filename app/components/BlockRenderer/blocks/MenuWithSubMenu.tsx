@@ -36,16 +36,16 @@ const MenuWithSubMenu = ({block,tabIndex}: {
     return <div className="flex flex-col text-xl">
         {
             linkInfo.isExternal
-                ? <a tabIndex={tabIndex} className="p-2 hover:bg-white block" href={linkInfo.url}>{block.headerItem?.title||(block.headerItem?.Relation?.value as Page).title}</a>
-                : <Link tabIndex={tabIndex} className="p-2 hover:bg-white block" href={linkInfo.url}>{block.headerItem?.title||(block.headerItem?.Relation?.value as Page).title}</Link>
+                ? <a tabIndex={tabIndex} className="p-2 hover:bg-white block" href={linkInfo.url}>{block.headerItem?.title||(block.headerItem?.Relation?.value as Page)?.title}</a>
+                : <Link tabIndex={tabIndex} className="p-2 hover:bg-white block" href={linkInfo.url}>{block.headerItem?.title||(block.headerItem?.Relation?.value as Page)?.title}</Link>
         }
         <div className="flex flex-col ml-6">
             {block.items?.map(item => {
                 const childLinkInfo = getUrlFromPageOrExternal(item);
                 if (childLinkInfo.isExternal) {
-                    return <a tabIndex={tabIndex} className="p-2 border-l-2 border-l-gray-200 hover:bg-white block text-lg" key={item.id} href={childLinkInfo.url}>{item.title||(item?.Relation?.value as Page).title}</a>
+                    return <a tabIndex={tabIndex} className="p-2 border-l-2 border-l-gray-200 hover:bg-white block text-lg" key={item.id} href={childLinkInfo.url}>{item?.title||(item?.Relation?.value as Page)?.title}</a>
                 }
-                return <Link tabIndex={tabIndex} className="p-2 border-l-2 border-l-gray-200 hover:bg-white block text-lg" key={item.id} href={childLinkInfo.url}>{item.title||(item?.Relation?.value as Page).title}</Link>
+                return <Link tabIndex={tabIndex} className="p-2 border-l-2 border-l-gray-200 hover:bg-white block text-lg" key={item.id} href={childLinkInfo.url}>{item?.title||(item?.Relation?.value as Page)?.title}</Link>
             })}
         </div>
 
