@@ -19,7 +19,7 @@ const config: Config = {
         "pale-2": "#f5f5f5"
       },
       maxWidth: {
-        'top': '150rem'
+        'top': '128rem'
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
