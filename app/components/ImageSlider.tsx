@@ -36,7 +36,7 @@ const ImageSlider = ({images, headerText, bodyText}: { images: Media[], headerTe
             :         <Slider  {...sliderSettings}>
                 {
                     images.map(img => {
-                        return <Image src={img.url || ""} alt={img.alt || ""} width={img.width || 0}
+                        return <Image style={{objectPosition: `${img.focalX}% ${img.focalY}%`}} src={img.url || ""} alt={img.alt || ""} width={img.width || 0}
                                       height={img.height || 0} key={img.url}/>
                     })
                 }
