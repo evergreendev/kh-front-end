@@ -142,6 +142,7 @@ export interface Page {
                 items?:
                     | {
                     image: number | Media;
+                    caption?: string | null;
                     id?: string | null;
                 }[]
                     | null;
@@ -395,6 +396,7 @@ export interface Page {
         items?:
             | {
             image: number | Media;
+            caption?: string | null;
             id?: string | null;
         }[]
             | null;
@@ -623,6 +625,7 @@ export interface MuseumCollection {
                 items?:
                     | {
                     image: number | Media;
+                    caption?: string | null;
                     id?: string | null;
                 }[]
                     | null;
@@ -829,6 +832,7 @@ export interface MuseumCollection {
         items?:
             | {
             image: number | Media;
+            caption?: string | null;
             id?: string | null;
         }[]
             | null;
@@ -1010,6 +1014,7 @@ export interface Impact {
                 items?:
                     | {
                     image: number | Media;
+                    caption?: string | null;
                     id?: string | null;
                 }[]
                     | null;
@@ -1216,6 +1221,7 @@ export interface Impact {
         items?:
             | {
             image: number | Media;
+            caption?: string | null;
             id?: string | null;
         }[]
             | null;
@@ -1397,6 +1403,7 @@ export interface Passion {
                 items?:
                     | {
                     image: number | Media;
+                    caption?: string | null;
                     id?: string | null;
                 }[]
                     | null;
@@ -1603,6 +1610,7 @@ export interface Passion {
         items?:
             | {
             image: number | Media;
+            caption?: string | null;
             id?: string | null;
         }[]
             | null;
@@ -1784,6 +1792,7 @@ export interface StudentSpotlight {
                 items?:
                     | {
                     image: number | Media;
+                    caption?: string | null;
                     id?: string | null;
                 }[]
                     | null;
@@ -1990,6 +1999,7 @@ export interface StudentSpotlight {
         items?:
             | {
             image: number | Media;
+            caption?: string | null;
             id?: string | null;
         }[]
             | null;

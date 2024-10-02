@@ -10,6 +10,7 @@ export const GalleryBlock = ({block}: {
         items?:
             | {
             image: Media;
+            caption?: string | null;
             id?: string | null;
         }[]
             | null;
@@ -19,10 +20,10 @@ export const GalleryBlock = ({block}: {
     }
 }) => {
     if (!block.items) return;
-    return <Gallery  id={block.id||"0"}>
+    return <Gallery withCaption  id={block.id||"0"}>
         <div className="flex flex-wrap gap-3">
             {block.items.map(item => {
-                return <Item key={item.id} original={item.image.url || ""}
+                return <Item caption={`<h2 class="text-4xl font-ptserif">${item.caption||""}</h2>`||undefined} key={item.id} original={item.image.url || ""}
                              thumbnail={item.image.sizes?.thumbnail?.url || ""}
                              height={item.image.height || 0}
                              width={item.image.width || 0}>
