@@ -1,8 +1,8 @@
 import qs from "qs";
 import React from "react";
 import {notFound} from "next/navigation";
-import PageContent from "@/app/museum-collections/[...slug]/PageContent";
-import PageClient from "@/app/museum-collections/[...slug]/page.client";
+import PageContent from "@/app/museum-collection/[...slug]/PageContent";
+import PageClient from "@/app/museum-collection/[...slug]/page.client";
 import getMeta from "@/app/data/getMeta";
 
 async function getData(query: any, tag: string) {
