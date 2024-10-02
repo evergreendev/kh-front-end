@@ -57,7 +57,7 @@ const SideBar = ({meta}: { meta: Meta }) => {
                     Crazy Horse Memorial<br/>
                     12151 Avenue of the Chiefs<br/>
                     Crazy Horse, SD 57730-8900<br/>
-                    <Link className="underline" href={`/plan-your-visit/information/getting-to-crazy-horse`}>more
+                    <Link className="underline" href={`/plan-your-visit#location-hours`}>more
                         direction
                         information</Link>
                 </address>
