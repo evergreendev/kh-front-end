@@ -22,6 +22,7 @@ const widths = {
 }
 
 const Columns = ({block}:{block:{
+        sectionID?: string | null;
         vertical_separator?: boolean | null;
         fullWidth?: boolean | null;
         narrowRow?: boolean | null;
@@ -87,7 +88,7 @@ const Columns = ({block}:{block:{
 
     const currWidth = block.vertical_separator ? widths.withBorder : widths.noBorder;
 
-    return <div className={`w-full flex flex-wrap  justify-around 
+    return <div id={block.sectionID||""} className={`w-full flex flex-wrap  justify-around 
     ${block.grayBackground ? "bg-gray-200" : "pb-12 items-center"}
     ${block.narrowRow && !block.fullWidth ? "max-w-screen-xl mx-auto" : ""}
     ${!block.narrowRow && !block.fullWidth ? "max-w-[1800px] px-7 mx-auto" : ""}
