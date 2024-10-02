@@ -12,6 +12,7 @@ import FormBlock from "@/app/components/BlockRenderer/blocks/FormBlock";
 import EmploymentBlock from "@/app/components/BlockRenderer/blocks/EmploymentBlock";
 import CollectionCardsBlock from "@/app/components/BlockRenderer/blocks/CollectionCardsBlock";
 import SingleCollectionBlock from "@/app/components/BlockRenderer/blocks/SingleCollectionBlock";
+import SpacerBlock from "@/app/components/BlockRenderer/blocks/SpacerBlock";
 
 const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
     blocks: any,
@@ -53,6 +54,8 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
                     return <EmploymentBlock key={(block as any).id} block={block as any}/>
                 case "singleCollectionBlock":
                     return <SingleCollectionBlock block={block as any} key={(block as any).id}/>
+                case "SpacerBlock":
+                    return <SpacerBlock block={block as any} key={(block as any).id}/>
                 default:
                     return <div key={(block as any).id} className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown Block
                         Type</div>

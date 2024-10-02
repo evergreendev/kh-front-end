@@ -139,6 +139,17 @@ export interface Page {
             content?:
                 | (
                 | {
+                items?:
+                    | {
+                    image: number | Media;
+                    id?: string | null;
+                }[]
+                    | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'gallery';
+            }
+                | {
                 media?: number | Media | null;
                 thumbnail?: number | Media | null;
                 expandImage?: boolean | null;
@@ -152,10 +163,27 @@ export interface Page {
                 heading_link?: {
                     title?: string | null;
                     external?: boolean | null;
-                    Relation?: {
+                    Relation?:
+                        | ({
                         relationTo: 'pages';
                         value: number | Page;
-                    } | null;
+                    } | null)
+                        | ({
+                        relationTo: 'museumCollections';
+                        value: number | MuseumCollection;
+                    } | null)
+                        | ({
+                        relationTo: 'impact';
+                        value: number | Impact;
+                    } | null)
+                        | ({
+                        relationTo: 'passions';
+                        value: number | Passion;
+                    } | null)
+                        | ({
+                        relationTo: 'studentSpotlight';
+                        value: number | StudentSpotlight;
+                    } | null);
                     external_url?: string | null;
                     label?: string | null;
                 };
@@ -179,10 +207,27 @@ export interface Page {
                         | {
                         title?: string | null;
                         external?: boolean | null;
-                        Relation?: {
+                        Relation?:
+                            | ({
                             relationTo: 'pages';
                             value: number | Page;
-                        } | null;
+                        } | null)
+                            | ({
+                            relationTo: 'museumCollections';
+                            value: number | MuseumCollection;
+                        } | null)
+                            | ({
+                            relationTo: 'impact';
+                            value: number | Impact;
+                        } | null)
+                            | ({
+                            relationTo: 'passions';
+                            value: number | Passion;
+                        } | null)
+                            | ({
+                            relationTo: 'studentSpotlight';
+                            value: number | StudentSpotlight;
+                        } | null);
                         external_url?: string | null;
                         label?: string | null;
                         id?: string | null;
@@ -196,10 +241,27 @@ export interface Page {
                 | {
                 title?: string | null;
                 external?: boolean | null;
-                Relation?: {
+                Relation?:
+                    | ({
                     relationTo: 'pages';
                     value: number | Page;
-                } | null;
+                } | null)
+                    | ({
+                    relationTo: 'museumCollections';
+                    value: number | MuseumCollection;
+                } | null)
+                    | ({
+                    relationTo: 'impact';
+                    value: number | Impact;
+                } | null)
+                    | ({
+                    relationTo: 'passions';
+                    value: number | Passion;
+                } | null)
+                    | ({
+                    relationTo: 'studentSpotlight';
+                    value: number | StudentSpotlight;
+                } | null);
                 external_url?: string | null;
                 buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
                 hasIcon?: boolean | null;
@@ -300,10 +362,27 @@ export interface Page {
             width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
             title?: string | null;
             external?: boolean | null;
-            Relation?: {
+            Relation?:
+                | ({
                 relationTo: 'pages';
                 value: number | Page;
-            } | null;
+            } | null)
+                | ({
+                relationTo: 'museumCollections';
+                value: number | MuseumCollection;
+            } | null)
+                | ({
+                relationTo: 'impact';
+                value: number | Impact;
+            } | null)
+                | ({
+                relationTo: 'passions';
+                value: number | Passion;
+            } | null)
+                | ({
+                relationTo: 'studentSpotlight';
+                value: number | StudentSpotlight;
+            } | null);
             external_url?: string | null;
             id?: string | null;
         }[]
@@ -311,6 +390,17 @@ export interface Page {
         id?: string | null;
         blockName?: string | null;
         blockType: 'column';
+    }
+        | {
+        items?:
+            | {
+            image: number | Media;
+            id?: string | null;
+        }[]
+            | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'gallery';
     }
         | {
         heading_1?: {
@@ -326,10 +416,27 @@ export interface Page {
             link?: {
                 title?: string | null;
                 external?: boolean | null;
-                Relation?: {
+                Relation?:
+                    | ({
                     relationTo: 'pages';
                     value: number | Page;
-                } | null;
+                } | null)
+                    | ({
+                    relationTo: 'museumCollections';
+                    value: number | MuseumCollection;
+                } | null)
+                    | ({
+                    relationTo: 'impact';
+                    value: number | Impact;
+                } | null)
+                    | ({
+                    relationTo: 'passions';
+                    value: number | Passion;
+                } | null)
+                    | ({
+                    relationTo: 'studentSpotlight';
+                    value: number | StudentSpotlight;
+                } | null);
                 external_url?: string | null;
             };
         };
@@ -348,10 +455,27 @@ export interface Page {
         | {
         title?: string | null;
         external?: boolean | null;
-        Relation?: {
+        Relation?:
+            | ({
             relationTo: 'pages';
             value: number | Page;
-        } | null;
+        } | null)
+            | ({
+            relationTo: 'museumCollections';
+            value: number | MuseumCollection;
+        } | null)
+            | ({
+            relationTo: 'impact';
+            value: number | Impact;
+        } | null)
+            | ({
+            relationTo: 'passions';
+            value: number | Passion;
+        } | null)
+            | ({
+            relationTo: 'studentSpotlight';
+            value: number | StudentSpotlight;
+        } | null);
         external_url?: string | null;
         buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
         hasIcon?: boolean | null;
@@ -430,6 +554,1554 @@ export interface Page {
         description?: string | null;
         image?: number | Media | null;
     };
+    updatedAt: string;
+    createdAt: string;
+    _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "museumCollections".
+ */
+export interface MuseumCollection {
+    id: number;
+    intro_content?: {
+        video?: string | null;
+        videoFile?: number | Media | null;
+        thumbnail?: number | Media | null;
+        images?:
+            | {
+            media?: number | Media | null;
+            id?: string | null;
+        }[]
+            | null;
+        header?: string | null;
+        content?: string | null;
+    };
+    jump_menu?:
+        | {
+        title?: string | null;
+        link?:
+            | ({
+            relationTo: 'pages';
+            value: number | Page;
+        } | null)
+            | ({
+            relationTo: 'museumCollections';
+            value: number | MuseumCollection;
+        } | null)
+            | ({
+            relationTo: 'impact';
+            value: number | Impact;
+        } | null)
+            | ({
+            relationTo: 'passions';
+            value: number | Passion;
+        } | null)
+            | ({
+            relationTo: 'studentSpotlight';
+            value: number | StudentSpotlight;
+        } | null);
+        internal_link?: string | null;
+        id?: string | null;
+    }[]
+        | null;
+    excerpt?: string | null;
+    layout?:
+        | (
+        | {
+        sectionID?: string | null;
+        vertical_separator?: boolean | null;
+        fullWidth?: boolean | null;
+        narrowRow?: boolean | null;
+        wideSpacing?: boolean | null;
+        grayBackground?: boolean | null;
+        columns?:
+            | {
+            content?:
+                | (
+                | {
+                items?:
+                    | {
+                    image: number | Media;
+                    id?: string | null;
+                }[]
+                    | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'gallery';
+            }
+                | {
+                media?: number | Media | null;
+                thumbnail?: number | Media | null;
+                expandImage?: boolean | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'MediaBlock';
+            }
+                | {
+                heading_1?: string | null;
+                heading_2?: string | null;
+                heading_link?: {
+                    title?: string | null;
+                    external?: boolean | null;
+                    Relation?:
+                        | ({
+                        relationTo: 'pages';
+                        value: number | Page;
+                    } | null)
+                        | ({
+                        relationTo: 'museumCollections';
+                        value: number | MuseumCollection;
+                    } | null)
+                        | ({
+                        relationTo: 'impact';
+                        value: number | Impact;
+                    } | null)
+                        | ({
+                        relationTo: 'passions';
+                        value: number | Passion;
+                    } | null)
+                        | ({
+                        relationTo: 'studentSpotlight';
+                        value: number | StudentSpotlight;
+                    } | null);
+                    external_url?: string | null;
+                    label?: string | null;
+                };
+                body?: {
+                    text?: {
+                        root: {
+                            type: string;
+                            children: {
+                                type: string;
+                                version: number;
+                                [k: string]: unknown;
+                            }[];
+                            direction: ('ltr' | 'rtl') | null;
+                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                            indent: number;
+                            version: number;
+                        };
+                        [k: string]: unknown;
+                    } | null;
+                    link_list?:
+                        | {
+                        title?: string | null;
+                        external?: boolean | null;
+                        Relation?:
+                            | ({
+                            relationTo: 'pages';
+                            value: number | Page;
+                        } | null)
+                            | ({
+                            relationTo: 'museumCollections';
+                            value: number | MuseumCollection;
+                        } | null)
+                            | ({
+                            relationTo: 'impact';
+                            value: number | Impact;
+                        } | null)
+                            | ({
+                            relationTo: 'passions';
+                            value: number | Passion;
+                        } | null)
+                            | ({
+                            relationTo: 'studentSpotlight';
+                            value: number | StudentSpotlight;
+                        } | null);
+                        external_url?: string | null;
+                        label?: string | null;
+                        id?: string | null;
+                    }[]
+                        | null;
+                };
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'TextBlock';
+            }
+                | {
+                title?: string | null;
+                external?: boolean | null;
+                Relation?:
+                    | ({
+                    relationTo: 'pages';
+                    value: number | Page;
+                } | null)
+                    | ({
+                    relationTo: 'museumCollections';
+                    value: number | MuseumCollection;
+                } | null)
+                    | ({
+                    relationTo: 'impact';
+                    value: number | Impact;
+                } | null)
+                    | ({
+                    relationTo: 'passions';
+                    value: number | Passion;
+                } | null)
+                    | ({
+                    relationTo: 'studentSpotlight';
+                    value: number | StudentSpotlight;
+                } | null);
+                external_url?: string | null;
+                buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+                hasIcon?: boolean | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'MenuButton';
+            }
+                | {
+                text?: {
+                    root: {
+                        type: string;
+                        children: {
+                            type: string;
+                            version: number;
+                            [k: string]: unknown;
+                        }[];
+                        direction: ('ltr' | 'rtl') | null;
+                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                        indent: number;
+                        version: number;
+                    };
+                    [k: string]: unknown;
+                } | null;
+                underlineHighlight?: boolean | null;
+                largeText?: boolean | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'HeaderBlock';
+            }
+                | {
+                media1?: number | Media | null;
+                media2?: number | Media | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'CompareSliderBlock';
+            }
+                | {
+                height?: number | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'SpacerBlock';
+            }
+                | {
+                form?: (number | null) | Form;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'FormBlock';
+            }
+                )[]
+                | null;
+            width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
+            title?: string | null;
+            external?: boolean | null;
+            Relation?:
+                | ({
+                relationTo: 'pages';
+                value: number | Page;
+            } | null)
+                | ({
+                relationTo: 'museumCollections';
+                value: number | MuseumCollection;
+            } | null)
+                | ({
+                relationTo: 'impact';
+                value: number | Impact;
+            } | null)
+                | ({
+                relationTo: 'passions';
+                value: number | Passion;
+            } | null)
+                | ({
+                relationTo: 'studentSpotlight';
+                value: number | StudentSpotlight;
+            } | null);
+            external_url?: string | null;
+            id?: string | null;
+        }[]
+            | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'column';
+    }
+        | {
+        items?:
+            | {
+            image: number | Media;
+            id?: string | null;
+        }[]
+            | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'gallery';
+    }
+        | {
+        heading_1?: {
+            text?: string | null;
+            highlight?: boolean | null;
+        };
+        heading_2?: {
+            text?: string | null;
+            highlight?: boolean | null;
+        };
+        button?: {
+            type?: ('primary' | 'secondary' | 'highlight' | 'tertiary') | null;
+            link?: {
+                title?: string | null;
+                external?: boolean | null;
+                Relation?:
+                    | ({
+                    relationTo: 'pages';
+                    value: number | Page;
+                } | null)
+                    | ({
+                    relationTo: 'museumCollections';
+                    value: number | MuseumCollection;
+                } | null)
+                    | ({
+                    relationTo: 'impact';
+                    value: number | Impact;
+                } | null)
+                    | ({
+                    relationTo: 'passions';
+                    value: number | Passion;
+                } | null)
+                    | ({
+                    relationTo: 'studentSpotlight';
+                    value: number | StudentSpotlight;
+                } | null);
+                external_url?: string | null;
+            };
+        };
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'Breaker';
+    }
+        | {
+        media?: number | Media | null;
+        thumbnail?: number | Media | null;
+        expandImage?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'MediaBlock';
+    }
+        | {
+        title?: string | null;
+        external?: boolean | null;
+        Relation?:
+            | ({
+            relationTo: 'pages';
+            value: number | Page;
+        } | null)
+            | ({
+            relationTo: 'museumCollections';
+            value: number | MuseumCollection;
+        } | null)
+            | ({
+            relationTo: 'impact';
+            value: number | Impact;
+        } | null)
+            | ({
+            relationTo: 'passions';
+            value: number | Passion;
+        } | null)
+            | ({
+            relationTo: 'studentSpotlight';
+            value: number | StudentSpotlight;
+        } | null);
+        external_url?: string | null;
+        buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+        hasIcon?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'MenuButton';
+    }
+        | {
+        media1?: number | Media | null;
+        media2?: number | Media | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'CompareSliderBlock';
+    }
+        | {
+        height?: number | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'SpacerBlock';
+    }
+        | {
+        form?: (number | null) | Form;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'FormBlock';
+    }
+        )[]
+        | null;
+    title: string;
+    slug?: string | null;
+    publishedAt?: string | null;
+    updatedAt: string;
+    createdAt: string;
+    _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "impact".
+ */
+export interface Impact {
+    id: number;
+    intro_content?: {
+        video?: string | null;
+        videoFile?: number | Media | null;
+        thumbnail?: number | Media | null;
+        images?:
+            | {
+            media?: number | Media | null;
+            id?: string | null;
+        }[]
+            | null;
+        header?: string | null;
+        content?: string | null;
+    };
+    jump_menu?:
+        | {
+        title?: string | null;
+        link?:
+            | ({
+            relationTo: 'pages';
+            value: number | Page;
+        } | null)
+            | ({
+            relationTo: 'museumCollections';
+            value: number | MuseumCollection;
+        } | null)
+            | ({
+            relationTo: 'impact';
+            value: number | Impact;
+        } | null)
+            | ({
+            relationTo: 'passions';
+            value: number | Passion;
+        } | null)
+            | ({
+            relationTo: 'studentSpotlight';
+            value: number | StudentSpotlight;
+        } | null);
+        internal_link?: string | null;
+        id?: string | null;
+    }[]
+        | null;
+    excerpt?: string | null;
+    layout?:
+        | (
+        | {
+        sectionID?: string | null;
+        vertical_separator?: boolean | null;
+        fullWidth?: boolean | null;
+        narrowRow?: boolean | null;
+        wideSpacing?: boolean | null;
+        grayBackground?: boolean | null;
+        columns?:
+            | {
+            content?:
+                | (
+                | {
+                items?:
+                    | {
+                    image: number | Media;
+                    id?: string | null;
+                }[]
+                    | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'gallery';
+            }
+                | {
+                media?: number | Media | null;
+                thumbnail?: number | Media | null;
+                expandImage?: boolean | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'MediaBlock';
+            }
+                | {
+                heading_1?: string | null;
+                heading_2?: string | null;
+                heading_link?: {
+                    title?: string | null;
+                    external?: boolean | null;
+                    Relation?:
+                        | ({
+                        relationTo: 'pages';
+                        value: number | Page;
+                    } | null)
+                        | ({
+                        relationTo: 'museumCollections';
+                        value: number | MuseumCollection;
+                    } | null)
+                        | ({
+                        relationTo: 'impact';
+                        value: number | Impact;
+                    } | null)
+                        | ({
+                        relationTo: 'passions';
+                        value: number | Passion;
+                    } | null)
+                        | ({
+                        relationTo: 'studentSpotlight';
+                        value: number | StudentSpotlight;
+                    } | null);
+                    external_url?: string | null;
+                    label?: string | null;
+                };
+                body?: {
+                    text?: {
+                        root: {
+                            type: string;
+                            children: {
+                                type: string;
+                                version: number;
+                                [k: string]: unknown;
+                            }[];
+                            direction: ('ltr' | 'rtl') | null;
+                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                            indent: number;
+                            version: number;
+                        };
+                        [k: string]: unknown;
+                    } | null;
+                    link_list?:
+                        | {
+                        title?: string | null;
+                        external?: boolean | null;
+                        Relation?:
+                            | ({
+                            relationTo: 'pages';
+                            value: number | Page;
+                        } | null)
+                            | ({
+                            relationTo: 'museumCollections';
+                            value: number | MuseumCollection;
+                        } | null)
+                            | ({
+                            relationTo: 'impact';
+                            value: number | Impact;
+                        } | null)
+                            | ({
+                            relationTo: 'passions';
+                            value: number | Passion;
+                        } | null)
+                            | ({
+                            relationTo: 'studentSpotlight';
+                            value: number | StudentSpotlight;
+                        } | null);
+                        external_url?: string | null;
+                        label?: string | null;
+                        id?: string | null;
+                    }[]
+                        | null;
+                };
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'TextBlock';
+            }
+                | {
+                title?: string | null;
+                external?: boolean | null;
+                Relation?:
+                    | ({
+                    relationTo: 'pages';
+                    value: number | Page;
+                } | null)
+                    | ({
+                    relationTo: 'museumCollections';
+                    value: number | MuseumCollection;
+                } | null)
+                    | ({
+                    relationTo: 'impact';
+                    value: number | Impact;
+                } | null)
+                    | ({
+                    relationTo: 'passions';
+                    value: number | Passion;
+                } | null)
+                    | ({
+                    relationTo: 'studentSpotlight';
+                    value: number | StudentSpotlight;
+                } | null);
+                external_url?: string | null;
+                buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+                hasIcon?: boolean | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'MenuButton';
+            }
+                | {
+                text?: {
+                    root: {
+                        type: string;
+                        children: {
+                            type: string;
+                            version: number;
+                            [k: string]: unknown;
+                        }[];
+                        direction: ('ltr' | 'rtl') | null;
+                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                        indent: number;
+                        version: number;
+                    };
+                    [k: string]: unknown;
+                } | null;
+                underlineHighlight?: boolean | null;
+                largeText?: boolean | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'HeaderBlock';
+            }
+                | {
+                media1?: number | Media | null;
+                media2?: number | Media | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'CompareSliderBlock';
+            }
+                | {
+                height?: number | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'SpacerBlock';
+            }
+                | {
+                form?: (number | null) | Form;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'FormBlock';
+            }
+                )[]
+                | null;
+            width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
+            title?: string | null;
+            external?: boolean | null;
+            Relation?:
+                | ({
+                relationTo: 'pages';
+                value: number | Page;
+            } | null)
+                | ({
+                relationTo: 'museumCollections';
+                value: number | MuseumCollection;
+            } | null)
+                | ({
+                relationTo: 'impact';
+                value: number | Impact;
+            } | null)
+                | ({
+                relationTo: 'passions';
+                value: number | Passion;
+            } | null)
+                | ({
+                relationTo: 'studentSpotlight';
+                value: number | StudentSpotlight;
+            } | null);
+            external_url?: string | null;
+            id?: string | null;
+        }[]
+            | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'column';
+    }
+        | {
+        items?:
+            | {
+            image: number | Media;
+            id?: string | null;
+        }[]
+            | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'gallery';
+    }
+        | {
+        heading_1?: {
+            text?: string | null;
+            highlight?: boolean | null;
+        };
+        heading_2?: {
+            text?: string | null;
+            highlight?: boolean | null;
+        };
+        button?: {
+            type?: ('primary' | 'secondary' | 'highlight' | 'tertiary') | null;
+            link?: {
+                title?: string | null;
+                external?: boolean | null;
+                Relation?:
+                    | ({
+                    relationTo: 'pages';
+                    value: number | Page;
+                } | null)
+                    | ({
+                    relationTo: 'museumCollections';
+                    value: number | MuseumCollection;
+                } | null)
+                    | ({
+                    relationTo: 'impact';
+                    value: number | Impact;
+                } | null)
+                    | ({
+                    relationTo: 'passions';
+                    value: number | Passion;
+                } | null)
+                    | ({
+                    relationTo: 'studentSpotlight';
+                    value: number | StudentSpotlight;
+                } | null);
+                external_url?: string | null;
+            };
+        };
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'Breaker';
+    }
+        | {
+        media?: number | Media | null;
+        thumbnail?: number | Media | null;
+        expandImage?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'MediaBlock';
+    }
+        | {
+        title?: string | null;
+        external?: boolean | null;
+        Relation?:
+            | ({
+            relationTo: 'pages';
+            value: number | Page;
+        } | null)
+            | ({
+            relationTo: 'museumCollections';
+            value: number | MuseumCollection;
+        } | null)
+            | ({
+            relationTo: 'impact';
+            value: number | Impact;
+        } | null)
+            | ({
+            relationTo: 'passions';
+            value: number | Passion;
+        } | null)
+            | ({
+            relationTo: 'studentSpotlight';
+            value: number | StudentSpotlight;
+        } | null);
+        external_url?: string | null;
+        buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+        hasIcon?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'MenuButton';
+    }
+        | {
+        media1?: number | Media | null;
+        media2?: number | Media | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'CompareSliderBlock';
+    }
+        | {
+        height?: number | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'SpacerBlock';
+    }
+        | {
+        form?: (number | null) | Form;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'FormBlock';
+    }
+        )[]
+        | null;
+    title: string;
+    slug?: string | null;
+    publishedAt?: string | null;
+    updatedAt: string;
+    createdAt: string;
+    _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "passions".
+ */
+export interface Passion {
+    id: number;
+    intro_content?: {
+        video?: string | null;
+        videoFile?: number | Media | null;
+        thumbnail?: number | Media | null;
+        images?:
+            | {
+            media?: number | Media | null;
+            id?: string | null;
+        }[]
+            | null;
+        header?: string | null;
+        content?: string | null;
+    };
+    jump_menu?:
+        | {
+        title?: string | null;
+        link?:
+            | ({
+            relationTo: 'pages';
+            value: number | Page;
+        } | null)
+            | ({
+            relationTo: 'museumCollections';
+            value: number | MuseumCollection;
+        } | null)
+            | ({
+            relationTo: 'impact';
+            value: number | Impact;
+        } | null)
+            | ({
+            relationTo: 'passions';
+            value: number | Passion;
+        } | null)
+            | ({
+            relationTo: 'studentSpotlight';
+            value: number | StudentSpotlight;
+        } | null);
+        internal_link?: string | null;
+        id?: string | null;
+    }[]
+        | null;
+    excerpt?: string | null;
+    layout?:
+        | (
+        | {
+        sectionID?: string | null;
+        vertical_separator?: boolean | null;
+        fullWidth?: boolean | null;
+        narrowRow?: boolean | null;
+        wideSpacing?: boolean | null;
+        grayBackground?: boolean | null;
+        columns?:
+            | {
+            content?:
+                | (
+                | {
+                items?:
+                    | {
+                    image: number | Media;
+                    id?: string | null;
+                }[]
+                    | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'gallery';
+            }
+                | {
+                media?: number | Media | null;
+                thumbnail?: number | Media | null;
+                expandImage?: boolean | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'MediaBlock';
+            }
+                | {
+                heading_1?: string | null;
+                heading_2?: string | null;
+                heading_link?: {
+                    title?: string | null;
+                    external?: boolean | null;
+                    Relation?:
+                        | ({
+                        relationTo: 'pages';
+                        value: number | Page;
+                    } | null)
+                        | ({
+                        relationTo: 'museumCollections';
+                        value: number | MuseumCollection;
+                    } | null)
+                        | ({
+                        relationTo: 'impact';
+                        value: number | Impact;
+                    } | null)
+                        | ({
+                        relationTo: 'passions';
+                        value: number | Passion;
+                    } | null)
+                        | ({
+                        relationTo: 'studentSpotlight';
+                        value: number | StudentSpotlight;
+                    } | null);
+                    external_url?: string | null;
+                    label?: string | null;
+                };
+                body?: {
+                    text?: {
+                        root: {
+                            type: string;
+                            children: {
+                                type: string;
+                                version: number;
+                                [k: string]: unknown;
+                            }[];
+                            direction: ('ltr' | 'rtl') | null;
+                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                            indent: number;
+                            version: number;
+                        };
+                        [k: string]: unknown;
+                    } | null;
+                    link_list?:
+                        | {
+                        title?: string | null;
+                        external?: boolean | null;
+                        Relation?:
+                            | ({
+                            relationTo: 'pages';
+                            value: number | Page;
+                        } | null)
+                            | ({
+                            relationTo: 'museumCollections';
+                            value: number | MuseumCollection;
+                        } | null)
+                            | ({
+                            relationTo: 'impact';
+                            value: number | Impact;
+                        } | null)
+                            | ({
+                            relationTo: 'passions';
+                            value: number | Passion;
+                        } | null)
+                            | ({
+                            relationTo: 'studentSpotlight';
+                            value: number | StudentSpotlight;
+                        } | null);
+                        external_url?: string | null;
+                        label?: string | null;
+                        id?: string | null;
+                    }[]
+                        | null;
+                };
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'TextBlock';
+            }
+                | {
+                title?: string | null;
+                external?: boolean | null;
+                Relation?:
+                    | ({
+                    relationTo: 'pages';
+                    value: number | Page;
+                } | null)
+                    | ({
+                    relationTo: 'museumCollections';
+                    value: number | MuseumCollection;
+                } | null)
+                    | ({
+                    relationTo: 'impact';
+                    value: number | Impact;
+                } | null)
+                    | ({
+                    relationTo: 'passions';
+                    value: number | Passion;
+                } | null)
+                    | ({
+                    relationTo: 'studentSpotlight';
+                    value: number | StudentSpotlight;
+                } | null);
+                external_url?: string | null;
+                buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+                hasIcon?: boolean | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'MenuButton';
+            }
+                | {
+                text?: {
+                    root: {
+                        type: string;
+                        children: {
+                            type: string;
+                            version: number;
+                            [k: string]: unknown;
+                        }[];
+                        direction: ('ltr' | 'rtl') | null;
+                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                        indent: number;
+                        version: number;
+                    };
+                    [k: string]: unknown;
+                } | null;
+                underlineHighlight?: boolean | null;
+                largeText?: boolean | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'HeaderBlock';
+            }
+                | {
+                media1?: number | Media | null;
+                media2?: number | Media | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'CompareSliderBlock';
+            }
+                | {
+                height?: number | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'SpacerBlock';
+            }
+                | {
+                form?: (number | null) | Form;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'FormBlock';
+            }
+                )[]
+                | null;
+            width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
+            title?: string | null;
+            external?: boolean | null;
+            Relation?:
+                | ({
+                relationTo: 'pages';
+                value: number | Page;
+            } | null)
+                | ({
+                relationTo: 'museumCollections';
+                value: number | MuseumCollection;
+            } | null)
+                | ({
+                relationTo: 'impact';
+                value: number | Impact;
+            } | null)
+                | ({
+                relationTo: 'passions';
+                value: number | Passion;
+            } | null)
+                | ({
+                relationTo: 'studentSpotlight';
+                value: number | StudentSpotlight;
+            } | null);
+            external_url?: string | null;
+            id?: string | null;
+        }[]
+            | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'column';
+    }
+        | {
+        items?:
+            | {
+            image: number | Media;
+            id?: string | null;
+        }[]
+            | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'gallery';
+    }
+        | {
+        heading_1?: {
+            text?: string | null;
+            highlight?: boolean | null;
+        };
+        heading_2?: {
+            text?: string | null;
+            highlight?: boolean | null;
+        };
+        button?: {
+            type?: ('primary' | 'secondary' | 'highlight' | 'tertiary') | null;
+            link?: {
+                title?: string | null;
+                external?: boolean | null;
+                Relation?:
+                    | ({
+                    relationTo: 'pages';
+                    value: number | Page;
+                } | null)
+                    | ({
+                    relationTo: 'museumCollections';
+                    value: number | MuseumCollection;
+                } | null)
+                    | ({
+                    relationTo: 'impact';
+                    value: number | Impact;
+                } | null)
+                    | ({
+                    relationTo: 'passions';
+                    value: number | Passion;
+                } | null)
+                    | ({
+                    relationTo: 'studentSpotlight';
+                    value: number | StudentSpotlight;
+                } | null);
+                external_url?: string | null;
+            };
+        };
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'Breaker';
+    }
+        | {
+        media?: number | Media | null;
+        thumbnail?: number | Media | null;
+        expandImage?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'MediaBlock';
+    }
+        | {
+        title?: string | null;
+        external?: boolean | null;
+        Relation?:
+            | ({
+            relationTo: 'pages';
+            value: number | Page;
+        } | null)
+            | ({
+            relationTo: 'museumCollections';
+            value: number | MuseumCollection;
+        } | null)
+            | ({
+            relationTo: 'impact';
+            value: number | Impact;
+        } | null)
+            | ({
+            relationTo: 'passions';
+            value: number | Passion;
+        } | null)
+            | ({
+            relationTo: 'studentSpotlight';
+            value: number | StudentSpotlight;
+        } | null);
+        external_url?: string | null;
+        buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+        hasIcon?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'MenuButton';
+    }
+        | {
+        media1?: number | Media | null;
+        media2?: number | Media | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'CompareSliderBlock';
+    }
+        | {
+        height?: number | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'SpacerBlock';
+    }
+        | {
+        form?: (number | null) | Form;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'FormBlock';
+    }
+        )[]
+        | null;
+    title: string;
+    slug?: string | null;
+    publishedAt?: string | null;
+    updatedAt: string;
+    createdAt: string;
+    _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "studentSpotlight".
+ */
+export interface StudentSpotlight {
+    id: number;
+    intro_content?: {
+        video?: string | null;
+        videoFile?: number | Media | null;
+        thumbnail?: number | Media | null;
+        images?:
+            | {
+            media?: number | Media | null;
+            id?: string | null;
+        }[]
+            | null;
+        header?: string | null;
+        content?: string | null;
+    };
+    jump_menu?:
+        | {
+        title?: string | null;
+        link?:
+            | ({
+            relationTo: 'pages';
+            value: number | Page;
+        } | null)
+            | ({
+            relationTo: 'museumCollections';
+            value: number | MuseumCollection;
+        } | null)
+            | ({
+            relationTo: 'impact';
+            value: number | Impact;
+        } | null)
+            | ({
+            relationTo: 'passions';
+            value: number | Passion;
+        } | null)
+            | ({
+            relationTo: 'studentSpotlight';
+            value: number | StudentSpotlight;
+        } | null);
+        internal_link?: string | null;
+        id?: string | null;
+    }[]
+        | null;
+    excerpt?: string | null;
+    layout?:
+        | (
+        | {
+        sectionID?: string | null;
+        vertical_separator?: boolean | null;
+        fullWidth?: boolean | null;
+        narrowRow?: boolean | null;
+        wideSpacing?: boolean | null;
+        grayBackground?: boolean | null;
+        columns?:
+            | {
+            content?:
+                | (
+                | {
+                items?:
+                    | {
+                    image: number | Media;
+                    id?: string | null;
+                }[]
+                    | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'gallery';
+            }
+                | {
+                media?: number | Media | null;
+                thumbnail?: number | Media | null;
+                expandImage?: boolean | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'MediaBlock';
+            }
+                | {
+                heading_1?: string | null;
+                heading_2?: string | null;
+                heading_link?: {
+                    title?: string | null;
+                    external?: boolean | null;
+                    Relation?:
+                        | ({
+                        relationTo: 'pages';
+                        value: number | Page;
+                    } | null)
+                        | ({
+                        relationTo: 'museumCollections';
+                        value: number | MuseumCollection;
+                    } | null)
+                        | ({
+                        relationTo: 'impact';
+                        value: number | Impact;
+                    } | null)
+                        | ({
+                        relationTo: 'passions';
+                        value: number | Passion;
+                    } | null)
+                        | ({
+                        relationTo: 'studentSpotlight';
+                        value: number | StudentSpotlight;
+                    } | null);
+                    external_url?: string | null;
+                    label?: string | null;
+                };
+                body?: {
+                    text?: {
+                        root: {
+                            type: string;
+                            children: {
+                                type: string;
+                                version: number;
+                                [k: string]: unknown;
+                            }[];
+                            direction: ('ltr' | 'rtl') | null;
+                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                            indent: number;
+                            version: number;
+                        };
+                        [k: string]: unknown;
+                    } | null;
+                    link_list?:
+                        | {
+                        title?: string | null;
+                        external?: boolean | null;
+                        Relation?:
+                            | ({
+                            relationTo: 'pages';
+                            value: number | Page;
+                        } | null)
+                            | ({
+                            relationTo: 'museumCollections';
+                            value: number | MuseumCollection;
+                        } | null)
+                            | ({
+                            relationTo: 'impact';
+                            value: number | Impact;
+                        } | null)
+                            | ({
+                            relationTo: 'passions';
+                            value: number | Passion;
+                        } | null)
+                            | ({
+                            relationTo: 'studentSpotlight';
+                            value: number | StudentSpotlight;
+                        } | null);
+                        external_url?: string | null;
+                        label?: string | null;
+                        id?: string | null;
+                    }[]
+                        | null;
+                };
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'TextBlock';
+            }
+                | {
+                title?: string | null;
+                external?: boolean | null;
+                Relation?:
+                    | ({
+                    relationTo: 'pages';
+                    value: number | Page;
+                } | null)
+                    | ({
+                    relationTo: 'museumCollections';
+                    value: number | MuseumCollection;
+                } | null)
+                    | ({
+                    relationTo: 'impact';
+                    value: number | Impact;
+                } | null)
+                    | ({
+                    relationTo: 'passions';
+                    value: number | Passion;
+                } | null)
+                    | ({
+                    relationTo: 'studentSpotlight';
+                    value: number | StudentSpotlight;
+                } | null);
+                external_url?: string | null;
+                buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+                hasIcon?: boolean | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'MenuButton';
+            }
+                | {
+                text?: {
+                    root: {
+                        type: string;
+                        children: {
+                            type: string;
+                            version: number;
+                            [k: string]: unknown;
+                        }[];
+                        direction: ('ltr' | 'rtl') | null;
+                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                        indent: number;
+                        version: number;
+                    };
+                    [k: string]: unknown;
+                } | null;
+                underlineHighlight?: boolean | null;
+                largeText?: boolean | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'HeaderBlock';
+            }
+                | {
+                media1?: number | Media | null;
+                media2?: number | Media | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'CompareSliderBlock';
+            }
+                | {
+                height?: number | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'SpacerBlock';
+            }
+                | {
+                form?: (number | null) | Form;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'FormBlock';
+            }
+                )[]
+                | null;
+            width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
+            title?: string | null;
+            external?: boolean | null;
+            Relation?:
+                | ({
+                relationTo: 'pages';
+                value: number | Page;
+            } | null)
+                | ({
+                relationTo: 'museumCollections';
+                value: number | MuseumCollection;
+            } | null)
+                | ({
+                relationTo: 'impact';
+                value: number | Impact;
+            } | null)
+                | ({
+                relationTo: 'passions';
+                value: number | Passion;
+            } | null)
+                | ({
+                relationTo: 'studentSpotlight';
+                value: number | StudentSpotlight;
+            } | null);
+            external_url?: string | null;
+            id?: string | null;
+        }[]
+            | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'column';
+    }
+        | {
+        items?:
+            | {
+            image: number | Media;
+            id?: string | null;
+        }[]
+            | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'gallery';
+    }
+        | {
+        heading_1?: {
+            text?: string | null;
+            highlight?: boolean | null;
+        };
+        heading_2?: {
+            text?: string | null;
+            highlight?: boolean | null;
+        };
+        button?: {
+            type?: ('primary' | 'secondary' | 'highlight' | 'tertiary') | null;
+            link?: {
+                title?: string | null;
+                external?: boolean | null;
+                Relation?:
+                    | ({
+                    relationTo: 'pages';
+                    value: number | Page;
+                } | null)
+                    | ({
+                    relationTo: 'museumCollections';
+                    value: number | MuseumCollection;
+                } | null)
+                    | ({
+                    relationTo: 'impact';
+                    value: number | Impact;
+                } | null)
+                    | ({
+                    relationTo: 'passions';
+                    value: number | Passion;
+                } | null)
+                    | ({
+                    relationTo: 'studentSpotlight';
+                    value: number | StudentSpotlight;
+                } | null);
+                external_url?: string | null;
+            };
+        };
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'Breaker';
+    }
+        | {
+        media?: number | Media | null;
+        thumbnail?: number | Media | null;
+        expandImage?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'MediaBlock';
+    }
+        | {
+        title?: string | null;
+        external?: boolean | null;
+        Relation?:
+            | ({
+            relationTo: 'pages';
+            value: number | Page;
+        } | null)
+            | ({
+            relationTo: 'museumCollections';
+            value: number | MuseumCollection;
+        } | null)
+            | ({
+            relationTo: 'impact';
+            value: number | Impact;
+        } | null)
+            | ({
+            relationTo: 'passions';
+            value: number | Passion;
+        } | null)
+            | ({
+            relationTo: 'studentSpotlight';
+            value: number | StudentSpotlight;
+        } | null);
+        external_url?: string | null;
+        buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+        hasIcon?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'MenuButton';
+    }
+        | {
+        media1?: number | Media | null;
+        media2?: number | Media | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'CompareSliderBlock';
+    }
+        | {
+        height?: number | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'SpacerBlock';
+    }
+        | {
+        form?: (number | null) | Form;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'FormBlock';
+    }
+        )[]
+        | null;
+    title: string;
+    slug?: string | null;
+    publishedAt?: string | null;
     updatedAt: string;
     createdAt: string;
     _status?: ('draft' | 'published') | null;
@@ -611,1058 +2283,6 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "museumCollections".
- */
-export interface MuseumCollection {
-    id: number;
-    intro_content?: {
-        video?: string | null;
-        videoFile?: number | Media | null;
-        thumbnail?: number | Media | null;
-        images?:
-            | {
-            media?: number | Media | null;
-            id?: string | null;
-        }[]
-            | null;
-        header?: string | null;
-        content?: string | null;
-    };
-    jump_menu?:
-        | {
-        title?: string | null;
-        link?:
-            | ({
-            relationTo: 'pages';
-            value: number | Page;
-        } | null)
-            | ({
-            relationTo: 'museumCollections';
-            value: number | MuseumCollection;
-        } | null)
-            | ({
-            relationTo: 'impact';
-            value: number | Impact;
-        } | null)
-            | ({
-            relationTo: 'passions';
-            value: number | Passion;
-        } | null)
-            | ({
-            relationTo: 'studentSpotlight';
-            value: number | StudentSpotlight;
-        } | null);
-        internal_link?: string | null;
-        id?: string | null;
-    }[]
-        | null;
-    excerpt?: string | null;
-    layout?:
-        | (
-        | {
-        sectionID?: string | null;
-        vertical_separator?: boolean | null;
-        fullWidth?: boolean | null;
-        narrowRow?: boolean | null;
-        wideSpacing?: boolean | null;
-        grayBackground?: boolean | null;
-        columns?:
-            | {
-            content?:
-                | (
-                | {
-                media?: number | Media | null;
-                thumbnail?: number | Media | null;
-                expandImage?: boolean | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'MediaBlock';
-            }
-                | {
-                heading_1?: string | null;
-                heading_2?: string | null;
-                heading_link?: {
-                    title?: string | null;
-                    external?: boolean | null;
-                    Relation?: {
-                        relationTo: 'pages';
-                        value: number | Page;
-                    } | null;
-                    external_url?: string | null;
-                    label?: string | null;
-                };
-                body?: {
-                    text?: {
-                        root: {
-                            type: string;
-                            children: {
-                                type: string;
-                                version: number;
-                                [k: string]: unknown;
-                            }[];
-                            direction: ('ltr' | 'rtl') | null;
-                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                            indent: number;
-                            version: number;
-                        };
-                        [k: string]: unknown;
-                    } | null;
-                    link_list?:
-                        | {
-                        title?: string | null;
-                        external?: boolean | null;
-                        Relation?: {
-                            relationTo: 'pages';
-                            value: number | Page;
-                        } | null;
-                        external_url?: string | null;
-                        label?: string | null;
-                        id?: string | null;
-                    }[]
-                        | null;
-                };
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'TextBlock';
-            }
-                | {
-                title?: string | null;
-                external?: boolean | null;
-                Relation?: {
-                    relationTo: 'pages';
-                    value: number | Page;
-                } | null;
-                external_url?: string | null;
-                buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
-                hasIcon?: boolean | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'MenuButton';
-            }
-                | {
-                text?: {
-                    root: {
-                        type: string;
-                        children: {
-                            type: string;
-                            version: number;
-                            [k: string]: unknown;
-                        }[];
-                        direction: ('ltr' | 'rtl') | null;
-                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                        indent: number;
-                        version: number;
-                    };
-                    [k: string]: unknown;
-                } | null;
-                underlineHighlight?: boolean | null;
-                largeText?: boolean | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'HeaderBlock';
-            }
-                | {
-                media1?: number | Media | null;
-                media2?: number | Media | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'CompareSliderBlock';
-            }
-                | {
-                height?: number | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'SpacerBlock';
-            }
-                | {
-                form?: (number | null) | Form;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'FormBlock';
-            }
-                )[]
-                | null;
-            width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
-            title?: string | null;
-            external?: boolean | null;
-            Relation?: {
-                relationTo: 'pages';
-                value: number | Page;
-            } | null;
-            external_url?: string | null;
-            id?: string | null;
-        }[]
-            | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'column';
-    }
-        | {
-        heading_1?: {
-            text?: string | null;
-            highlight?: boolean | null;
-        };
-        heading_2?: {
-            text?: string | null;
-            highlight?: boolean | null;
-        };
-        button?: {
-            type?: ('primary' | 'secondary' | 'highlight' | 'tertiary') | null;
-            link?: {
-                title?: string | null;
-                external?: boolean | null;
-                Relation?: {
-                    relationTo: 'pages';
-                    value: number | Page;
-                } | null;
-                external_url?: string | null;
-            };
-        };
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'Breaker';
-    }
-        | {
-        media?: number | Media | null;
-        thumbnail?: number | Media | null;
-        expandImage?: boolean | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'MediaBlock';
-    }
-        | {
-        title?: string | null;
-        external?: boolean | null;
-        Relation?: {
-            relationTo: 'pages';
-            value: number | Page;
-        } | null;
-        external_url?: string | null;
-        buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
-        hasIcon?: boolean | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'MenuButton';
-    }
-        | {
-        media1?: number | Media | null;
-        media2?: number | Media | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'CompareSliderBlock';
-    }
-        | {
-        height?: number | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'SpacerBlock';
-    }
-        | {
-        form?: (number | null) | Form;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'FormBlock';
-    }
-        )[]
-        | null;
-    title: string;
-    slug?: string | null;
-    publishedAt?: string | null;
-    updatedAt: string;
-    createdAt: string;
-    _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "impact".
- */
-export interface Impact {
-    id: number;
-    intro_content?: {
-        video?: string | null;
-        videoFile?: number | Media | null;
-        thumbnail?: number | Media | null;
-        images?:
-            | {
-            media?: number | Media | null;
-            id?: string | null;
-        }[]
-            | null;
-        header?: string | null;
-        content?: string | null;
-    };
-    jump_menu?:
-        | {
-        title?: string | null;
-        link?:
-            | ({
-            relationTo: 'pages';
-            value: number | Page;
-        } | null)
-            | ({
-            relationTo: 'museumCollections';
-            value: number | MuseumCollection;
-        } | null)
-            | ({
-            relationTo: 'impact';
-            value: number | Impact;
-        } | null)
-            | ({
-            relationTo: 'passions';
-            value: number | Passion;
-        } | null)
-            | ({
-            relationTo: 'studentSpotlight';
-            value: number | StudentSpotlight;
-        } | null);
-        internal_link?: string | null;
-        id?: string | null;
-    }[]
-        | null;
-    excerpt?: string | null;
-    layout?:
-        | (
-        | {
-        sectionID?: string | null;
-        vertical_separator?: boolean | null;
-        fullWidth?: boolean | null;
-        narrowRow?: boolean | null;
-        wideSpacing?: boolean | null;
-        grayBackground?: boolean | null;
-        columns?:
-            | {
-            content?:
-                | (
-                | {
-                media?: number | Media | null;
-                thumbnail?: number | Media | null;
-                expandImage?: boolean | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'MediaBlock';
-            }
-                | {
-                heading_1?: string | null;
-                heading_2?: string | null;
-                heading_link?: {
-                    title?: string | null;
-                    external?: boolean | null;
-                    Relation?: {
-                        relationTo: 'pages';
-                        value: number | Page;
-                    } | null;
-                    external_url?: string | null;
-                    label?: string | null;
-                };
-                body?: {
-                    text?: {
-                        root: {
-                            type: string;
-                            children: {
-                                type: string;
-                                version: number;
-                                [k: string]: unknown;
-                            }[];
-                            direction: ('ltr' | 'rtl') | null;
-                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                            indent: number;
-                            version: number;
-                        };
-                        [k: string]: unknown;
-                    } | null;
-                    link_list?:
-                        | {
-                        title?: string | null;
-                        external?: boolean | null;
-                        Relation?: {
-                            relationTo: 'pages';
-                            value: number | Page;
-                        } | null;
-                        external_url?: string | null;
-                        label?: string | null;
-                        id?: string | null;
-                    }[]
-                        | null;
-                };
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'TextBlock';
-            }
-                | {
-                title?: string | null;
-                external?: boolean | null;
-                Relation?: {
-                    relationTo: 'pages';
-                    value: number | Page;
-                } | null;
-                external_url?: string | null;
-                buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
-                hasIcon?: boolean | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'MenuButton';
-            }
-                | {
-                text?: {
-                    root: {
-                        type: string;
-                        children: {
-                            type: string;
-                            version: number;
-                            [k: string]: unknown;
-                        }[];
-                        direction: ('ltr' | 'rtl') | null;
-                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                        indent: number;
-                        version: number;
-                    };
-                    [k: string]: unknown;
-                } | null;
-                underlineHighlight?: boolean | null;
-                largeText?: boolean | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'HeaderBlock';
-            }
-                | {
-                media1?: number | Media | null;
-                media2?: number | Media | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'CompareSliderBlock';
-            }
-                | {
-                height?: number | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'SpacerBlock';
-            }
-                | {
-                form?: (number | null) | Form;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'FormBlock';
-            }
-                )[]
-                | null;
-            width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
-            title?: string | null;
-            external?: boolean | null;
-            Relation?: {
-                relationTo: 'pages';
-                value: number | Page;
-            } | null;
-            external_url?: string | null;
-            id?: string | null;
-        }[]
-            | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'column';
-    }
-        | {
-        heading_1?: {
-            text?: string | null;
-            highlight?: boolean | null;
-        };
-        heading_2?: {
-            text?: string | null;
-            highlight?: boolean | null;
-        };
-        button?: {
-            type?: ('primary' | 'secondary' | 'highlight' | 'tertiary') | null;
-            link?: {
-                title?: string | null;
-                external?: boolean | null;
-                Relation?: {
-                    relationTo: 'pages';
-                    value: number | Page;
-                } | null;
-                external_url?: string | null;
-            };
-        };
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'Breaker';
-    }
-        | {
-        media?: number | Media | null;
-        thumbnail?: number | Media | null;
-        expandImage?: boolean | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'MediaBlock';
-    }
-        | {
-        title?: string | null;
-        external?: boolean | null;
-        Relation?: {
-            relationTo: 'pages';
-            value: number | Page;
-        } | null;
-        external_url?: string | null;
-        buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
-        hasIcon?: boolean | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'MenuButton';
-    }
-        | {
-        media1?: number | Media | null;
-        media2?: number | Media | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'CompareSliderBlock';
-    }
-        | {
-        height?: number | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'SpacerBlock';
-    }
-        | {
-        form?: (number | null) | Form;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'FormBlock';
-    }
-        )[]
-        | null;
-    title: string;
-    slug?: string | null;
-    publishedAt?: string | null;
-    updatedAt: string;
-    createdAt: string;
-    _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "passions".
- */
-export interface Passion {
-    id: number;
-    intro_content?: {
-        video?: string | null;
-        videoFile?: number | Media | null;
-        thumbnail?: number | Media | null;
-        images?:
-            | {
-            media?: number | Media | null;
-            id?: string | null;
-        }[]
-            | null;
-        header?: string | null;
-        content?: string | null;
-    };
-    jump_menu?:
-        | {
-        title?: string | null;
-        link?:
-            | ({
-            relationTo: 'pages';
-            value: number | Page;
-        } | null)
-            | ({
-            relationTo: 'museumCollections';
-            value: number | MuseumCollection;
-        } | null)
-            | ({
-            relationTo: 'impact';
-            value: number | Impact;
-        } | null)
-            | ({
-            relationTo: 'passions';
-            value: number | Passion;
-        } | null)
-            | ({
-            relationTo: 'studentSpotlight';
-            value: number | StudentSpotlight;
-        } | null);
-        internal_link?: string | null;
-        id?: string | null;
-    }[]
-        | null;
-    excerpt?: string | null;
-    layout?:
-        | (
-        | {
-        sectionID?: string | null;
-        vertical_separator?: boolean | null;
-        fullWidth?: boolean | null;
-        narrowRow?: boolean | null;
-        wideSpacing?: boolean | null;
-        grayBackground?: boolean | null;
-        columns?:
-            | {
-            content?:
-                | (
-                | {
-                media?: number | Media | null;
-                thumbnail?: number | Media | null;
-                expandImage?: boolean | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'MediaBlock';
-            }
-                | {
-                heading_1?: string | null;
-                heading_2?: string | null;
-                heading_link?: {
-                    title?: string | null;
-                    external?: boolean | null;
-                    Relation?: {
-                        relationTo: 'pages';
-                        value: number | Page;
-                    } | null;
-                    external_url?: string | null;
-                    label?: string | null;
-                };
-                body?: {
-                    text?: {
-                        root: {
-                            type: string;
-                            children: {
-                                type: string;
-                                version: number;
-                                [k: string]: unknown;
-                            }[];
-                            direction: ('ltr' | 'rtl') | null;
-                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                            indent: number;
-                            version: number;
-                        };
-                        [k: string]: unknown;
-                    } | null;
-                    link_list?:
-                        | {
-                        title?: string | null;
-                        external?: boolean | null;
-                        Relation?: {
-                            relationTo: 'pages';
-                            value: number | Page;
-                        } | null;
-                        external_url?: string | null;
-                        label?: string | null;
-                        id?: string | null;
-                    }[]
-                        | null;
-                };
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'TextBlock';
-            }
-                | {
-                title?: string | null;
-                external?: boolean | null;
-                Relation?: {
-                    relationTo: 'pages';
-                    value: number | Page;
-                } | null;
-                external_url?: string | null;
-                buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
-                hasIcon?: boolean | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'MenuButton';
-            }
-                | {
-                text?: {
-                    root: {
-                        type: string;
-                        children: {
-                            type: string;
-                            version: number;
-                            [k: string]: unknown;
-                        }[];
-                        direction: ('ltr' | 'rtl') | null;
-                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                        indent: number;
-                        version: number;
-                    };
-                    [k: string]: unknown;
-                } | null;
-                underlineHighlight?: boolean | null;
-                largeText?: boolean | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'HeaderBlock';
-            }
-                | {
-                media1?: number | Media | null;
-                media2?: number | Media | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'CompareSliderBlock';
-            }
-                | {
-                height?: number | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'SpacerBlock';
-            }
-                | {
-                form?: (number | null) | Form;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'FormBlock';
-            }
-                )[]
-                | null;
-            width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
-            title?: string | null;
-            external?: boolean | null;
-            Relation?: {
-                relationTo: 'pages';
-                value: number | Page;
-            } | null;
-            external_url?: string | null;
-            id?: string | null;
-        }[]
-            | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'column';
-    }
-        | {
-        heading_1?: {
-            text?: string | null;
-            highlight?: boolean | null;
-        };
-        heading_2?: {
-            text?: string | null;
-            highlight?: boolean | null;
-        };
-        button?: {
-            type?: ('primary' | 'secondary' | 'highlight' | 'tertiary') | null;
-            link?: {
-                title?: string | null;
-                external?: boolean | null;
-                Relation?: {
-                    relationTo: 'pages';
-                    value: number | Page;
-                } | null;
-                external_url?: string | null;
-            };
-        };
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'Breaker';
-    }
-        | {
-        media?: number | Media | null;
-        thumbnail?: number | Media | null;
-        expandImage?: boolean | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'MediaBlock';
-    }
-        | {
-        title?: string | null;
-        external?: boolean | null;
-        Relation?: {
-            relationTo: 'pages';
-            value: number | Page;
-        } | null;
-        external_url?: string | null;
-        buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
-        hasIcon?: boolean | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'MenuButton';
-    }
-        | {
-        media1?: number | Media | null;
-        media2?: number | Media | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'CompareSliderBlock';
-    }
-        | {
-        height?: number | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'SpacerBlock';
-    }
-        | {
-        form?: (number | null) | Form;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'FormBlock';
-    }
-        )[]
-        | null;
-    title: string;
-    slug?: string | null;
-    publishedAt?: string | null;
-    updatedAt: string;
-    createdAt: string;
-    _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "studentSpotlight".
- */
-export interface StudentSpotlight {
-    id: number;
-    intro_content?: {
-        video?: string | null;
-        videoFile?: number | Media | null;
-        thumbnail?: number | Media | null;
-        images?:
-            | {
-            media?: number | Media | null;
-            id?: string | null;
-        }[]
-            | null;
-        header?: string | null;
-        content?: string | null;
-    };
-    jump_menu?:
-        | {
-        title?: string | null;
-        link?:
-            | ({
-            relationTo: 'pages';
-            value: number | Page;
-        } | null)
-            | ({
-            relationTo: 'museumCollections';
-            value: number | MuseumCollection;
-        } | null)
-            | ({
-            relationTo: 'impact';
-            value: number | Impact;
-        } | null)
-            | ({
-            relationTo: 'passions';
-            value: number | Passion;
-        } | null)
-            | ({
-            relationTo: 'studentSpotlight';
-            value: number | StudentSpotlight;
-        } | null);
-        internal_link?: string | null;
-        id?: string | null;
-    }[]
-        | null;
-    excerpt?: string | null;
-    layout?:
-        | (
-        | {
-        sectionID?: string | null;
-        vertical_separator?: boolean | null;
-        fullWidth?: boolean | null;
-        narrowRow?: boolean | null;
-        wideSpacing?: boolean | null;
-        grayBackground?: boolean | null;
-        columns?:
-            | {
-            content?:
-                | (
-                | {
-                media?: number | Media | null;
-                thumbnail?: number | Media | null;
-                expandImage?: boolean | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'MediaBlock';
-            }
-                | {
-                heading_1?: string | null;
-                heading_2?: string | null;
-                heading_link?: {
-                    title?: string | null;
-                    external?: boolean | null;
-                    Relation?: {
-                        relationTo: 'pages';
-                        value: number | Page;
-                    } | null;
-                    external_url?: string | null;
-                    label?: string | null;
-                };
-                body?: {
-                    text?: {
-                        root: {
-                            type: string;
-                            children: {
-                                type: string;
-                                version: number;
-                                [k: string]: unknown;
-                            }[];
-                            direction: ('ltr' | 'rtl') | null;
-                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                            indent: number;
-                            version: number;
-                        };
-                        [k: string]: unknown;
-                    } | null;
-                    link_list?:
-                        | {
-                        title?: string | null;
-                        external?: boolean | null;
-                        Relation?: {
-                            relationTo: 'pages';
-                            value: number | Page;
-                        } | null;
-                        external_url?: string | null;
-                        label?: string | null;
-                        id?: string | null;
-                    }[]
-                        | null;
-                };
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'TextBlock';
-            }
-                | {
-                title?: string | null;
-                external?: boolean | null;
-                Relation?: {
-                    relationTo: 'pages';
-                    value: number | Page;
-                } | null;
-                external_url?: string | null;
-                buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
-                hasIcon?: boolean | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'MenuButton';
-            }
-                | {
-                text?: {
-                    root: {
-                        type: string;
-                        children: {
-                            type: string;
-                            version: number;
-                            [k: string]: unknown;
-                        }[];
-                        direction: ('ltr' | 'rtl') | null;
-                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                        indent: number;
-                        version: number;
-                    };
-                    [k: string]: unknown;
-                } | null;
-                underlineHighlight?: boolean | null;
-                largeText?: boolean | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'HeaderBlock';
-            }
-                | {
-                media1?: number | Media | null;
-                media2?: number | Media | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'CompareSliderBlock';
-            }
-                | {
-                height?: number | null;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'SpacerBlock';
-            }
-                | {
-                form?: (number | null) | Form;
-                id?: string | null;
-                blockName?: string | null;
-                blockType: 'FormBlock';
-            }
-                )[]
-                | null;
-            width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
-            title?: string | null;
-            external?: boolean | null;
-            Relation?: {
-                relationTo: 'pages';
-                value: number | Page;
-            } | null;
-            external_url?: string | null;
-            id?: string | null;
-        }[]
-            | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'column';
-    }
-        | {
-        heading_1?: {
-            text?: string | null;
-            highlight?: boolean | null;
-        };
-        heading_2?: {
-            text?: string | null;
-            highlight?: boolean | null;
-        };
-        button?: {
-            type?: ('primary' | 'secondary' | 'highlight' | 'tertiary') | null;
-            link?: {
-                title?: string | null;
-                external?: boolean | null;
-                Relation?: {
-                    relationTo: 'pages';
-                    value: number | Page;
-                } | null;
-                external_url?: string | null;
-            };
-        };
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'Breaker';
-    }
-        | {
-        media?: number | Media | null;
-        thumbnail?: number | Media | null;
-        expandImage?: boolean | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'MediaBlock';
-    }
-        | {
-        title?: string | null;
-        external?: boolean | null;
-        Relation?: {
-            relationTo: 'pages';
-            value: number | Page;
-        } | null;
-        external_url?: string | null;
-        buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
-        hasIcon?: boolean | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'MenuButton';
-    }
-        | {
-        media1?: number | Media | null;
-        media2?: number | Media | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'CompareSliderBlock';
-    }
-        | {
-        height?: number | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'SpacerBlock';
-    }
-        | {
-        form?: (number | null) | Form;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'FormBlock';
-    }
-        )[]
-        | null;
-    title: string;
-    slug?: string | null;
-    publishedAt?: string | null;
-    updatedAt: string;
-    createdAt: string;
-    _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "userUploadedFormDocuments".
  */
 export interface UserUploadedFormDocument {
@@ -1816,10 +2436,27 @@ export interface Navigation {
     items: {
         title?: string | null;
         external?: boolean | null;
-        Relation?: {
+        Relation?:
+            | ({
             relationTo: 'pages';
             value: number | Page;
-        } | null;
+        } | null)
+            | ({
+            relationTo: 'museumCollections';
+            value: number | MuseumCollection;
+        } | null)
+            | ({
+            relationTo: 'impact';
+            value: number | Impact;
+        } | null)
+            | ({
+            relationTo: 'passions';
+            value: number | Passion;
+        } | null)
+            | ({
+            relationTo: 'studentSpotlight';
+            value: number | StudentSpotlight;
+        } | null);
         external_url?: string | null;
         columns?:
             | {
@@ -1828,10 +2465,27 @@ export interface Navigation {
                 | {
                 title?: string | null;
                 external?: boolean | null;
-                Relation?: {
+                Relation?:
+                    | ({
                     relationTo: 'pages';
                     value: number | Page;
-                } | null;
+                } | null)
+                    | ({
+                    relationTo: 'museumCollections';
+                    value: number | MuseumCollection;
+                } | null)
+                    | ({
+                    relationTo: 'impact';
+                    value: number | Impact;
+                } | null)
+                    | ({
+                    relationTo: 'passions';
+                    value: number | Passion;
+                } | null)
+                    | ({
+                    relationTo: 'studentSpotlight';
+                    value: number | StudentSpotlight;
+                } | null);
                 external_url?: string | null;
                 buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
                 hasIcon?: boolean | null;
@@ -1843,20 +2497,54 @@ export interface Navigation {
                 headerItem?: {
                     title?: string | null;
                     external?: boolean | null;
-                    Relation?: {
+                    Relation?:
+                        | ({
                         relationTo: 'pages';
                         value: number | Page;
-                    } | null;
+                    } | null)
+                        | ({
+                        relationTo: 'museumCollections';
+                        value: number | MuseumCollection;
+                    } | null)
+                        | ({
+                        relationTo: 'impact';
+                        value: number | Impact;
+                    } | null)
+                        | ({
+                        relationTo: 'passions';
+                        value: number | Passion;
+                    } | null)
+                        | ({
+                        relationTo: 'studentSpotlight';
+                        value: number | StudentSpotlight;
+                    } | null);
                     external_url?: string | null;
                 };
                 items?:
                     | {
                     title?: string | null;
                     external?: boolean | null;
-                    Relation?: {
+                    Relation?:
+                        | ({
                         relationTo: 'pages';
                         value: number | Page;
-                    } | null;
+                    } | null)
+                        | ({
+                        relationTo: 'museumCollections';
+                        value: number | MuseumCollection;
+                    } | null)
+                        | ({
+                        relationTo: 'impact';
+                        value: number | Impact;
+                    } | null)
+                        | ({
+                        relationTo: 'passions';
+                        value: number | Passion;
+                    } | null)
+                        | ({
+                        relationTo: 'studentSpotlight';
+                        value: number | StudentSpotlight;
+                    } | null);
                     external_url?: string | null;
                     id?: string | null;
                 }[]
@@ -1868,20 +2556,54 @@ export interface Navigation {
                 | {
                 title?: string | null;
                 external?: boolean | null;
-                Relation?: {
+                Relation?:
+                    | ({
                     relationTo: 'pages';
                     value: number | Page;
-                } | null;
+                } | null)
+                    | ({
+                    relationTo: 'museumCollections';
+                    value: number | MuseumCollection;
+                } | null)
+                    | ({
+                    relationTo: 'impact';
+                    value: number | Impact;
+                } | null)
+                    | ({
+                    relationTo: 'passions';
+                    value: number | Passion;
+                } | null)
+                    | ({
+                    relationTo: 'studentSpotlight';
+                    value: number | StudentSpotlight;
+                } | null);
                 external_url?: string | null;
                 item?:
                     | {
                     image?: number | Media | null;
                     title?: string | null;
                     external?: boolean | null;
-                    Relation?: {
+                    Relation?:
+                        | ({
                         relationTo: 'pages';
                         value: number | Page;
-                    } | null;
+                    } | null)
+                        | ({
+                        relationTo: 'museumCollections';
+                        value: number | MuseumCollection;
+                    } | null)
+                        | ({
+                        relationTo: 'impact';
+                        value: number | Impact;
+                    } | null)
+                        | ({
+                        relationTo: 'passions';
+                        value: number | Passion;
+                    } | null)
+                        | ({
+                        relationTo: 'studentSpotlight';
+                        value: number | StudentSpotlight;
+                    } | null);
                     external_url?: string | null;
                     id?: string | null;
                 }[]
