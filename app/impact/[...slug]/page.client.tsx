@@ -1,7 +1,7 @@
 "use client";
 import {useLivePreview} from "@payloadcms/live-preview-react";
 import {Page} from "@/app/types/payloadTypes";
-import PageContent from "@/app/museum-collection/[...slug]/PageContent";
+import PageContent from "@/app/museum-collections/[...slug]/PageContent";
 import {Meta} from "@/app/types/types";
 
 const PageClient = ({initialPage, meta}:{initialPage:Page, meta:Meta}) => {
