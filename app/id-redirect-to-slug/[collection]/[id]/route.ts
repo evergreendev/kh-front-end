@@ -1,9 +1,10 @@
 import {notFound, redirect} from "next/navigation";
-import qs from "qs";
+import {camelCaseToKebabCase} from "@/app/components/BlockRenderer/blocks/blockHelpers";
 
-async function getData(tag: string, id: string) {
+async function getData(tag: string, id: string,collection:string) {
+    console.log(collection);
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/pages/${id}?depth=0`,
+        `${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/${collection}/${id}?depth=0`,
         {
             next: {
                 tags: [tag]
@@ -18,7 +19,9 @@ async function getData(tag: string, id: string) {
 
 export async function GET(request: Request,
                           { params }: { params: { id: string, collection: string } }) {
-    const res = await getData(params.collection+"_",params.id);
+    const res = await getData(params.collection+"_",params.id,params.collection);
 
-    return redirect("/"+res.full_path);
+    if (params.collection === "pages") return redirect("/"+res.full_path);
+
+    return redirect("/"+camelCaseToKebabCase(params.collection)+"/"+res.slug);
 }
