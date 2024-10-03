@@ -41,11 +41,13 @@ const ImageSlider = ({images, headerText, bodyText}: { images: Media[], headerTe
                     })
                 }
             </Slider>}
-        <div className="absolute bottom-0 left-72 w-full max-w-[29rem] p-8 bg-white text-center font-ptserif">
-            <h2 className="text-3xl font-bold underline underline-offset-8 decoration-brand-yellow mb-4 decoration-4">{headerText}</h2>
-            <p className="text-2xl font-opensans">
-                {bodyText}
-            </p>
+        <div className="max-w-top h-4 relative right-0 bottom-0 ml-auto">
+            <div className="absolute bottom-0 left-0 w-full max-w-[68ch] p-8 bg-white text-center font-ptserif">
+                <h2 className="text-3xl font-bold underline underline-offset-8 decoration-brand-yellow mb-4 decoration-4">{headerText}</h2>
+                <p className="text-2xl font-opensans">
+                    {bodyText}
+                </p>
+            </div>
         </div>
     </div>
 }

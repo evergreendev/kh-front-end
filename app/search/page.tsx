@@ -49,7 +49,7 @@ export default async function SearchPage({searchParams}: {
                 <TopBar siteOption={meta.siteOptions} nav={meta.nav}/>
             </div>
             <div className="px-24 py-7 flex flex-col items-center w-full">
-                <div className="flex max-w-screen-2xl w-full justify-between">
+                <div className="flex max-w-[calc(1800px-3.5rem)] w-full justify-between">
                     {
                         <BreadCrumbs fullPath={"search"}/>
                     }
@@ -83,7 +83,7 @@ export default async function SearchPage({searchParams}: {
             <TopBar siteOption={meta.siteOptions} nav={meta.nav}/>
         </div>
         <div className="px-24 py-7 flex flex-col items-center w-full">
-            <div className="flex max-w-screen-2xl w-full justify-between">
+            <div className="flex max-w-[calc(1800px-3.5rem)] w-full justify-between">
                 {
                     <BreadCrumbs fullPath={"search"}/>
                 }

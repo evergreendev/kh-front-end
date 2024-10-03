@@ -18,7 +18,7 @@ const PageContent = ({data, meta}: { data: Page, meta: any }) => {
             return image.media
         }) || []}/>
         <div className="px-24 py-7 flex flex-col items-center w-full">
-            <div className="flex max-w-screen-2xl w-full justify-between">
+            <div className="flex max-w-[calc(1800px-3.5rem)] w-full justify-between">
                 {
                     data?.full_path &&
                     <BreadCrumbs fullPath={data?.full_path}/>
