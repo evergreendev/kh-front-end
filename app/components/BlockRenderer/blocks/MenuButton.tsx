@@ -2,6 +2,7 @@ import {Page} from "@/app/types/payloadTypes";
 import Button, {buttonConfig} from "@/app/components/Button";
 import {Fragment} from "react";
 import {faChevronCircleRight} from "@awesome.me/kit-2a2dc088e2/icons/classic/thin";
+import {getSlugFromCollection} from "@/app/components/BlockRenderer/blocks/blockHelpers";
 
 const MenuButton = ({block, tabIndex}: {
     block: {
@@ -25,7 +26,7 @@ const MenuButton = ({block, tabIndex}: {
     if (typeof block.Relation?.value === "undefined" || typeof block.Relation?.value === "number") {
         return <Fragment key={block.id}></Fragment>;
     }
-    return <Button icon={block.hasIcon ? faChevronCircleRight : undefined} isExternal={block.external} tabIndex={tabIndex} text={block.title || block.Relation?.value.title} href={`/${block.Relation?.value?.full_path}`}
+    return <Button icon={block.hasIcon ? faChevronCircleRight : undefined} isExternal={block.external} tabIndex={tabIndex} text={block.title || block.Relation?.value.title} href={getSlugFromCollection(block.Relation.value, block.Relation.relationTo)}
             config={buttonConfig[block.buttonStyle || "primary"]}/>
 
 

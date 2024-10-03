@@ -2,6 +2,7 @@ import {Page} from "@/app/types/payloadTypes";
 import Link from "next/link";
 import React from "react";
 import renderText from "@/app/components/BlockRenderer/utils/renderText";
+import {getSlugFromCollection} from "@/app/components/BlockRenderer/blocks/blockHelpers";
 
 const TextBlock = ({block}: {
     block: {
@@ -90,7 +91,7 @@ const TextBlock = ({block}: {
                         href={item.external_url || ""}>{item.label ? item.label : item.title}</a></div>
                     : <div className="text-lg font-semibold text-center font-opensans italic">{item.label ? item.title + " " : ""}<Link
                         className="font-opensans underline"
-                        href={"/" + (item.Relation?.value as Page)?.full_path}>{item.label ? item.label : item.title}</Link>
+                        href={getSlugFromCollection((item as any)?.Relation?.value||"", (item as any)?.Relation?.relationTo||"pages")}>{item.label ? item.label : item.title}</Link>
                     </div>
             })
         }
