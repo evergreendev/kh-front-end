@@ -33,7 +33,7 @@ const Button = ({text, href, icon, config, tabIndex, isExternal,isInline}: {
             }</span>
                 {
                     icon &&
-                    <FontAwesomeIcon className="size-6" icon={icon}/>
+                    <FontAwesomeIcon className="size-6 ml-4 my-auto" icon={icon}/>
                 }
             </a>
             : <Link tabIndex={tabIndex} href={href}
@@ -43,7 +43,7 @@ const Button = ({text, href, icon, config, tabIndex, isExternal,isInline}: {
         }</span>
                 {
                     icon &&
-                    <FontAwesomeIcon className="size-6" icon={icon}/>
+                    <FontAwesomeIcon className="size-6 ml-4 my-auto" icon={icon}/>
                 }
             </Link>
     }</>
