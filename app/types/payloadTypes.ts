@@ -266,6 +266,7 @@ export interface Page {
                 } | null);
                 external_url?: string | null;
                 buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+                fragment?: string | null;
                 hasIcon?: boolean | null;
                 id?: string | null;
                 blockName?: string | null;
@@ -483,6 +484,7 @@ export interface Page {
         } | null);
         external_url?: string | null;
         buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+        fragment?: string | null;
         hasIcon?: boolean | null;
         id?: string | null;
         blockName?: string | null;
@@ -752,6 +754,7 @@ export interface MuseumCollection {
                 } | null);
                 external_url?: string | null;
                 buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+                fragment?: string | null;
                 hasIcon?: boolean | null;
                 id?: string | null;
                 blockName?: string | null;
@@ -922,6 +925,7 @@ export interface MuseumCollection {
         } | null);
         external_url?: string | null;
         buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+        fragment?: string | null;
         hasIcon?: boolean | null;
         id?: string | null;
         blockName?: string | null;
@@ -1144,6 +1148,7 @@ export interface Impact {
                 } | null);
                 external_url?: string | null;
                 buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+                fragment?: string | null;
                 hasIcon?: boolean | null;
                 id?: string | null;
                 blockName?: string | null;
@@ -1314,6 +1319,7 @@ export interface Impact {
         } | null);
         external_url?: string | null;
         buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+        fragment?: string | null;
         hasIcon?: boolean | null;
         id?: string | null;
         blockName?: string | null;
@@ -1536,6 +1542,7 @@ export interface Passion {
                 } | null);
                 external_url?: string | null;
                 buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+                fragment?: string | null;
                 hasIcon?: boolean | null;
                 id?: string | null;
                 blockName?: string | null;
@@ -1706,6 +1713,7 @@ export interface Passion {
         } | null);
         external_url?: string | null;
         buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+        fragment?: string | null;
         hasIcon?: boolean | null;
         id?: string | null;
         blockName?: string | null;
@@ -1928,6 +1936,7 @@ export interface StudentSpotlight {
                 } | null);
                 external_url?: string | null;
                 buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+                fragment?: string | null;
                 hasIcon?: boolean | null;
                 id?: string | null;
                 blockName?: string | null;
@@ -2098,6 +2107,7 @@ export interface StudentSpotlight {
         } | null);
         external_url?: string | null;
         buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+        fragment?: string | null;
         hasIcon?: boolean | null;
         id?: string | null;
         blockName?: string | null;
@@ -2513,6 +2523,7 @@ export interface Navigation {
                 } | null);
                 external_url?: string | null;
                 buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
+                fragment?: string | null;
                 hasIcon?: boolean | null;
                 id?: string | null;
                 blockName?: string | null;
