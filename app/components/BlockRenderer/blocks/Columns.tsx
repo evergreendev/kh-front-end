@@ -149,6 +149,7 @@ const Columns = ({block}: {
                 )[]
                 | null;
             width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
+            center?: boolean | null;
             title?: string | null;
             external?: boolean | null;
             Relation?: {
@@ -176,7 +177,7 @@ const Columns = ({block}: {
         {block.columns.map((column, index: number) => {
             if (column.Relation && typeof column.Relation.value !== "number") {
                 return <Fragment key={column.id || "0"}><Link
-                    className={`${currWidth[column.width || "1/4"]}`}
+                    className={`${currWidth[column.width || "2/3"]} ${column.center ? "mx-auto" : ""}`}
                     href={getSlugFromCollection(column.Relation.value, column.Relation.relationTo)}>
                     <BlockRenderer blocks={column.content}/>
                 </Link>
@@ -191,7 +192,7 @@ const Columns = ({block}: {
             }
             if (column.external && column.external_url){
                 return <Fragment key={column.id || "0"}><a
-                    className={`${currWidth[column.width || "1/4"]}`}
+                    className={`${currWidth[column.width || "2/3"]} ${column.center ? "mx-auto" : ""}`}
                     href={column.external_url}>
                     <BlockRenderer blocks={column.content}/>
                 </a>
@@ -206,7 +207,7 @@ const Columns = ({block}: {
             }
 
             return <Fragment key={column.id || "0"}>
-                <div className={`${currWidth[column.width || "2/3"]}`}>
+                <div className={`${currWidth[column.width || "2/3"]} ${column.center ? "mx-auto" : ""}`}>
                     <BlockRenderer blocks={column.content}/>
                 </div>
                 {

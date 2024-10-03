@@ -152,6 +152,7 @@ export interface Page {
             }
                 | {
                 media?: number | Media | null;
+                url?: string | null;
                 thumbnail?: number | Media | null;
                 expandImage?: boolean | null;
                 id?: string | null;
@@ -361,6 +362,7 @@ export interface Page {
                 )[]
                 | null;
             width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
+            center?: boolean | null;
             title?: string | null;
             external?: boolean | null;
             Relation?:
@@ -448,6 +450,7 @@ export interface Page {
     }
         | {
         media?: number | Media | null;
+        url?: string | null;
         thumbnail?: number | Media | null;
         expandImage?: boolean | null;
         id?: string | null;
@@ -635,6 +638,7 @@ export interface MuseumCollection {
             }
                 | {
                 media?: number | Media | null;
+                url?: string | null;
                 thumbnail?: number | Media | null;
                 expandImage?: boolean | null;
                 id?: string | null;
@@ -797,6 +801,7 @@ export interface MuseumCollection {
                 )[]
                 | null;
             width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
+            center?: boolean | null;
             title?: string | null;
             external?: boolean | null;
             Relation?:
@@ -884,6 +889,7 @@ export interface MuseumCollection {
     }
         | {
         media?: number | Media | null;
+        url?: string | null;
         thumbnail?: number | Media | null;
         expandImage?: boolean | null;
         id?: string | null;
@@ -1024,6 +1030,7 @@ export interface Impact {
             }
                 | {
                 media?: number | Media | null;
+                url?: string | null;
                 thumbnail?: number | Media | null;
                 expandImage?: boolean | null;
                 id?: string | null;
@@ -1186,6 +1193,7 @@ export interface Impact {
                 )[]
                 | null;
             width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
+            center?: boolean | null;
             title?: string | null;
             external?: boolean | null;
             Relation?:
@@ -1273,6 +1281,7 @@ export interface Impact {
     }
         | {
         media?: number | Media | null;
+        url?: string | null;
         thumbnail?: number | Media | null;
         expandImage?: boolean | null;
         id?: string | null;
@@ -1413,6 +1422,7 @@ export interface Passion {
             }
                 | {
                 media?: number | Media | null;
+                url?: string | null;
                 thumbnail?: number | Media | null;
                 expandImage?: boolean | null;
                 id?: string | null;
@@ -1575,6 +1585,7 @@ export interface Passion {
                 )[]
                 | null;
             width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
+            center?: boolean | null;
             title?: string | null;
             external?: boolean | null;
             Relation?:
@@ -1662,6 +1673,7 @@ export interface Passion {
     }
         | {
         media?: number | Media | null;
+        url?: string | null;
         thumbnail?: number | Media | null;
         expandImage?: boolean | null;
         id?: string | null;
@@ -1802,6 +1814,7 @@ export interface StudentSpotlight {
             }
                 | {
                 media?: number | Media | null;
+                url?: string | null;
                 thumbnail?: number | Media | null;
                 expandImage?: boolean | null;
                 id?: string | null;
@@ -1964,6 +1977,7 @@ export interface StudentSpotlight {
                 )[]
                 | null;
             width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
+            center?: boolean | null;
             title?: string | null;
             external?: boolean | null;
             Relation?:
@@ -2051,6 +2065,7 @@ export interface StudentSpotlight {
     }
         | {
         media?: number | Media | null;
+        url?: string | null;
         thumbnail?: number | Media | null;
         expandImage?: boolean | null;
         id?: string | null;
@@ -2629,6 +2644,15 @@ export interface Navigation {
                 id?: string | null;
                 blockName?: string | null;
                 blockType: 'collectionCards';
+            }
+                | {
+                media?: number | Media | null;
+                url?: string | null;
+                thumbnail?: number | Media | null;
+                expandImage?: boolean | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'MediaBlock';
             }
                 )[]
                 | null;
