@@ -168,7 +168,7 @@ const Columns = ({block}: {
 
     const currWidth = block.vertical_separator ? widths.withBorder : widths.noBorder;
 
-    return <div id={block.sectionID || ""} className={`w-full flex flex-wrap  justify-around 
+    return <div id={block.sectionID || ""} className={`w-full flex flex-wrap  ${block.columns.length === 1 ? "justify-around" : "justify-between"}
     ${block.grayBackground ? "bg-gray-200" : "pb-12 items-center"}
     ${block.narrowRow && !block.fullWidth ? "max-w-screen-xl mx-auto" : ""}
     ${!block.narrowRow && !block.fullWidth ? "max-w-[1800px] px-7 mx-auto" : ""}
@@ -176,7 +176,7 @@ const Columns = ({block}: {
         {block.columns.map((column, index: number) => {
             if (column.Relation && typeof column.Relation.value !== "number") {
                 return <Fragment key={column.id || "0"}><Link
-                    className={`${block.wideSpacing ? "" : "grow"} ${currWidth[column.width || "1/4"]}`}
+                    className={`${currWidth[column.width || "1/4"]}`}
                     href={getSlugFromCollection(column.Relation.value, column.Relation.relationTo)}>
                     <BlockRenderer blocks={column.content}/>
                 </Link>
@@ -191,7 +191,7 @@ const Columns = ({block}: {
             }
             if (column.external && column.external_url){
                 return <Fragment key={column.id || "0"}><a
-                    className={`${block.wideSpacing ? "" : "grow"} ${currWidth[column.width || "1/4"]}`}
+                    className={`${currWidth[column.width || "1/4"]}`}
                     href={column.external_url}>
                     <BlockRenderer blocks={column.content}/>
                 </a>
@@ -206,7 +206,7 @@ const Columns = ({block}: {
             }
 
             return <Fragment key={column.id || "0"}>
-                <div className={`${block.wideSpacing ? "" : "grow"} ${currWidth[column.width || "1/4"]}`}>
+                <div className={`${currWidth[column.width || "2/3"]}`}>
                     <BlockRenderer blocks={column.content}/>
                 </div>
                 {
