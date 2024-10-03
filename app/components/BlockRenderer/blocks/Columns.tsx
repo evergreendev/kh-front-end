@@ -150,6 +150,7 @@ const Columns = ({block}: {
                 | null;
             width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
             center?: boolean | null;
+            centerVert?: boolean | null;
             title?: string | null;
             external?: boolean | null;
             Relation?: {
@@ -169,56 +170,61 @@ const Columns = ({block}: {
 
     const currWidth = block.vertical_separator ? widths.withBorder : widths.noBorder;
 
-    return <div id={block.sectionID || ""} className={`w-full flex flex-wrap  ${block.columns.length === 1 ? "justify-around" : "justify-between"}
-    ${block.grayBackground ? "bg-gray-200" : "pb-12 items-center"}
+    return <div id={block.sectionID || ""}
+                className={`w-full flex flex-wrap  ${block.columns.length === 1 ? "justify-around" : "justify-between"}
     ${block.narrowRow && !block.fullWidth ? "max-w-screen-xl mx-auto" : ""}
     ${!block.narrowRow && !block.fullWidth ? "max-w-[1800px] px-7 mx-auto" : ""}
+    ${block.grayBackground ? "bg-gray-200 px-0 max-w-full" : "pb-12 items-center"}
     `}>
-        {block.columns.map((column, index: number) => {
-            if (column.Relation && typeof column.Relation.value !== "number") {
-                return <Fragment key={column.id || "0"}><Link
-                    className={`${currWidth[column.width || "2/3"]} ${column.center ? "mx-auto" : ""}`}
-                    href={getSlugFromCollection(column.Relation.value, column.Relation.relationTo)}>
-                    <BlockRenderer blocks={column.content}/>
-                </Link>
-                    {
-                        block.vertical_separator && block.columns && index !== block.columns.length - 1
-                            ? <div className="w-[2%] flex justify-around self-stretch">
-                                <div className="w-[3px] bg-black"/>
-                            </div>
-                            : null
-                    }
-                </Fragment>;
-            }
-            if (column.external && column.external_url){
-                return <Fragment key={column.id || "0"}><a
-                    className={`${currWidth[column.width || "2/3"]} ${column.center ? "mx-auto" : ""}`}
-                    href={column.external_url}>
-                    <BlockRenderer blocks={column.content}/>
-                </a>
-                    {
-                        block.vertical_separator && block.columns && index !== block.columns.length - 1
-                            ? <div className="w-[2%] flex justify-around self-stretch">
-                                <div className="w-[3px] bg-black"/>
-                            </div>
-                            : null
-                    }
-                </Fragment>;
-            }
-
-            return <Fragment key={column.id || "0"}>
-                <div className={`${currWidth[column.width || "2/3"]} ${column.center ? "mx-auto" : ""}`}>
-                    <BlockRenderer blocks={column.content}/>
-                </div>
-                {
-                    block.vertical_separator && block.columns && index !== block.columns.length - 1
-                        ? <div className="w-[2%] flex justify-around self-stretch">
-                            <div className="w-[3px] bg-black"/>
-                        </div>
-                        : null
+        <div className={`w-full flex flex-wrap  ${block.columns.length === 1 ? "justify-around" : "justify-between"}
+    ${block.grayBackground ? "max-w-[1800px] px-7 mx-auto" : "pb-12 items-center"}
+    `}>
+            {block.columns.map((column, index: number) => {
+                if (column.Relation && typeof column.Relation.value !== "number") {
+                    return <Fragment key={column.id || "0"}><Link
+                        className={`${currWidth[column.width || "2/3"]} ${column.center ? "mx-auto" : ""}`}
+                        href={getSlugFromCollection(column.Relation.value, column.Relation.relationTo)}>
+                        <BlockRenderer blocks={column.content}/>
+                    </Link>
+                        {
+                            block.vertical_separator && block.columns && index !== block.columns.length - 1
+                                ? <div className="w-[2%] flex justify-around self-stretch">
+                                    <div className="w-[3px] bg-black"/>
+                                </div>
+                                : null
+                        }
+                    </Fragment>;
                 }
-            </Fragment>;
-        })}
+                if (column.external && column.external_url) {
+                    return <Fragment key={column.id || "0"}><a
+                        className={`${currWidth[column.width || "2/3"]} ${column.center ? "mx-auto" : ""}`}
+                        href={column.external_url}>
+                        <BlockRenderer blocks={column.content}/>
+                    </a>
+                        {
+                            block.vertical_separator && block.columns && index !== block.columns.length - 1
+                                ? <div className="w-[2%] flex justify-around self-stretch">
+                                    <div className="w-[3px] bg-black"/>
+                                </div>
+                                : null
+                        }
+                    </Fragment>;
+                }
+
+                return <Fragment key={column.id || "0"}>
+                    <div className={`${currWidth[column.width || "2/3"]} ${column.center ? "mx-auto" : ""} ${column.centerVert ? "my-auto" : ""}`}>
+                        <BlockRenderer blocks={column.content}/>
+                    </div>
+                    {
+                        block.vertical_separator && block.columns && index !== block.columns.length - 1
+                            ? <div className="w-[2%] flex justify-around self-stretch">
+                                <div className="w-[3px] bg-black"/>
+                            </div>
+                            : null
+                    }
+                </Fragment>;
+            })}
+        </div>
     </div>
 }
 

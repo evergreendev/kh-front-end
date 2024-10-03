@@ -364,6 +364,7 @@ export interface Page {
                 | null;
             width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
             center?: boolean | null;
+            centerVert?: boolean | null;
             title?: string | null;
             external?: boolean | null;
             Relation?:
@@ -805,6 +806,7 @@ export interface MuseumCollection {
                 | null;
             width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
             center?: boolean | null;
+            centerVert?: boolean | null;
             title?: string | null;
             external?: boolean | null;
             Relation?:
@@ -1199,6 +1201,7 @@ export interface Impact {
                 | null;
             width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
             center?: boolean | null;
+            centerVert?: boolean | null;
             title?: string | null;
             external?: boolean | null;
             Relation?:
@@ -1593,6 +1596,7 @@ export interface Passion {
                 | null;
             width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
             center?: boolean | null;
+            centerVert?: boolean | null;
             title?: string | null;
             external?: boolean | null;
             Relation?:
@@ -1987,6 +1991,7 @@ export interface StudentSpotlight {
                 | null;
             width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
             center?: boolean | null;
+            centerVert?: boolean | null;
             title?: string | null;
             external?: boolean | null;
             Relation?:
