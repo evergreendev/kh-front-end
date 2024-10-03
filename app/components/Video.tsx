@@ -1,15 +1,18 @@
 "use client"
-import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import React from "react";
+import NeedsWindow from "@/app/components/NeedsWindow";
+import ReactPlayer from "react-player";
+import Image from "next/image";
+import PlayButton from "@/public/play-button.svg";
 
 const Video =  ({src,thumbnail}:{src:string,thumbnail?:string|null}) => {
-    const finalSrc = src.includes(".com") ? src.substring(src.indexOf("=")+1, src.length) : src;
-    return <LiteYouTubeEmbed
-        params="rel=0"
-        id={finalSrc}
-        thumbnail={thumbnail||undefined}
-        title="Crazy Horse Memorial Intro Video"
-    />
+    return <div className="aspect-video"><NeedsWindow>
+        <ReactPlayer width="100%" height="100%"
+                     playIcon={<Image className="group-hover:opacity-100 transition-opacity opacity-70"
+                                      src={PlayButton} alt="Play"/>} controls={true}
+                     light={thumbnail || ""}
+                     url={src || ""}/>
+    </NeedsWindow></div>
 }
 
 export default Video;

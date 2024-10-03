@@ -11,6 +11,7 @@ const MediaBlock = ({block}: {
         thumbnail?: number | Media | null;
         expandImage?: boolean | null;
         id?: string | null;
+        url?: string | null;
         blockName?: string | null;
         blockType: 'MediaBlock';
     }
@@ -21,6 +22,19 @@ const MediaBlock = ({block}: {
                       src={block.media?.url || ""} alt={block.media?.alt || ""}
                       width={block.media?.width || 0}
                       height={block.media?.height || 0}/>
+    }
+    if(block.url){
+        return <div className={`${block.expandImage ? "aspect-auto h-full w-full" : "aspect-video my-8"} group  mx-auto`}>
+            {
+                <NeedsWindow>
+                    <ReactPlayer width="100%" height="100%"
+                                 playIcon={<Image className="group-hover:opacity-100 transition-opacity opacity-70"
+                                                  src={PlayButton} alt="Play"/>} controls={true}
+                                 light={typeof block.thumbnail === "number" ? "" : block.thumbnail?.url || ""}
+                                 url={block.url || ""}/>
+                </NeedsWindow>
+            }
+        </div>
     }
     return <div className={`${block.expandImage ? "aspect-auto h-full w-full" : "aspect-video my-8"} group  mx-auto`}>
         {
