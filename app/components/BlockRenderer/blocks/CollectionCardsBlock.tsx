@@ -123,7 +123,7 @@ const CollectionCardsBlock = ({block}: {
             infinite: true,
         }
         return (
-            <div className="max-w-full w-96 relative">
+            <div className="max-w-full w-96 relative mb-14">
                 <Slider {...sliderSettings}>{
                     collectionItems.map((collectionItem: (Page | MuseumCollection)) => {/*todo add event*/
                         const image = getImage(collectionItem);
@@ -144,7 +144,7 @@ const CollectionCardsBlock = ({block}: {
         )
     }
     return (
-        <div className="max-w-full w-full gap-6 relative flex flex-wrap justify-between">
+        <div className="max-w-full w-full gap-6 relative flex flex-wrap justify-between mb-14">
             {
                 collectionItems.map((collectionItem: (Page | MuseumCollection)) => {/*todo add event*/
                     const image = getImage(collectionItem);
