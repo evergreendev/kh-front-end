@@ -46,12 +46,6 @@ const BreakerBlock = ({block}: {
                             <h2 className={`leading-relaxed ${block.heading_1.highlight ? "text-brand-yellow uppercase" : ""}`}>{block.heading_1.text}</h2> : ""
                     }
                     {
-                        block.heading_2?.text || block.button?.link?.external_url || block.button?.link?.Relation ?
-                            <h3 className={`${block.heading_1?.text ? "max-w-[56ch]" : ""} leading-relaxed ${block.heading_2?.highlight ? "text-brand-yellow" : ""}`}>
-                                <span className="mr-6">{block.heading_2?.text}</span>
-                            </h3> : ""
-                    }
-                    {
                         block.image && typeof block.image !== "number" ?
                             <Image className="size-16" src={block.image.url || ""} alt={block.image.alt || ""}
                                    width={block.image.width || 0} height={block.image.height || 0}/> : ""
