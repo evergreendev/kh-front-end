@@ -36,7 +36,7 @@ const SingleCollectionBlock = ({block}: {
 
     if (block.type === "horizontal") {
         const img = getImage(block.collection.value);
-        return <div className="flex bg-gray-100 max-w-screen-xl justify-between mx-auto">
+        return <div className="flex bg-gray-100 max-w-[1800px] mb-14 justify-between mx-auto">
             <div className="w-5/12 p-6 text-center self-center grow">
                 <h2 className="mb-6 text-4xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif">{block.collection.value.title}</h2>
                 <p className="text-xl max-w-[38ch] text-center mx-auto">
