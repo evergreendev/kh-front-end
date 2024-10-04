@@ -86,10 +86,10 @@ const CollectionCardsBlock = ({block}: {
 
 
     if (isLoading) return block.type === "blocks" ?
-        <div className="max-h-screen max-w-full w-full gap-6 relative flex flex-wrap justify-around">
+        <div className="max-w-full w-full gap-6 relative flex flex-wrap justify-around">
             {
                 skeletonArr.map(x => {
-                    return <div className="w-full group sm:w-3/12 h-full grow relative overflow-hidden"
+                    return <div className="w-full group sm:w-3/12 h-full relative overflow-hidden"
                                 key={x}>
                         <p className="bg-pale-1 z-10 text-black text-xl p-4 absolute bottom-0 left-0 right-0 text-center italic bg-opacity-90">
                             <Skeleton/></p>
@@ -102,7 +102,7 @@ const CollectionCardsBlock = ({block}: {
                 })
             }
         </div>
-        : <div className="max-h-screen max-w-full w-96 relative">
+        : <div className="max-w-full w-96 relative">
             <div className="aspect-[3/4] object-cover object-center"><Skeleton
                 className="aspect-[3/4] object-cover object-center block"
                 containerClassName="aspect-[3/4] object-cover object-center block"/></div>
@@ -123,7 +123,7 @@ const CollectionCardsBlock = ({block}: {
             infinite: true,
         }
         return (
-            <div className="max-h-screen max-w-full w-96 relative">
+            <div className="max-w-full w-96 relative">
                 <Slider {...sliderSettings}>{
                     collectionItems.map((collectionItem: (Page | MuseumCollection)) => {/*todo add event*/
                         const image = getImage(collectionItem);
@@ -144,12 +144,12 @@ const CollectionCardsBlock = ({block}: {
         )
     }
     return (
-        <div className="max-h-screen max-w-full w-full gap-6 relative flex flex-wrap justify-around">
+        <div className="max-w-full w-full gap-6 relative flex flex-wrap justify-between">
             {
                 collectionItems.map((collectionItem: (Page | MuseumCollection)) => {/*todo add event*/
                     const image = getImage(collectionItem);
                     return <Link href={getSlugFromCollection(collectionItem, block.collectionsToPull || "")}
-                                 className="w-full bg-gray-100 group grow sm:w-3/12 relative overflow-hidden"
+                                 className="w-full bg-gray-100 group sm:w-[30%] relative overflow-hidden"
                                  key={collectionItem.id}>
                         {
                             image ? <div className="overflow-hidden"><Image
