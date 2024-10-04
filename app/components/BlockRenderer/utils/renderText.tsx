@@ -526,7 +526,7 @@ function renderText(root: any, key: number, id:string, styleOverride?: string, l
                                className={`max-w-[58ch] mb-6 text-4xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h2>
                 case "h3":
                     return <h3 key={key + id}
-                               className={`max-w-[58ch] mb-3 text-2xl font-normal font-opensans ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h3>
+                               className={`max-w-[75ch] mb-3 text-2xl font-normal font-opensans ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h3>
                 case "h4":
                     return <h4 key={key + id}
                                className={`max-w-[58ch] mb-3 text-xl font-bold ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h4>
