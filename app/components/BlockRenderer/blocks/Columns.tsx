@@ -174,10 +174,10 @@ const Columns = ({block}: {
                 className={`w-full flex flex-wrap  ${block.columns.length === 1 ? "justify-around" : "justify-between"}
     ${block.narrowRow && !block.fullWidth ? "max-w-screen-xl mx-auto" : ""}
     ${!block.narrowRow && !block.fullWidth ? "max-w-[1800px] mx-auto" : ""}
-    ${block.grayBackground ? "bg-gray-200 px-0 max-w-full" : "pb-12 items-center"}
+    ${block.grayBackground ? "bg-gray-200 px-0 max-w-full" : "items-center"}
     `}>
         <div className={`w-full flex flex-wrap  ${block.columns.length === 1 ? "justify-around" : "justify-between"}
-    ${block.grayBackground ? "max-w-[1800px] mx-auto" : "pb-12 items-center"}
+    ${block.grayBackground ? "max-w-[1800px] mx-auto" : "items-center"}
     `}>
             {block.columns.map((column, index: number) => {
                 if (column.Relation && typeof column.Relation.value !== "number") {
