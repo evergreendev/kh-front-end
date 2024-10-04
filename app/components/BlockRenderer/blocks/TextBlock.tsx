@@ -64,7 +64,7 @@ const TextBlock = ({block}: {
             }
             {
                 block.heading_2 ?
-                    <h2 className="text-center font-ptserif text-3xl mx-auto w-[15em] font-normal max-w-full">{block.heading_2}</h2> : ""
+                    <h2 className="text-center font-ptserif text-3xl mx-auto font-normal max-w-full">{block.heading_2}</h2> : ""
             }
             {
                 block.heading_link
