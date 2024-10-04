@@ -28,7 +28,7 @@ const BreakerBlock = ({block}:{block:{
         blockType: 'Breaker';
     }}) => {
 
-    return <div className="w-full max-w-[calc(1800px)] px-7 mx-auto text-white bg-black p-8 pr-24 mb-14">
+    return <div className="w-full max-w-[calc(1800px)] px-7 mx-auto text-white bg-black p-4 pr-24 mb-14">
         <div className="w-full max-w-screen-2xl tracking-widest ml-auto flex flex-wrap gap-4 text-2xl justify-end">
             {
                 block.heading_1 ? <h2 className={`leading-relaxed ${block.heading_1.highlight ? "text-brand-yellow uppercase":""}`}>{block.heading_1.text}</h2> : ""
