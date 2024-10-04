@@ -40,8 +40,8 @@ const SingleCollectionBlock = ({block}: {
             <div className="w-5/12 p-6 text-center self-center grow">
                 <h2 className="mb-6 text-4xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif">{block.collection.value.title}</h2>
                 <p className="text-xl max-w-[38ch] text-center mx-auto">
-                    {block.collection.value.excerpt} <Link className="underline italic"
-                          href={getSlugFromCollection(block.collection.value, block.collection.relationTo)}>More</Link>
+                    {block.collection.value.excerpt||block.collection.value.intro_content?.content} <Link className="underline italic"
+                                                                                                          href={getSlugFromCollection(block.collection.value, block.collection.relationTo)}>More</Link>
                 </p>
             </div>
             {
