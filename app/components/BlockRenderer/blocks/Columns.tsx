@@ -171,7 +171,7 @@ const Columns = ({block}: {
     const currWidth = block.vertical_separator ? widths.withBorder : widths.noBorder;
 
     return <div id={block.sectionID || ""}
-                className={`w-full flex flex-wrap  ${block.columns.length === 1 ? "justify-around" : "justify-between"}
+                className={`w-full mb-14 flex flex-wrap  ${block.columns.length === 1 ? "justify-around" : "justify-between"}
     ${block.narrowRow && !block.fullWidth ? "max-w-screen-xl mx-auto" : ""}
     ${!block.narrowRow && !block.fullWidth ? "max-w-[1800px] mx-auto" : ""}
     ${block.grayBackground ? "bg-gray-200 px-0 max-w-full" : ""}
