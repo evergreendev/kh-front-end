@@ -212,7 +212,7 @@ const Columns = ({block}: {
                 }
 
                 return <Fragment key={column.id || "0"}>
-                    <div className={`${currWidth[column.width || "2/3"]} ${column.center ? "mx-auto  flex-col items-center" : ""} ${column.centerVert ? "my-auto" : ""}`}>
+                    <div className={`${currWidth[column.width || "2/3"]} ${column.center ? "mx-auto  flex-col items-center flex" : ""} ${column.centerVert ? "my-auto" : ""}`}>
                         <BlockRenderer blocks={column.content}/>
                     </div>
                     {
