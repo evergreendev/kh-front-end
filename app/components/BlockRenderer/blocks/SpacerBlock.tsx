@@ -6,7 +6,7 @@ const SpacerBlock = ({block}: {
         blockType: 'SpacerBlock';
     }
 }) => {
-    return <div style={{height: block.height||0}}></div>
+    return <div style={{height: block.height||0,marginTop: block.height && block.height < 0 ? block.height : 0}}></div>
 }
 
 export default SpacerBlock;
