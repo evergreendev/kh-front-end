@@ -24,9 +24,8 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
             let typedBlock = block as { blockType: string };
             switch (typedBlock.blockType) {
                 case "MenuButton":
-                    return <div key={(block as any).id} className="mb-4"><MenuButton tabIndex={tabIndex}
-                                                                                     block={block as any}
-                    /></div>
+                    return <MenuButton tabIndex={tabIndex}
+                                       block={block as any}/>
                 case "MenuWithSubMenu":
                     return <MenuWithSubMenu tabIndex={tabIndex} block={block as any}
                                             key={(block as any).id}/>
@@ -34,7 +33,8 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
                     return <PhotoMenuBlock tabIndex={tabIndex} block={block as any}
                                            key={(block as any).id}/>
                 case "SimpleMenu":
-                    return <div key={(block as any).id} className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
+                    return <div key={(block as any).id}
+                                className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
                 case "Breaker":
                     return <BreakerBlock block={block as any} key={(block as any).id}/>
                 case "collectionCards":
@@ -60,7 +60,8 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
                 case "gallery":
                     return <GalleryBlock block={block as any} key={(block as any).id}/>
                 default:
-                    return <div key={(block as any).id} className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown Block
+                    return <div key={(block as any).id}
+                                className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown Block
                         Type</div>
             }
         })
