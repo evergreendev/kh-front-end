@@ -25,7 +25,7 @@ const TopBar = ({siteOption, nav}: { siteOption: SiteOption, nav: Navigation }) 
             <MegaMenu nav={nav}/>
             <Index/>
         </div>
-        <Button config={buttonConfig.highlight + " mb-5 self-start ml-auto w-64"} text="DONATE" href="/donate"/>
+        <Button config={buttonConfig.highlight + " mb-5 self-start ml-auto w-64  text-center justify-around"} text="DONATE" href="https://donate.crazyhorsememorial.org/"/>
     </div>
 }
 

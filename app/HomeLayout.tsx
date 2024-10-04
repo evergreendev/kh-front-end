@@ -94,7 +94,7 @@ const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
                             </div>
 
                         </div>
-                        <Button text="DONATE" href="/donate" config={buttonConfig.highlight}/>
+                        <Button text="DONATE" href="https://donate.crazyhorsememorial.org/" config={buttonConfig.highlight + " text-center justify-around"}/>
                     </div>
                     {
                         data.intro_content?.video ?
