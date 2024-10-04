@@ -55,7 +55,7 @@ const TextBlock = ({block}: {
     }
 }) => {
     return <div className="p-6">
-        <div className="mb-0">
+        <div className="mb-6">
             {
                 block.heading_1 ?
                     <div className="flex justify-center"><h2
