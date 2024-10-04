@@ -520,22 +520,22 @@ function renderText(root: any, key: number, id:string, styleOverride?: string, l
             switch (root.tag) {
                 case "h1":
                     return <h1 key={key + id}
-                               className={`max-w-[58ch] mx-auto mb-6 text-4xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h1>
+                               className={`max-w-[58ch] mb-6 text-4xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h1>
                 case "h2":
                     return <h2 key={key + id}
-                               className={`max-w-[58ch] mx-auto mb-6 text-4xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h2>
+                               className={`max-w-[58ch] mb-6 text-4xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h2>
                 case "h3":
                     return <h3 key={key + id}
-                               className={`max-w-[58ch] mx-auto mb-3 text-3xl font-bold font-ptserif ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h3>
+                               className={`max-w-[58ch] mb-3 text-2xl font-normal font-opensans ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h3>
                 case "h4":
                     return <h4 key={key + id}
-                               className={`max-w-[58ch] mx-auto mb-3 text-2xl font-bold ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h4>
+                               className={`max-w-[58ch] mb-3 text-xl font-bold ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h4>
                 case "h5":
                     return <h5 key={key + id}
-                               className={`max-w-[58ch] mx-auto mb-3 text-xl font-bold ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h5>
+                               className={`max-w-[58ch] mb-3 text-xl ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h5>
                 case "h6":
                     return <h6 key={key + id}
-                               className={`max-w-[58ch] mx-auto mb-2 text-lg ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h6>
+                               className={`max-w-[58ch] mb-2 text-lg ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any) => renderText(child, key + 1, id, styleOverride,linkStyleOverride))}</h6>
                 default:
                     return <Fragment key={key + id}></Fragment>
             }
