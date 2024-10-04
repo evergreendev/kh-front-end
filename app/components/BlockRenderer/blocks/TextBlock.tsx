@@ -55,7 +55,7 @@ const TextBlock = ({block}: {
     }
 }) => {
     return <div className="p-6">
-        <div className="mb-6">
+        <div className="mb-0">
             {
                 block.heading_1 ?
                     <div className="flex justify-center"><h2
@@ -64,7 +64,7 @@ const TextBlock = ({block}: {
             }
             {
                 block.heading_2 ?
-                    <h2 className="text-center font-ptserif text-3xl mx-auto w-[15em]  font-normal max-w-full">{block.heading_2}</h2> : ""
+                    <h2 className="text-center font-ptserif text-3xl mx-auto w-[15em] font-normal max-w-full">{block.heading_2}</h2> : ""
             }
             {
                 block.heading_link

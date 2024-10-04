@@ -36,7 +36,7 @@ const MediaBlock = ({block}: {
             }
         </div>
     }
-    return <div className={`${block.expandImage ? "aspect-auto h-full w-full" : "aspect-video my-8"} group  mx-auto`}>
+    return <div className={`${block.expandImage ? "aspect-auto h-full w-full" : "aspect-video"} group  mx-auto`}>
         {
             <NeedsWindow>
                 <ReactPlayer width="100%" height="100%"
