@@ -174,7 +174,8 @@ const Columns = ({block}: {
                 className={`w-full mb-14 flex flex-wrap  ${block.columns.length === 1 ? "justify-around" : "justify-between"}
     ${block.narrowRow && !block.fullWidth ? "max-w-screen-xl mx-auto" : ""}
     ${!block.narrowRow && !block.fullWidth ? "max-w-[1800px] mx-auto" : ""}
-    ${block.grayBackground ? "bg-gray-200 px-0 max-w-full py-7" : ""}
+    ${block.grayBackground ? "bg-gray-200 px-0 max-w-full" : ""}
+    ${block.grayBackground && block.vertical_separator ? "py-7" : ""}
     `}>
         <div className={`w-full flex flex-wrap  ${block.columns.length === 1 ? "justify-around" : "justify-between"}
     ${block.grayBackground ? "max-w-[1800px] mx-auto" : ""}
