@@ -162,7 +162,7 @@ const CollectionCardsBlock = ({block}: {
                         }
                         <div className="py-7 px-3">
                             <h2
-                                className="mb-6 text-center text-4xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif">{collectionItem.title}</h2>
+                                className="mb-6 text-center text-2xl font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 font-ptserif">{collectionItem.title}</h2>
                             {
                                 collectionItem.excerpt ? <p className="text-center">
                                     {collectionItem.excerpt} <span className="underline italic">More</span>
