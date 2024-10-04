@@ -34,7 +34,7 @@ const BreakerBlock = ({block}:{block:{
                 block.heading_1 ? <h2 className={`leading-relaxed ${block.heading_1.highlight ? "text-brand-yellow uppercase":""}`}>{block.heading_1.text}</h2> : ""
             }
             {
-                block.heading_2 || block.button ? <h3 className={`${block.heading_1?.text ? "max-w-[56ch]":""} leading-relaxed ${block.heading_2?.highlight ? "text-brand-yellow":""}`}><span className="mr-6">{block.heading_2?.text}</span>
+                block.heading_2?.text || block.button?.link ? <h3 className={`${block.heading_1?.text ? "max-w-[56ch]":""} leading-relaxed ${block.heading_2?.highlight ? "text-brand-yellow":""}`}><span className="mr-6">{block.heading_2?.text}</span>
                     {block.button && (block.button.link?.title || block.button.link?.external_url || block.button.link?.Relation)
                         ? <Button isInline icon={faChevronCircleRight} config={buttonConfig[block.button.type||"primary"]} text={block.button.link?.title||""} href={block.button.link?.external ? block.button.link.external_url||"" : (block.button.link?.Relation?.value as Page)?.full_path||""}/>
                         : ""
