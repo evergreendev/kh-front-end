@@ -37,7 +37,7 @@ const TimeLine = ({block}: {
         {
             block.items?.map((item, index) => {
                 return <div key={item.id}
-                            className={`mb-16 lg:mb-0 flex ${index % 2 === 0 ? "bg-pale-2" : "bg-pale-1"} w-full flex-wrap lg:flex-nowrap`}>
+                            className={`lg:mb-0 flex ${index % 2 === 0 ? "bg-pale-2" : "bg-pale-1"} w-full flex-wrap lg:flex-nowrap`}>
                     <div className="flex flex-col grow p-5">
                         <p className="font-bold text-xl">{item.date}</p>
                         <h3 className="font-ptserif text-3xl mb-2">{item.title}</h3>
