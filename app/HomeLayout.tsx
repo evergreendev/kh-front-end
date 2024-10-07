@@ -15,19 +15,60 @@ import {
     faYoutubeSquare
 } from "@awesome.me/kit-2a2dc088e2/icons/classic/brands";
 import {getCurrentSchedule, getHoursFromSchedule} from "@/app/utilities/hours";
-import {Page} from "@/app/types/payloadTypes";
+import {Media, Page} from "@/app/types/payloadTypes";
 import Video from "@/app/components/Video";
 import {Meta} from "@/app/types/types";
 import Footer from "@/app/components/Footer";
 import MegaMenu from "@/app/components/MegaMenu";
 import BlockRenderer from "@/app/components/BlockRenderer";
-import Index from "@/app/components/Search";
+import SearchBar from "@/app/components/Search";
+
+const MobileOnlyInfo =({meta}: {meta: Meta}) => {
+    const currentSchedule = getCurrentSchedule(meta.hours)
+    return <div className="xl:hidden"><div className="mb-7 text-center flex flex-col justify-center">
+        <div className="flex items-center justify-center text-xl mb-7">
+            <FontAwesomeIcon className="size-5 mr-6" icon={faClock} size="sm"/>
+            Open Today: {currentSchedule?.hours?.[0] ? getHoursFromSchedule(currentSchedule.hours[0]) : ""}
+        </div>
+        <Link className="flex items-center justify-center text-xl mb-7"
+              href={`/plan-your-visit/information/pricing-and-admission`}>
+            <FontAwesomeIcon transform={{rotate: 5}} className="size-5 mr-6" icon={faTicket} size="sm"/>
+            <p>Admission:</p>
+            <FontAwesomeIcon className="size-5 ml-2" icon={faChevronCircleRight}/>
+        </Link>
+        <a className="flex items-center justify-center text-xl mb-7" href="tel:605-673-4681">
+            <FontAwesomeIcon className="size-5 mr-6" icon={faPhoneVolume}/>
+            Call: 605.673.4681
+        </a>
+        <div className="flex items-start justify-center text-xl mb-7">
+
+            <address className="not-italic text-center">
+                <FontAwesomeIcon className="size-6 mr-5 mt-1" icon={faLocationDot}/>
+                Crazy Horse Memorial<br/>
+                12151 Avenue of the Chiefs<br/>
+                Crazy Horse, SD 57730-8900<br/>
+                <Link className="underline" href={`/plan-your-visit#location-hours`}>more
+                    direction
+                    information</Link>
+            </address>
+        </div>
+    </div>
+        <div className="flex w-72 mx-auto">
+            <Button config={buttonConfig.primary + " mb-5 w-96"} text="Plan Your Visit" href="/plan-your-visit"
+                    icon={faChevronCircleRight}/>
+        </div>
+        <div className="flex w-72 mx-auto">
+            <Button config={buttonConfig.primary + " mb-5 w-full"} text="Book Tickets" href="/plan-your-visit/buy-tickets"
+                    icon={faChevronCircleRight}/>
+        </div>
+    </div>
+}
 
 const SideBar = ({meta}: { meta: Meta }) => {
 
     const currentSchedule = getCurrentSchedule(meta.hours);
 
-    return <div className="border-r-[3px] border-black pr-8">
+    return <div className="border-r-[3px] border-black pr-8 hidden xl:block">
         {
             typeof meta.siteOptions.siteLogo !== "number" ?
                 <Image className="max-w-md mb-16" src={`${meta.siteOptions.siteLogo.url}`}
@@ -83,18 +124,26 @@ const SideBar = ({meta}: { meta: Meta }) => {
 const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
     return (
         <main className="flex min-h-screen flex-col justify-between">
-            <div className="flex flex-wrap xl:flex-nowrap w-full mb-4 max-w-top ml-auto mt-4 pl-7">
+            <div className="flex flex-wrap xl:flex-nowrap w-full mb-4 max-w-top ml-auto mt-4 pl-0 xl:pl-7">
                 <SideBar meta={meta}/>
-                <div className="font-ptserif mx-auto grow pl-10">
-                    <div className="flex justify-between items-start max-w-screen-xl">
+                <div className="font-ptserif mx-auto grow pl-0 xl:pl-10">
+                    <div className="flex justify-between items-start max-w-screen-xl p-2 pl-0 gap-x-4 xl:gap-x-0 xl:p-0">
                         <div className="flex flex-col justify-start gap-2">
+                            <Link href="/">
+                                <Image className="w-52 ml-2" src={(meta.siteOptions.siteLogoSmall as Media).url || ""}
+                                       alt={(meta.siteOptions.siteLogoSmall as Media).alt || ""}
+                                       width={(meta.siteOptions.siteLogoSmall as Media).width || 0}
+                                       height={(meta.siteOptions.siteLogoSmall as Media).height || 0}
+                                />
+                            </Link>
                             <MegaMenu nav={meta.nav}/>
-                            <div className="my-8">
-                                <Index/>
+                            <div className="my-8 hidden xl:block">
+                                <SearchBar/>
                             </div>
 
                         </div>
-                        <Button text="DONATE" href="https://donate.crazyhorsememorial.org/" config={buttonConfig.highlight + " text-center justify-around"}/>
+                        <Button text="DONATE" href="https://donate.crazyhorsememorial.org/"
+                                config={buttonConfig.highlight + " text-center justify-around"}/>
                     </div>
                     {
                         data.intro_content?.video ?
@@ -104,18 +153,18 @@ const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
                             </div> :
                             ""
                     }
-                    <div className="w-full flex flex-col mx-auto max-w-screen-lg mt-6 text-center">
-                        <div className="flex justify-center mx-auto">
-                            <h2 className="text-4xl font-bold border-b-brand-yellow border-b-4">{data.intro_content?.header}</h2>
+                    <div className="w-full bg-pale-1 xl:bg-transparent p-4 xl:p-0 flex flex-col mx-auto max-w-screen-lg xl:mt-6 text-center">
+                        <div className="flex xl:justify-center xl:mx-auto">
+                            <h2 className="text-2xl text-left xl:text-4xl font-bold border-b-brand-yellow border-b-4">{data.intro_content?.header}</h2>
                         </div>
-                        <p className="text-3xl font-normal max-w-full">
+                        <p className="text-lg text-left xl:text-center xl:text-3xl font-normal max-w-full">
                             {data.intro_content?.content}
                         </p>
                     </div>
 
                 </div>
             </div>
-            <div className="flex w-full mt-6 max-w-top ml-auto pl-7">
+            <div className="w-full mt-6 max-w-top ml-auto pl-7 hidden xl:flex">
                 <div className="max-w-md w-full flex items-center mr-14">
                     <BreadCrumbs fullPath={data?.full_path || ""}/>
                 </div>
@@ -124,7 +173,8 @@ const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
                     data?.jump_menu && <JumpMenu items={data.jump_menu}/>
                 }
             </div>
-            <div className="w-full pt-16">
+            <MobileOnlyInfo meta={meta} />
+            <div className="w-full xl:pt-16">
                 <BlockRenderer blocks={data.layout}/>
             </div>
 

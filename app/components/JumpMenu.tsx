@@ -1,3 +1,4 @@
+"use client"
 import {Page} from "@/app/types/payloadTypes";
 import Link from "next/link";
 import {Fragment} from "react";

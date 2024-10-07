@@ -32,7 +32,7 @@ async function getData(query: any, tag: string, page?: string) {
     return res.json();
 }
 
-const Index = () => {
+const SearchBar = () => {
     const resultRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const [value, setValue] = React.useState("");
@@ -122,4 +122,4 @@ const Index = () => {
     </div>
 }
 
-export default Index;
+export default SearchBar;
