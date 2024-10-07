@@ -21,9 +21,12 @@ const ImageSlider = ({images, headerText, bodyText}: { images: Media[], headerTe
         infinite: true,
     }
     if(images.length === 0){
-        return <div className="w-full bg-pale-1 p-8 text-center font-ptserif">
-            <h2 className="text-3xl font-bold underline underline-offset-8 decoration-brand-yellow mb-4 decoration-4">{headerText}</h2>
-            <p className="text-2xl font-opensans">
+        return <div
+            className="w-full bg-pale-1 xl:bg-transparent p-4 xl:p-0 flex flex-col mx-auto max-w-screen-lg xl:mt-6 text-center">
+            <div className="flex xl:justify-center xl:mx-auto">
+                <h2 className="text-2xl text-left xl:text-4xl font-bold border-b-brand-yellow border-b-4">{headerText}</h2>
+            </div>
+            <p className="text-lg text-left xl:text-center xl:text-3xl font-normal max-w-full">
                 {bodyText}
             </p>
         </div>
@@ -31,23 +34,29 @@ const ImageSlider = ({images, headerText, bodyText}: { images: Media[], headerTe
 
     return <div className="max-h-screen max-w-full relative w-full">
         {images.length === 1
-            ? <div className="flex w-full bg-pale-2"><Image style={{maxWidth:`${(images[0].width||0)*1.1}px`,objectPosition: `${images[0].focalX}% ${images[0].focalY}%`}} className="max-h-[80vh] w-full object-cover grow mx-auto" src={images[0].url || ""} alt={images[0].alt || ""} width={images[0].width || 0}
-                          height={images[0].height || 0} key={images[0].url}/></div>
-            :         <Slider  {...sliderSettings}>
+            ? <div className="flex w-full bg-pale-2"><Image style={{
+                maxWidth: `${(images[0].width || 0) * 1.1}px`,
+                objectPosition: `${images[0].focalX}% ${images[0].focalY}%`
+            }} className="max-h-[80vh] w-full object-cover grow mx-auto" src={images[0].url || ""}
+                                                            alt={images[0].alt || ""} width={images[0].width || 0}
+                                                            height={images[0].height || 0} key={images[0].url}/></div>
+            : <Slider  {...sliderSettings}>
                 {
                     images.map(img => {
-                        return <Image style={{objectPosition: `${img.focalX}% ${img.focalY}%`}} src={img.url || ""} alt={img.alt || ""} width={img.width || 0}
+                        return <Image style={{objectPosition: `${img.focalX}% ${img.focalY}%`}} src={img.url || ""}
+                                      alt={img.alt || ""} width={img.width || 0}
                                       height={img.height || 0} key={img.url}/>
                     })
                 }
             </Slider>}
-        <div className="max-w-top h-4 relative right-0 bottom-0 ml-auto">
-            <div className="absolute bottom-0 left-0 w-full max-w-[68ch] p-8 bg-white text-center font-ptserif">
-                <h2 className="text-3xl font-bold underline underline-offset-8 decoration-brand-yellow mb-4 decoration-4">{headerText}</h2>
-                <p className="text-2xl font-opensans">
-                    {bodyText}
-                </p>
+        <div
+            className="w-full bg-pale-1 xl:bg-transparent p-4 xl:p-0 flex flex-col mx-auto max-w-screen-lg xl:mt-6 text-center">
+            <div className="flex xl:justify-center xl:mx-auto">
+                <h2 className="text-2xl text-left xl:text-4xl font-bold border-b-brand-yellow border-b-4">{headerText}</h2>
             </div>
+            <p className="text-lg text-left xl:text-center xl:text-3xl font-normal max-w-full">
+                {bodyText}
+            </p>
         </div>
     </div>
 }

@@ -9,7 +9,7 @@ import ImageSlider from "@/app/components/ImageSlider";
 
 const PageContent = ({data, meta}: { data: Page, meta: any }) => {
     return <main className="flex min-h-screen flex-col items-center w-full">
-        <div className="px-24 py-7 flex flex-col items-center w-full">
+        <div className="p-2 xl:px-24 xl:py-7 flex flex-col items-center w-full">
             <TopBar siteOption={meta.siteOptions} nav={meta.nav}/>
         </div>
         <ImageSlider headerText={data.intro_content?.header||data.title} bodyText={data.intro_content?.content||""} images={data.intro_content?.images?.filter((image): image is { media: Media, id: string } => {
@@ -17,7 +17,7 @@ const PageContent = ({data, meta}: { data: Page, meta: any }) => {
         }).map(image => {
             return image.media
         }) || []}/>
-        <div className="px-24 py-7 flex flex-col items-center w-full">
+        <div className="px-7 xl:px-24 py-7 flex-col items-center w-full hidden lg:flex">
             <div className="flex max-w-[calc(1800px-3.5rem)] w-full justify-between">
                 {
                     data?.full_path &&
