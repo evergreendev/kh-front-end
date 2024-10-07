@@ -129,7 +129,7 @@ const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
                 <div className="font-ptserif mx-auto grow pl-0 xl:pl-10">
                     <div className="flex justify-between items-start max-w-screen-xl p-2 pl-0 gap-x-4 xl:gap-x-0 xl:p-0">
                         <div className="flex flex-col justify-start gap-2">
-                            <Link href="/">
+                            <Link href="/" className="xl:hidden">
                                 <Image className="w-52 ml-2" src={(meta.siteOptions.siteLogoSmall as Media).url || ""}
                                        alt={(meta.siteOptions.siteLogoSmall as Media).alt || ""}
                                        width={(meta.siteOptions.siteLogoSmall as Media).width || 0}
@@ -142,8 +142,10 @@ const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
                             </div>
 
                         </div>
-                        <Button text="DONATE" href="https://donate.crazyhorsememorial.org/"
-                                config={buttonConfig.highlight + " text-center justify-around"}/>
+                        <div>
+                            <Button text="DONATE" href="https://donate.crazyhorsememorial.org/"
+                                    config={buttonConfig.highlight + " text-center justify-around"}/>
+                        </div>
                     </div>
                     {
                         data.intro_content?.video ?
