@@ -1,8 +1,8 @@
 import qs from "qs";
 import React from "react";
 import {notFound} from "next/navigation";
-import PageContent from "@/app/[...slug]/PageContent";
-import PageClient from "@/app/[...slug]/page.client";
+import PageContent from "@/app/components/standardPageContents/PageContent";
+import PageClient from "@/app/components/standardPageContents/page.client";
 import getMeta from "@/app/data/getMeta";
 
 async function getData(query: any, tag: string, page?: string) {

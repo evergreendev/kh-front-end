@@ -1,7 +1,7 @@
 "use client";
 import {useLivePreview} from "@payloadcms/live-preview-react";
-import {Page, SiteOption} from "@/app/types/payloadTypes";
-import PageContent from "@/app/[...slug]/PageContent";
+import {Page} from "@/app/types/payloadTypes";
+import PageContent from "@/app/components/standardPageContents/PageContent";
 import {Meta} from "@/app/types/types";
 
 const PageClient = ({initialPage, meta}:{initialPage:Page, meta:Meta}) => {
