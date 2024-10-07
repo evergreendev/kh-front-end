@@ -24,7 +24,7 @@ const Button = ({text, href, icon, config, tabIndex, isExternal,isInline}: {
 
     if (!config) config = buttonConfig.primary;
 
-    return <div>{
+    return <>{
         isExternal
             ? <a tabIndex={tabIndex} href={href}
                  className={`${isInline ? "inline-flex":"flex"} w-48 xl:w-96 justify-between px-6 py-2 text-xl grow ${config}`}><span
@@ -46,7 +46,7 @@ const Button = ({text, href, icon, config, tabIndex, isExternal,isInline}: {
                     <FontAwesomeIcon className="size-6 ml-4 my-auto" icon={icon}/>
                 }
             </Link>
-    }</div>
+    }</>
 }
 
 export default Button;

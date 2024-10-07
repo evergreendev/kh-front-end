@@ -21,18 +21,18 @@ const MenuButton = ({block, tabIndex}: {
         blockType: 'MenuButton';
     }, tabIndex?: number
 }) => {
-    if (block.external) return <Button icon={block.hasIcon ? faChevronCircleRight : undefined}
-                                       isExternal={block.external} tabIndex={tabIndex} text={block.title || ""}
-                                       href={`${block.external_url}`}
-                                       config={buttonConfig[block.buttonStyle || "primary"]}/>
+    if (block.external) return <div><Button icon={block.hasIcon ? faChevronCircleRight : undefined}
+                                            isExternal={block.external} tabIndex={tabIndex} text={block.title || ""}
+                                            href={`${block.external_url}`}
+                                            config={buttonConfig[block.buttonStyle || "primary"]}/></div>
 
     if (typeof block.Relation?.value === "undefined" || typeof block.Relation?.value === "number") {
         return <Fragment key={block.id}></Fragment>;
     }
-    return <Button icon={block.hasIcon ? faChevronCircleRight : undefined} isExternal={block.external}
-                   tabIndex={tabIndex} text={block.title || block.Relation?.value.title}
-                   href={getSlugFromCollection(block.Relation.value, block.Relation.relationTo) + (block.fragment ? `/#${block.fragment}` : "")}
-                   config={buttonConfig[block.buttonStyle || "primary"]}/>
+    return <div><Button icon={block.hasIcon ? faChevronCircleRight : undefined} isExternal={block.external}
+                        tabIndex={tabIndex} text={block.title || block.Relation?.value.title}
+                        href={getSlugFromCollection(block.Relation.value, block.Relation.relationTo) + (block.fragment ? `/#${block.fragment}` : "")}
+                        config={buttonConfig[block.buttonStyle || "primary"]}/></div>
 
 
 }
