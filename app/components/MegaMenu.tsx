@@ -69,7 +69,7 @@ const ExpandableButton = forwardRef(function ExpandableButton({
         }}
              className={`bg-gray-900 text-xl flex border-l border-l-slate-800 border-t-4 border-transparent group text-white ${isExpanded ? "border-t-brand-yellow" : ""}`}
              ref={ref} tabIndex={tabIndex} href={linkInfo.url}>
-            <span className="flex items-end p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{text}</span>
+            <span className="flex items-center p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{text}</span>
             <ExpandButton/>
         </a>
         : <Link onMouseEnter={() => {
@@ -77,7 +77,7 @@ const ExpandableButton = forwardRef(function ExpandableButton({
         }}
                 className={`bg-gray-900 text-xl flex border-l border-l-slate-800 border-t-4 border-transparent group text-white ${isExpanded ? "border-t-brand-yellow" : ""}`}
                 ref={ref} tabIndex={tabIndex} key={id} href={linkInfo.url}>
-            <span className="flex items-end p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{text}</span>
+            <span className="flex items-center p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{text}</span>
             <ExpandButton/>
         </Link>
 })
@@ -152,13 +152,13 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
                                         <a className={`bg-gray-900 text-xl flex border-l border-l-slate-800 border-t-4 border-transparent group text-white hover:border-t-brand-yellow`}
                                            href={item.external_url || ""}>
                                     <span
-                                        className="flex items-end p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{item.title || (item.Relation?.value as Page)?.title}</span>
+                                        className="flex items-center p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{item.title || (item.Relation?.value as Page)?.title}</span>
                                         </a>
                                         : <Link
                                             className={`bg-gray-900 text-xl flex border-l border-l-slate-800 border-t-4 border-transparent group text-white hover:border-t-brand-yellow`}
                                             href={getSlugFromCollection((item.Relation?.value as Page), item.Relation?.relationTo || "page")}>
                                     <span
-                                        className="flex items-end p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{item.title || (item.Relation?.value as Page)?.title}</span>
+                                        className="flex items-center p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{item.title || (item.Relation?.value as Page)?.title}</span>
                                         </Link>}
                                 </> : <>
                                     <ExpandableButton isExpanded={activeMenuId === item.id}
