@@ -34,7 +34,8 @@ const ExpandableButton = forwardRef(function ExpandableButton({
                                                                   setActiveMenuId,
                                                                   tabIndex,
                                                                   isExpanded,
-                                                                  firstFocusable
+                                                                  firstFocusable,
+                                                                  isMobile
                                                               }: {
     id: string,
     text: string,
@@ -42,7 +43,8 @@ const ExpandableButton = forwardRef(function ExpandableButton({
     setActiveMenuId: (id: string | null) => void,
     tabIndex: number,
     isExpanded: boolean,
-    firstFocusable: RefObject<any>
+    firstFocusable: RefObject<any>,
+    isMobile?: boolean
 }, ref: ForwardedRef<any>) {
     const linkInfo = getUrlFromPageOrExternal(item);
 
@@ -66,19 +68,23 @@ const ExpandableButton = forwardRef(function ExpandableButton({
 
     return linkInfo.isExternal
         ? <a onMouseEnter={() => {
+            if(isMobile) return;
             setActiveMenuId(isExpanded ? null : id);
         }}
              className={`bg-gray-900 flex border-l border-l-slate-800 border-t-4 border-transparent group text-white ${isExpanded ? "border-t-brand-yellow" : ""}`}
              ref={ref} tabIndex={tabIndex} href={linkInfo.url}>
-            <span className="flex items-center p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{text}</span>
+            <span
+                className="flex items-center p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{text}</span>
             <ExpandButton/>
         </a>
         : <Link onMouseEnter={() => {
+            if (isMobile) return;
             setActiveMenuId(isExpanded ? null : id);
         }}
                 className={`bg-gray-900 flex border-l border-l-slate-800 border-t-4 border-transparent group text-white ${isExpanded ? "border-t-brand-yellow" : ""}`}
                 ref={ref} tabIndex={tabIndex} key={id} href={linkInfo.url}>
-            <span className="flex items-center p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{text}</span>
+            <span
+                className="flex items-center p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{text}</span>
             <ExpandButton/>
         </Link>
 })
@@ -177,10 +183,11 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
                 <button onClick={() => {
                     setActiveMenuId(null)
                     setIsExpanded(false)
-                }} className="text-white z-50 right-0 top-0 p-2 bg-slate-700 hover:bg-slate-800">Close Menu</button>
+                }} className="text-white z-50 right-0 top-0 p-2 bg-slate-700 hover:bg-slate-800">Close Menu
+                </button>
             </div>
             <div className="relative w-full mx-auto max-w-[2000px] h-full overflow-hidden p-0">
-            {
+                {
                     nav.items.map(item => {
                         return <div key={item.id}
                                     onMouseLeave={() => setActiveMenuId(null)}
@@ -244,7 +251,7 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
                                         className="flex items-center p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{item.title || (item.Relation?.value as Page)?.title}</span>
                                         </Link>}
                                 </> : <>
-                                    <ExpandableButton isExpanded={activeMenuId === item.id}
+                                    <ExpandableButton isMobile isExpanded={activeMenuId === item.id}
                                                       firstFocusable={firstFocusableElements.current[item.id || ""]}
                                                       ref={index === 0 ? firstFocusableElementRef : null}
                                                       tabIndex={isExpanded ? 0 : -1} item={item}
@@ -268,7 +275,9 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
                     nav.items.map(item => {
                         return <div key={item.id}
                                     className={`bg-gray-200 absolute z-50 w-full overflow-hidden top-0 left-0 bottom-0 right-0 transition-all ${item.id === activeMenuId ? "z-10" : "-translate-x-full"}`}>
-                            <button className="absolute p-4 right-0 text-slate-800" onClick={()=> setActiveMenuId(null)}><FontAwesomeIcon size="2x" icon={faCircleX}/></button>
+                            <button className="absolute p-4 right-0 text-slate-800"
+                                    onClick={() => setActiveMenuId(null)}><FontAwesomeIcon size="2x" icon={faCircleX}/>
+                            </button>
                             <div className="p-0 flex flex-wrap flex-col">
                                 <div className="flex flex-col w-full justify-around bg-gray-300 pt-4">
                                     <h2 className="border-b-4 border-b-brand-yellow text-center justify-self-center font-ptserif text-4xl font-bold text-gray-950 mb-6">{item.title}</h2>
