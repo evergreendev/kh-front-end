@@ -6,25 +6,25 @@ import {getSlugFromCollection} from "@/app/components/BlockRenderer/blocks/block
 
 const widths = {
     withBorder: {
-        "1/3": "md:w-[32.33333%]",
-        "2/3": "md:w-[65.66666%]",
-        "1/4": "md:w-[24%]",
-        "1/2": "md:w-[49%]",
-        "3/4": "md:w-[74%]",
-        "1/1": "md:w-full"
+        "1/3": "md:w-[32.33333%] w-full",
+        "2/3": "md:w-[65.66666%] w-full",
+        "1/4": "md:w-[24%] w-full",
+        "1/2": "md:w-[49%] w-full",
+        "3/4": "md:w-[74%] w-full",
+        "1/1": "md:w-full w-full"
     },
     noBorder: {
-        "1/3": "md:w-[32.33333%]",
-        "2/3": "md:w-[65.66666%]",
-        "1/4": "md:w-[24%]",
-        "1/2": "md:w-[49%]",
-        "3/4": "md:w-[74%]",
-        "1/1": "md:w-full"
+        "1/3": "md:w-[32.33333%] w-full",
+        "2/3": "md:w-[65.66666%] w-full",
+        "1/4": "md:w-[24%] w-full",
+        "1/2": "md:w-[49%] w-full",
+        "3/4": "md:w-[74%] w-full",
+        "1/1": "md:w-full w-full"
     }
 }
 
 
-const Columns = ({block}: {
+const Columns = ({block,altMobileBackground}: {
     block: {
         sectionID?: string | null;
         vertical_separator?: boolean | null;
@@ -164,14 +164,15 @@ const Columns = ({block}: {
         id?: string | null;
         blockName?: string | null;
         blockType: 'column';
-    }
+    },
+    altMobileBackground?: string
 }) => {
     if (!block.columns || !block.columns) return null;
 
     const currWidth = block.vertical_separator ? widths.withBorder : widths.noBorder;
 
     return <div id={block.sectionID || ""}
-                className={`w-full mb-14 flex flex-wrap  ${block.columns.length === 1 ? "justify-around" : "justify-between"}
+                className={`${altMobileBackground||""} w-full mb-14 flex flex-wrap  ${block.columns.length === 1 ? "justify-around" : "justify-between"}
     ${block.narrowRow && !block.fullWidth ? "max-w-screen-xl mx-auto" : ""}
     ${!block.narrowRow && !block.fullWidth ? "max-w-[1800px] mx-auto" : ""}
     ${block.grayBackground ? "bg-gray-200 px-0 max-w-full" : ""}

@@ -58,13 +58,13 @@ const TextBlock = ({block}: {
         <div className="mb-6">
             {
                 block.heading_1 ?
-                    <div className="flex justify-center"><h2
-                        className="mb-2 text-center text-4xl font-bold font-ptserif underline underline-offset-8 decoration-brand-yellow decoration-4">{block.heading_1}</h2>
+                    <div className="flex justify-start xl:justify-center"><h2
+                        className="mb-2 xl:text-center text-2xl text-left xl:text-4xl font-bold font-ptserif underline underline-offset-8 decoration-brand-yellow decoration-4">{block.heading_1}</h2>
                     </div> : ""
             }
             {
                 block.heading_2 ?
-                    <h2 className="text-center font-ptserif text-3xl mx-auto font-normal max-w-full">{block.heading_2}</h2> : ""
+                    <h2 className="xl:text-center text-left font-ptserif text-xl font-normal xl:text-3xl mx-auto max-w-full">{block.heading_2}</h2> : ""
             }
             {
                 block.heading_link
@@ -72,8 +72,10 @@ const TextBlock = ({block}: {
                         ? <div
                             className="text-xl text-center font-ptserif italic">{block.heading_link?.label ? block.heading_link?.title + " " : ""}<a
                             className="font-ptserif underline"
-                            href={block.heading_link?.external_url || ""}>{block.heading_link?.label ? block.heading_link?.label : block.heading_link?.title}</a></div>
-                        : <div className="text-xl text-center font-ptserif italic">{block.heading_link?.label ? block.heading_link?.title + " " : ""}<Link
+                            href={block.heading_link?.external_url || ""}>{block.heading_link?.label ? block.heading_link?.label : block.heading_link?.title}</a>
+                        </div>
+                        : <div
+                            className="text-xl text-center font-ptserif italic">{block.heading_link?.label ? block.heading_link?.title + " " : ""}<Link
                             className="font-ptserif underline"
                             href={"/" + (block.heading_link?.Relation?.value as Page)?.full_path}>{block.heading_link?.label ? block.heading_link?.label : block.heading_link?.title}</Link>
                         </div>
@@ -81,15 +83,17 @@ const TextBlock = ({block}: {
             }
         </div>
         {
-            renderText(block.body?.text?.root, 1, block.id||"0")
+            renderText(block.body?.text?.root, 1, block.id || "0")
         }
         {
             block.body?.link_list?.map(item => {
                 return item.external
-                    ? <div className="text-lg font-semibold text-center font-opensans italic">{item.label ? item.title + " " : ""}<a
+                    ? <div
+                        className="text-lg font-semibold text-center font-opensans italic">{item.label ? item.title + " " : ""}<a
                         className="font-opensans underline"
                         href={item.external_url || ""}>{item.label ? item.label : item.title}</a></div>
-                    : <div className="text-lg font-semibold text-center font-opensans italic">{item.label ? item.title + " " : ""}<Link
+                    : <div
+                        className="text-lg font-semibold text-center font-opensans italic">{item.label ? item.title + " " : ""}<Link
                         className="font-opensans underline"
                         href={getSlugFromCollection((item as any)?.Relation?.value||"", (item as any)?.Relation?.relationTo||"pages")}>{item.label ? item.label : item.title}</Link>
                     </div>

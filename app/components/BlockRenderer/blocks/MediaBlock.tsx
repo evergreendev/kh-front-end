@@ -28,7 +28,7 @@ const MediaBlock = ({block}: {
             {
                 <NeedsWindow>
                     <ReactPlayer width="100%" height="100%"
-                                 playIcon={<Image className="group-hover:opacity-100 transition-opacity opacity-70"
+                                 playIcon={<Image className="size-14 xl:size-52 group-hover:opacity-100 transition-opacity opacity-70"
                                                   src={PlayButton} alt="Play"/>} controls={true}
                                  light={typeof block.thumbnail === "number" ? "" : block.thumbnail?.url || ""}
                                  url={block.url || ""}/>
@@ -40,7 +40,7 @@ const MediaBlock = ({block}: {
         {
             <NeedsWindow>
                 <ReactPlayer width="100%" height="100%"
-                             playIcon={<Image className="group-hover:opacity-100 transition-opacity opacity-70"
+                             playIcon={<Image className="size-14 xl:size-52 group-hover:opacity-100 transition-opacity opacity-70"
                                               src={PlayButton} alt="Play"/>} controls={true}
                              light={typeof block.thumbnail === "number" ? "" : block.thumbnail?.url || ""}
                              url={block.media?.url || ""}/>
