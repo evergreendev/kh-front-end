@@ -1,6 +1,6 @@
 "use client"
 import {faBars} from "@awesome.me/kit-2a2dc088e2/icons/classic/solid";
-import {faChevronRight, faChevronDown} from "@awesome.me/kit-2a2dc088e2/icons/classic/light";
+import {faChevronRight, faChevronDown, faCircleX} from "@awesome.me/kit-2a2dc088e2/icons/classic/light";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {createRef, ForwardedRef, forwardRef, RefObject, useCallback, useEffect, useRef, useState} from "react";
 import {Navigation, Page} from "@/app/types/payloadTypes";
@@ -140,8 +140,8 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
              p-0
              pt-0
              duration-700 
-             z-50 transition-all`}>
-            <div className="flex w-full bg-slate-900 shadow">
+             z-40 transition-all`}>
+            <div className="flex w-full bg-slate-900 shadow justify-center">
                 {
                     nav.items.map((item, index) => {
                         return <div className="flex" key={item.id}>
@@ -164,17 +164,23 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
                                     <ExpandableButton isExpanded={activeMenuId === item.id}
                                                       firstFocusable={firstFocusableElements.current[item.id || ""]}
                                                       ref={index === 0 ? firstFocusableElementRef : null}
-                                                      tabIndex={isExpanded ? 0 : -1} item={item} setActiveMenuId={() => {
-                                        setActiveMenuId(item.id || null)
-                                    }} id={item.id || ""} text={item.title || (item.Relation?.value as Page)?.title}/>
+                                                      tabIndex={isExpanded ? 0 : -1} item={item}
+                                                      setActiveMenuId={() => {
+                                                          setActiveMenuId(item.id || null)
+                                                      }} id={item.id || ""}
+                                                      text={item.title || (item.Relation?.value as Page)?.title}/>
                                 </>
                             }
                         </div>
                     })
                 }
+                <button onClick={() => {
+                    setActiveMenuId(null)
+                    setIsExpanded(false)
+                }} className="text-white z-50 right-0 top-0 p-2 bg-slate-700 hover:bg-slate-800">Close Menu</button>
             </div>
             <div className="relative w-full mx-auto max-w-[2000px] h-full overflow-hidden p-0">
-                {
+            {
                     nav.items.map(item => {
                         return <div key={item.id}
                                     className={`bg-gray-200 flex-wrap w-full overflow-hidden top-0 left-0 ${item.id === activeMenuId ? "max-h-screen z-10" : "duration-0 max-h-0"}`}>
@@ -188,7 +194,8 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
                                                     className={`flex flex-col ${widths[column.width || "1/4"]}`}>
                                             <BlockRenderer
                                                 ref={index === 0 ? firstFocusableElements.current[item.id || ""] : null}
-                                                tabIndex={item.id === activeMenuId && isExpanded ? 0 : -1} key={column.id}
+                                                tabIndex={item.id === activeMenuId && isExpanded ? 0 : -1}
+                                                key={column.id}
                                                 blocks={column.content}/>
                                         </div>
                                     })}
