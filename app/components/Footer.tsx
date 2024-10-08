@@ -27,7 +27,7 @@ const Footer = ({footer}: { footer: FooterType }) => {
                     </div>
                 })
             }
-            <div className="md:w-3/12 flex gap-4 mt-4">
+            <div className="md:w-3/12 flex gap-4 mt-4 flex-wrap">
                 <a href="https://www.facebook.com/crazyhorsememorial">
                     <FontAwesomeIcon className="size-14 text-gray-400 hover:text-gray-100" icon={faFacebookSquare}/>
                 </a>
