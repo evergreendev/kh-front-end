@@ -1,6 +1,6 @@
 "use client"
 import {faBars} from "@awesome.me/kit-2a2dc088e2/icons/classic/solid";
-import {faChevronCircleRight, faChevronCircleDown} from "@awesome.me/kit-2a2dc088e2/icons/classic/light";
+import {faChevronRight, faChevronDown} from "@awesome.me/kit-2a2dc088e2/icons/classic/light";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {createRef, ForwardedRef, forwardRef, RefObject, useCallback, useEffect, useRef, useState} from "react";
 import {Navigation, Page} from "@/app/types/payloadTypes";
@@ -48,7 +48,7 @@ const ExpandableButton = forwardRef(function ExpandableButton({
     const ExpandButton = () => {
         return <button
             aria-label={`Expand ${text} menu`}
-            className={`p-3 hover:bg-gray-800 hover:text-white focus:bg-gray-700 text-2xl`}
+            className={`p-3 hover:bg-gray-800 hover:text-white focus:bg-gray-700 text-xl`}
             tabIndex={tabIndex}
 
             onClick={(e) => {
@@ -57,8 +57,8 @@ const ExpandableButton = forwardRef(function ExpandableButton({
             }}>
             {
                 isExpanded
-                    ? <FontAwesomeIcon size="lg" icon={faChevronCircleDown}/>
-                    : <FontAwesomeIcon size="lg" icon={faChevronCircleRight}/>
+                    ? <FontAwesomeIcon size="sm" icon={faChevronDown}/>
+                    : <FontAwesomeIcon icon={faChevronRight}/>
             }
         </button>
     }
@@ -67,7 +67,7 @@ const ExpandableButton = forwardRef(function ExpandableButton({
         ? <a onMouseEnter={() => {
             setActiveMenuId(isExpanded ? null : id);
         }}
-             className={`bg-gray-900 text-3xl flex mr-6 border-t-8 border-transparent group text-white ${isExpanded ? "border-t-brand-yellow" : ""}`}
+             className={`bg-gray-900 text-xl flex border-l border-l-slate-800 border-t-4 border-transparent group text-white ${isExpanded ? "border-t-brand-yellow" : ""}`}
              ref={ref} tabIndex={tabIndex} href={linkInfo.url}>
             <span className="p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{text}</span>
             <ExpandButton/>
@@ -75,7 +75,7 @@ const ExpandableButton = forwardRef(function ExpandableButton({
         : <Link onMouseEnter={() => {
             setActiveMenuId(isExpanded ? null : id);
         }}
-                className={`bg-gray-900 text-3xl flex mr-6 border-t-8 border-transparent group text-white ${isExpanded ? "border-t-brand-yellow" : ""}`}
+                className={`bg-gray-900 text-xl flex border-l border-l-slate-800 border-t-4 border-transparent group text-white ${isExpanded ? "border-t-brand-yellow" : ""}`}
                 ref={ref} tabIndex={tabIndex} key={id} href={linkInfo.url}>
             <span className="p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{text}</span>
             <ExpandButton/>
@@ -84,7 +84,7 @@ const ExpandableButton = forwardRef(function ExpandableButton({
 
 const MegaMenu = ({nav}: { nav: Navigation }) => {
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
-    const [activeMenuId, setActiveMenuId] = useState<string | null>(nav.items[0].id || null);
+    const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
     const firstFocusableElements = useRef<any>(
         Object.fromEntries(nav.items.map(item => {
             return [item.id, createRef()];
@@ -94,6 +94,7 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
     const escFunction = useCallback((event: { key: string; }) => {
         if (event.key === "Escape") {
             setIsExpanded(false);
+            setActiveMenuId(null);
         }
     }, []);
 
@@ -125,37 +126,36 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
         <div
             aria-hidden={!isExpanded}
             className={`
-             ${isExpanded ? 'shadow-2xl' : '-translate-y-full'}
+             ${isExpanded ? '' : '-translate-y-full'}
              top-0 left-1/2
              -translate-x-1/2
              flex
              fixed
-             bg-white
              flex-wrap
              w-full
-             max-w-[2000px]
              items-start
              overflow-hidden
              font-opensans
-             p-8
+             justify-between
+             p-0
              pt-0
              duration-700 
              z-50 transition-all`}>
-            <div className="flex w-full">
+            <div className="flex w-full bg-slate-900 shadow">
                 {
                     nav.items.map((item, index) => {
-                        return <div className="mt-6" key={item.id}>
+                        return <div className="flex" key={item.id}>
                             {
                                 item.columns?.length === 0 ? <>
                                     {item.external
                                         ?
-                                        <a className={`bg-gray-900 text-3xl flex mr-6 border-t-8 border-transparent group text-white hover:border-t-brand-yellow`}
+                                        <a className={`bg-gray-900 text-xl flex border-l border-l-slate-800 border-t-4 border-transparent group text-white hover:border-t-brand-yellow`}
                                            href={item.external_url || ""}>
                                     <span
                                         className="p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{item.title || (item.Relation?.value as Page)?.title}</span>
                                         </a>
                                         : <Link
-                                            className={`bg-gray-900 text-3xl flex mr-6 border-t-8 border-transparent group text-white hover:border-t-brand-yellow`}
+                                            className={`bg-gray-900 text-xl flex border-l border-l-slate-800 border-t-4 border-transparent group text-white hover:border-t-brand-yellow`}
                                             href={getSlugFromCollection((item.Relation?.value as Page), item.Relation?.relationTo || "page")}>
                                     <span
                                         className="p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{item.title || (item.Relation?.value as Page)?.title}</span>
@@ -173,7 +173,7 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
                     })
                 }
             </div>
-            <div className="relative w-full h-full overflow-hidden p-6">
+            <div className="relative w-full mx-auto max-w-[2000px] h-full overflow-hidden p-0">
                 {
                     nav.items.map(item => {
                         return <div key={item.id}
@@ -202,6 +202,7 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
         <button className="p-2 flex items-center text-black transition-colors hover:bg-gray-100"
                 onClick={() => {
                     setIsExpanded(!isExpanded)
+                    setActiveMenuId(null)
                 }}
                 onKeyDown={(e) => {
                     if (e.key === "Enter") {
