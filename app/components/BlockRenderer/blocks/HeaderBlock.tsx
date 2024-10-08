@@ -24,7 +24,7 @@ const HeaderBlock = ({block}:{block:{
     }}) => {
     return <div className={
         `
-        ${block.underlineHighlight ? "font-bold underline underline-offset-8 decoration-brand-yellow decoration-4" : "p-2"}
+        ${block.underlineHighlight ? "font-bold underline underline-offset-8 decoration-brand-yellow decoration-4" : "p-6"}
         `}>
         {renderText(block.text?.root, 1, block.id||"0",  block.largeText ? "text-5xl font-ptserif" : "text-xl font-opensans max-w-[58ch]")}
     </div>
