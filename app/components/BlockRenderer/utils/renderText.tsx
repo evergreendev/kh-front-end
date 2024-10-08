@@ -463,10 +463,10 @@ const styles = {
     superscript: "",
 }
 const alignment = {
-    center: "text-center",
-    left: "text-left",
-    right: "text-right",
-    justify: "text-justify",
+    center: "md:text-center text-left",
+    left: "md:text-left text-left",
+    right: "md:text-right text-left",
+    justify: "md:text-justify text-left",
 }
 
 function getStyles(formats: string[]) {
