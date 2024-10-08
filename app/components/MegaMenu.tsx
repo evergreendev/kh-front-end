@@ -183,6 +183,7 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
             {
                     nav.items.map(item => {
                         return <div key={item.id}
+                                    onMouseLeave={() => setActiveMenuId(null)}
                                     className={`bg-gray-200 flex-wrap w-full overflow-hidden top-0 left-0 ${item.id === activeMenuId ? "max-h-screen z-10" : "duration-0 max-h-0"}`}>
                             <div className="p-0 flex flex-wrap">
                                 <div className="flex w-full justify-around bg-gray-300 pt-4">
