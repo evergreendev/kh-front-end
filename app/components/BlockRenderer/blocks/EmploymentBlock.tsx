@@ -3,9 +3,10 @@ import qs from "qs";
 import {faChevronCircleRight} from "@awesome.me/kit-2a2dc088e2/icons/classic/thin";
 import {Employment, Media} from "@/app/types/payloadTypes";
 import Image from "next/image";
-import Button, {buttonConfig} from "@/app/components/Button";
+import Button from "@/app/components/Button";
 import {useEffect, useState} from "react";
 import Skeleton from "react-loading-skeleton";
+import {buttonConfig} from "@/app/components/ButtonConfig";
 
 async function getData(query: any, tag: string, page?: string) {
     const stringifiedQuery = qs.stringify(

@@ -7,7 +7,7 @@ import {faClock, faTicket} from "@awesome.me/kit-2a2dc088e2/icons/classic/regula
 import Link from "next/link";
 import {faChevronCircleRight} from "@awesome.me/kit-2a2dc088e2/icons/classic/thin";
 import {faLocationDot, faPhoneVolume} from "@awesome.me/kit-2a2dc088e2/icons/classic/solid";
-import Button, {buttonConfig} from "@/app/components/Button";
+import Button from "@/app/components/Button";
 import {
     faFacebookSquare,
     faInstagramSquare,
@@ -22,6 +22,7 @@ import Footer from "@/app/components/Footer";
 import MegaMenu from "@/app/components/MegaMenu";
 import BlockRenderer from "@/app/components/BlockRenderer";
 import SearchBar from "@/app/components/Search";
+import {buttonConfig} from "@/app/components/ButtonConfig";
 
 const MobileOnlyInfo =({meta}: {meta: Meta}) => {
     const currentSchedule = getCurrentSchedule(meta.hours)
@@ -143,7 +144,7 @@ const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
 
                         </div>
                         <div>
-                            <Button text="DONATE" href="https://donate.crazyhorsememorial.org/"
+                            <Button isExternal text="DONATE" href="https://donate.crazyhorsememorial.org/"
                                     config={buttonConfig.highlight + " text-center justify-around"}/>
                         </div>
                     </div>

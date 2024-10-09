@@ -1,9 +1,10 @@
 import {Media, Page} from "@/app/types/payloadTypes";
-import Button, {buttonConfig} from "@/app/components/Button";
+import Button from "@/app/components/Button";
 import {faChevronCircleRight} from "@awesome.me/kit-2a2dc088e2/icons/classic/thin";
 import Image from "next/image";
 import Link from "next/link";
 import {getSlugFromCollection} from "@/app/components/BlockRenderer/blocks/blockHelpers";
+import {buttonConfig} from "@/app/components/ButtonConfig";
 
 const BreakerBlock = ({block}: {
     block: {

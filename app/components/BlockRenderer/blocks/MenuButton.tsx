@@ -1,8 +1,9 @@
 import {Page} from "@/app/types/payloadTypes";
-import Button, {buttonConfig} from "@/app/components/Button";
+import Button from "@/app/components/Button";
 import {Fragment} from "react";
 import {faChevronCircleRight} from "@awesome.me/kit-2a2dc088e2/icons/classic/thin";
 import {getSlugFromCollection} from "@/app/components/BlockRenderer/blocks/blockHelpers";
+import {buttonConfig} from "@/app/components/ButtonConfig";
 
 const MenuButton = ({block, tabIndex}: {
     block: {

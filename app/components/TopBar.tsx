@@ -1,10 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import MegaMenu from "@/app/components/MegaMenu";
-import Button, {buttonConfig} from "@/app/components/Button";
+import Button from "@/app/components/Button";
 import React from "react";
 import {Media, Navigation, SiteOption} from "@/app/types/payloadTypes";
 import SearchBar from "@/app/components/Search";
+import {buttonConfig} from "@/app/components/ButtonConfig";
 
 const TopBar = ({siteOption, nav}: { siteOption: SiteOption, nav: Navigation }) => {
 
