@@ -107,7 +107,7 @@ const EmploymentBlock = ({block}: {
 
     if (!collectionItems || collectionItems.length === 0) return null;
 
-    return <div className="w-full max-w-screen-md mx-auto my-16">
+    return <div className="w-full max-w-screen-md mx-auto my-16 p-2">
         <h2 className="font-ptserif font-bold text-3xl my-4">{block.positionType.split("-").map(x => x.charAt(0).toUpperCase() + x.slice(1)).join("-")} Positions
             at {block.company === "crazy-horse" ? "Crazy Horse Memorial®" : "Korczak's Heritage"}</h2>
         {collectionItems.map((position: Employment) => {
