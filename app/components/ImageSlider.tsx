@@ -37,7 +37,7 @@ const ImageSlider = ({images, headerText, bodyText}: { images: Media[], headerTe
             ? <div className="flex w-full bg-pale-2"><Image style={{
                 maxWidth: `${(images[0].width || 0) * 1.1}px`,
                 objectPosition: `${images[0].focalX}% ${images[0].focalY}%`
-            }} className="max-h-[80vh] w-full object-cover grow mx-auto" src={images[0].url || ""}
+            }} className="aspect-square sm:aspect-auto max-h-[80vh] w-full object-cover grow mx-auto" src={images[0].url || ""}
                                                             alt={images[0].alt || ""} width={images[0].width || 0}
                                                             height={images[0].height || 0} key={images[0].url}/></div>
             : <Slider  {...sliderSettings}>

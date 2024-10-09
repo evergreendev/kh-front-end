@@ -40,9 +40,9 @@ const TopBar = ({siteOption, nav}: { siteOption: SiteOption, nav: Navigation }) 
                 <MegaMenu nav={nav}/>
             </div>
         </div>
-        <div className="flex flex-wrap lg:hidden">
+        <div className="w-full flex flex-wrap lg:hidden">
             <div
-                className="flex lg:hidden justify-between items-start max-w-screen-xl pl-0 pt-6 gap-x-4 xl:gap-x-0 xl:p-0">
+                className="flex w-full lg:hidden justify-between items-start max-w-screen-xl pl-0 pt-6 gap-x-4 xl:gap-x-0 xl:p-0">
                 <div className="flex flex-col justify-start gap-2">
                     <Link href="/" className="xl:hidden">
                         <Image className="w-52 ml-2" src={(siteOption.siteLogoSmall as Media).url || ""}
