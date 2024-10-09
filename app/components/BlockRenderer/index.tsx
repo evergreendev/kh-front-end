@@ -15,6 +15,7 @@ import SingleCollectionBlock from "@/app/components/BlockRenderer/blocks/SingleC
 import SpacerBlock from "@/app/components/BlockRenderer/blocks/SpacerBlock";
 import {GalleryBlock} from "@/app/components/BlockRenderer/blocks/GalleryBlock";
 import TimeLine from "@/app/components/BlockRenderer/blocks/TimeLine";
+import ImageCard from "@/app/components/BlockRenderer/blocks/ImageCard";
 
 const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
     blocks: any,
@@ -62,6 +63,8 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
                     return <GalleryBlock block={block as any} key={(block as any).id}/>
                 case "timeline":
                     return <TimeLine block={block as any} key={(block as any).id}/>
+                case "ImageCard":
+                    return <ImageCard block={block as any} key={(block as any).id}/>
                 default:
                     return <div key={(block as any).id}
                                 className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown Block
