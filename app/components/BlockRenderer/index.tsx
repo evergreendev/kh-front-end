@@ -45,7 +45,7 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
                 case "TextBlock":
                     return <TextBlock block={block as any} key={(block as any).id}/>
                 case "column":
-                    return <Columns block={block as any} key={(block as any).id} altMobileBackground={index % 2 === 0 ? "bg-pale-1 md:bg-transparent" : "bg-pale-2 md:bg-transparent"}/>
+                    return <Columns block={block as any} key={(block as any).id} altMobileBackground={(block as any).grayBackground ? "" : index % 2 === 0 ? "bg-pale-1 md:bg-transparent" : "bg-pale-2 md:bg-transparent"}/>
                 case "HeaderBlock":
                     return <HeaderBlock key={(block as any).id} block={block as any}/>
                 case "CompareSliderBlock":
