@@ -36,7 +36,7 @@ export default async function Page({params, searchParams}: { params: { slug: str
         slug: {
             equals: slug[slug.length - 1]
         }
-    }, "museum_");
+    }, "museumCollections_");
     const data = res.docs[0];
     const meta = await getMeta();
 
