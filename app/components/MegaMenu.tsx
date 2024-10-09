@@ -193,7 +193,7 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
                                     onMouseLeave={() => setActiveMenuId(null)}
                                     className={`bg-gray-200 flex-wrap w-full overflow-hidden top-0 left-0 ${item.id === activeMenuId ? "max-h-screen z-10" : "duration-0 max-h-0"}`}>
                             <div className="p-0 flex flex-wrap">
-                                <div className="flex w-full justify-around bg-gray-300">
+                                <div className="flex w-full justify-around bg-gray-300 p-2">
                                     <h2 className="border-b-4 border-b-brand-yellow text-center justify-self-center font-ptserif text-2xl font-bold text-gray-950">{item.title}</h2>
                                 </div>
                                 <div className="flex flex-wrap w-full p-2">
