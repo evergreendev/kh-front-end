@@ -193,10 +193,10 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
                                     onMouseLeave={() => setActiveMenuId(null)}
                                     className={`bg-gray-200 flex-wrap w-full overflow-hidden top-0 left-0 ${item.id === activeMenuId ? "max-h-screen z-10" : "duration-0 max-h-0"}`}>
                             <div className="p-0 flex flex-wrap">
-                                <div className="flex w-full justify-around bg-gray-300 pt-4">
-                                    <h2 className="border-b-4 border-b-brand-yellow text-center justify-self-center font-ptserif text-4xl font-bold text-gray-950 mb-6">{item.title}</h2>
+                                <div className="flex w-full justify-around bg-gray-300">
+                                    <h2 className="border-b-4 border-b-brand-yellow text-center justify-self-center font-ptserif text-2xl font-bold text-gray-950">{item.title}</h2>
                                 </div>
-                                <div className="flex flex-wrap w-full p-8">
+                                <div className="flex flex-wrap w-full p-2">
                                     {item.columns?.map((column, index) => {
                                         return <div key={column.id}
                                                     className={`flex flex-col ${widths[column.width || "1/4"]}`}>
@@ -279,10 +279,10 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
                                     onClick={() => setActiveMenuId(null)}><FontAwesomeIcon size="2x" icon={faCircleX}/>
                             </button>
                             <div className="p-0 flex flex-wrap flex-col">
-                                <div className="flex flex-col w-full justify-around bg-gray-300 pt-4">
-                                    <h2 className="border-b-4 border-b-brand-yellow text-center justify-self-center font-ptserif text-4xl font-bold text-gray-950 mb-6">{item.title}</h2>
+                                <div className="flex flex-col w-full justify-around bg-gray-300">
+                                    <h2 className="border-b-4 border-b-brand-yellow text-center justify-self-center font-ptserif text-2xl font-bold text-gray-950">{item.title}</h2>
                                 </div>
-                                <div className="flex flex-col flex-wrap w-full p-8">
+                                <div className="flex flex-col flex-wrap w-full p-2">
                                     {item.columns?.map((column, index) => {
                                         return <div key={column.id}
                                                     className={`flex flex-col ${widths[column.width || "1/4"]}`}>
