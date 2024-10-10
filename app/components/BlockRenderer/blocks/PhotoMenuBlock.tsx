@@ -46,7 +46,7 @@ const PhotoMenuBlock = ({block, tabIndex}: {
                     block.item?.map(item => {
                         if (!item.image || typeof item.image === "number") return <Fragment key={item.id}></Fragment>;
 
-                        return <Image className={`aspect-[4/3] duration-700 object-cover w-full absolute  transition-opacity ${activeMenu === item.id ? "opacity-100":"opacity-0"} border-r-8 border-r-brand-yellow`}
+                        return <Image style={{objectPosition: `${item.image.focalX}% ${item.image.focalY}%`}} className={`aspect-video duration-700 object-cover w-full absolute  transition-opacity ${activeMenu === item.id ? "opacity-100":"opacity-0"} border-r-8 border-r-brand-yellow`}
                                       key={item.id} src={item.image.url || ""} alt={item.image.alt || ""}
                                       width={item.image.width || 0} height={item.image.height || 0}/>
                     })
