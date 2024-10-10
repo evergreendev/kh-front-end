@@ -24,7 +24,7 @@ const MediaBlock = ({block}: {
                       height={block.media?.height || 0}/>
     }
     if(block.url){
-        return <div className={`${block.expandImage ? "aspect-auto h-full w-full" : "aspect-video"} group  mx-auto`}>
+        return <div className={`${block.expandImage ? "md:aspect-auto aspect-square h-full w-full" : "aspect-video"} group  mx-auto`}>
             {
                 <NeedsWindow>
                     <ReactPlayer width="100%" height="100%"
@@ -36,7 +36,7 @@ const MediaBlock = ({block}: {
             }
         </div>
     }
-    return <div className={`${block.expandImage ? "aspect-auto h-full w-full" : "aspect-video"} group  mx-auto`}>
+    return <div className={`${block.expandImage ? "md:aspect-auto aspect-square h-full w-full" : "aspect-video"} group  mx-auto`}>
         {
             <NeedsWindow>
                 <ReactPlayer width="100%" height="100%"
