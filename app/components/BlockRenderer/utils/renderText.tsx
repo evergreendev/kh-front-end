@@ -2,6 +2,7 @@ import React, {Fragment} from "react";
 import Link from "next/link";
 import Button from "@/app/components/Button";
 import {getSlugFromCollection} from "@/app/components/BlockRenderer/blocks/blockHelpers";
+import LeavingSiteLink from "@/app/components/LeavingSiteLink";
 
 const lexicalFormats = [[""]
 ,["bold"]
@@ -558,11 +559,9 @@ function renderText(root: any, key: number, id:string, styleOverride?: string, l
             return root.fields.linkType === "internal" ?
                 <Link key={key + id} className={`max-w-[58ch] mx-auto underline text-slate-700 ${linkStyleOverride||""} ${alignment[root.format as keyof {}]}`}
                       href={getSlugFromCollection(root.fields.doc.value, root.fields.doc.relationTo)}>{root.children.map((child: any,i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</Link> :
-                <a key={key + id} className={`max-w-[58ch] mx-auto underline text-slate-700 ${linkStyleOverride||""} ${alignment[root.format as keyof {}]}`}
-                   href={root.fields.url} rel={root.fields.newTab ? "noopener noreferrer" : ""}
-                   target={root.fields.newTab ? "_blank" : ""}>
+                <LeavingSiteLink rel={root.fields.newTab ? "noopener noreferrer" : ""} key={key + id} href={root.fields.url} className={`max-w-[58ch] mx-auto underline text-slate-700 ${linkStyleOverride||""} ${alignment[root.format as keyof {}]}`}>
                     {root.children.map((child: any,i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}
-                </a>
+                </LeavingSiteLink>
         case "relationship":
             return <Button key={key + id} text={root.value.title} href={"/" + root.value?.full_path}/>
         case "list":

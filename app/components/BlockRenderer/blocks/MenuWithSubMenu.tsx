@@ -1,6 +1,7 @@
 import {Page} from "@/app/types/payloadTypes";
 import Link from "next/link";
 import getUrlFromPageOrExternal from "@/app/utilities/getUrlFromPageOrExternal";
+import LeavingSiteLink from "@/app/components/LeavingSiteLink";
 
 const MenuWithSubMenu = ({block,tabIndex}: {
     block: {
@@ -36,7 +37,7 @@ const MenuWithSubMenu = ({block,tabIndex}: {
     return <div className="flex flex-col text-xl">
         {
             linkInfo.isExternal
-                ? <a tabIndex={tabIndex} className="p-2 hover:bg-white block" href={linkInfo.url}>{block.headerItem?.title||(block.headerItem?.Relation?.value as Page)?.title}</a>
+                ? <LeavingSiteLink tabIndex={tabIndex} className="p-2 hover:bg-white block" href={linkInfo.url}>block.headerItem?.title||(block.headerItem?.Relation?.value as Page)?.title</LeavingSiteLink>
                 : <Link tabIndex={tabIndex} className="p-2 hover:bg-white block" href={linkInfo.url}>{block.headerItem?.title||(block.headerItem?.Relation?.value as Page)?.title}</Link>
         }
         <div className="flex flex-col ml-6">
