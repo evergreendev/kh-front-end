@@ -41,7 +41,7 @@ const PhotoMenuBlock = ({block, tabIndex}: {
                 : <Link tabIndex={tabIndex} className="w-full text-4xl hover:bg-white p-4 text-center" key={block.id} href={linkInfo.url}>{block.title}</Link>
         }
         <div className="flex w-full">
-            <div className="hidden xl:flex flex-col aspect-[4/3] grow relative">
+            <div className="hidden xl:flex flex-col aspect-video grow relative">
                 {
                     block.item?.map(item => {
                         if (!item.image || typeof item.image === "number") return <Fragment key={item.id}></Fragment>;
