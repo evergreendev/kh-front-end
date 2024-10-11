@@ -23,7 +23,7 @@ const Footer = ({footer}: { footer: FooterType }) => {
             {
                 footer?.columns?.map(column => {
                     return <div className={`${widths[column.width || "1/4"]}`} key={column.id}>
-                        {renderText(column.content?.root,0,column.id||"","","text-white")}
+                        {renderText(column.content?.root,0,column.id||"","","text-white mb-2")}
                     </div>
                 })
             }
