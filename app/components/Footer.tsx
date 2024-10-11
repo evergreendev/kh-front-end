@@ -19,7 +19,7 @@ const Footer = ({footer}: { footer: FooterType }) => {
     }
 
     return <div className="bg-black text-white text-lg w-full">
-        <div className="flex flex-wrap justify-between m-8 w-full max-w-screen-2xl mx-auto font-semibold px-2">
+        <div className="gap-2 flex flex-wrap justify-between m-8 w-full max-w-screen-2xl mx-auto font-semibold px-2">
             {
                 footer?.columns?.map(column => {
                     return <div className={`${widths[column.width || "1/4"]}`} key={column.id}>
