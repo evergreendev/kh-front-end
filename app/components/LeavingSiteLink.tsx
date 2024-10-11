@@ -54,8 +54,7 @@ const LeavingSiteLink = ({children, href, rel, className,tabIndex}: {
 
                     <p className="mb-4">You will be directed to the following website,
                         which is operated by Korczak’s Heritage, Inc. (a privately-owned business operating at Crazy
-                        Horse with
-                        royalties to the Crazy Horse Memorial<sup>®</sup>), in {timeRemaining} seconds:</p>
+                        Horse), in {timeRemaining} seconds:</p>
                     <p className="text-center mb-4">{href.split("?")[0]}</p>
                     <a tabIndex={tabIndex} className="block underline mb-4" href={href}>Click here to redirect now</a>
                     <button className="bg-blue-900 text-white p-2" onClick={()=> {
