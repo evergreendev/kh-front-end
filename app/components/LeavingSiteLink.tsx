@@ -46,7 +46,7 @@ const LeavingSiteLink = ({children, href, rel, className,tabIndex}: {
     return <>
         <div className={`${modalIsShowing ? "flex" : "hidden"} fixed inset-0 w-full sm:w-auto`}>
             <div
-                className="w-full flex flex-col z-50 bg-white shadow-md max-w-prose absolute sm:left-1/2 top-1/2 sm:-translate-x-1/2 -translate-y-1/2 aspect-video lg:min-h-96 lg:min-w-96">
+                className="w-full text-center flex flex-col z-50 bg-white shadow-md max-w-prose absolute sm:left-1/2 top-1/2 sm:-translate-x-1/2 -translate-y-1/2 aspect-video lg:min-h-96 lg:min-w-96">
                 <h2 className="bg-slate-800 text-white sm:text-2xl font-bold p-4">You are exiting the Crazy Horse
                     Memorial<sup>®</sup> website.</h2>
                 <div className="p-4 my-auto">
