@@ -491,9 +491,9 @@ const FormattedText = ({formats, children}: { formats: string[], children: React
                     {children}
                 </FormattedText> </code>
             case "subscript":
-                return <sub><FormattedText formats={formats}>{children}</FormattedText></sub>
+                return <sub className="-z-10"><FormattedText formats={formats}>{children}</FormattedText></sub>
             case "superscript":
-                return <sup><FormattedText formats={formats}>{children}</FormattedText></sup>
+                return <sup className="-z-10"><FormattedText formats={formats}>{children}</FormattedText></sup>
             default:
                 return <FormattedText formats={formats}>
                     {children}

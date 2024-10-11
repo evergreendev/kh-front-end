@@ -44,10 +44,10 @@ const LeavingSiteLink = ({children, href, rel, className,tabIndex}: {
     }, [href,router,timeRemaining]);
 
     return <>
-        <div className={`${modalIsShowing ? "flex" : "hidden"} fixed inset-0`}>
+        <div className={`${modalIsShowing ? "flex" : "hidden"} fixed inset-0 w-full sm:w-auto`}>
             <div
-                className="flex flex-col z-50 bg-white shadow-md max-w-prose absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 aspect-video min-h-96 min-w-96">
-                <h2 className="bg-slate-800 text-white text-2xl font-bold p-4">You are exiting the Crazy Horse
+                className="w-full flex flex-col z-50 bg-white shadow-md max-w-prose absolute sm:left-1/2 top-1/2 sm:-translate-x-1/2 -translate-y-1/2 aspect-video lg:min-h-96 lg:min-w-96">
+                <h2 className="bg-slate-800 text-white sm:text-2xl font-bold p-4">You are exiting the Crazy Horse
                     Memorial<sup>®</sup> website.</h2>
                 <div className="p-4 my-auto">
                     <p className="text-center mb-4">Thank you for visiting our site.</p>
@@ -55,7 +55,7 @@ const LeavingSiteLink = ({children, href, rel, className,tabIndex}: {
                     <p className="mb-4">You will be directed to the following website,
                         which is operated by Korczak’s Heritage, Inc. (a privately-owned business operating at Crazy
                         Horse), in {timeRemaining} seconds:</p>
-                    <p className="text-center mb-4">{href.split("?")[0]}</p>
+                    <p className="text-center text-sm sm:text-base mb-4">{href.split("?")[0]}</p>
                     <a tabIndex={tabIndex} className="block underline mb-4" href={href}>Click here to redirect now</a>
                     <button className="bg-blue-900 text-white p-2" onClick={()=> {
                         setIsRunning(false);
