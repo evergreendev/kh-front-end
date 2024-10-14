@@ -30,6 +30,7 @@ export interface Config {
         'site-options': SiteOption;
         hours: Hour;
         footer: Footer;
+        calendar: Calendar;
     };
 }
 /**
@@ -446,6 +447,11 @@ export interface Page {
                 blockName?: string | null;
                 blockType: 'timeline';
             }
+                | {
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'CalendarBlock';
+            }
                 )[]
                 | null;
             width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
@@ -728,6 +734,11 @@ export interface Page {
         id?: string | null;
         blockName?: string | null;
         blockType: 'timeline';
+    }
+        | {
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'CalendarBlock';
     }
         )[]
         | null;
@@ -3063,7 +3074,6 @@ export interface Event {
         id?: string | null;
     }[]
         | null;
-    excerpt?: string | null;
     layout?:
         | (
         | {
@@ -3454,7 +3464,6 @@ export interface Event {
     }
         )[]
         | null;
-    shouldLink?: boolean | null;
     schedule?:
         | {
         title?: string | null;
@@ -4126,8 +4135,6 @@ export interface Hour {
     id: number;
     Schedules?:
         | {
-        schedule_start?: string | null;
-        schedule_end?: string | null;
         hours?:
             | {
             title?: string | null;
@@ -4173,3 +4180,32 @@ export interface Footer {
     updatedAt?: string | null;
     createdAt?: string | null;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "calendar".
+ */
+export interface Calendar {
+    id: number;
+    calendarItems?:
+        | {
+        title?: string | null;
+        eventPage?: {
+            relationTo: 'event';
+            value: number | Event;
+        } | null;
+        monthLongEvent?: boolean | null;
+        dates?:
+            | {
+            date?: string | null;
+            id?: string | null;
+        }[]
+            | null;
+        hour_start?: string | null;
+        hour_end?: string | null;
+        id?: string | null;
+    }[]
+        | null;
+    updatedAt?: string | null;
+    createdAt?: string | null;
+}
+

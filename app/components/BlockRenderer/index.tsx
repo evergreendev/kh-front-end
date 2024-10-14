@@ -16,24 +16,25 @@ import SpacerBlock from "@/app/components/BlockRenderer/blocks/SpacerBlock";
 import {GalleryBlock} from "@/app/components/BlockRenderer/blocks/GalleryBlock";
 import TimeLine from "@/app/components/BlockRenderer/blocks/TimeLine";
 import ImageCard from "@/app/components/BlockRenderer/blocks/ImageCard";
+import {CalendarBlock} from "@/app/components/BlockRenderer/blocks/CalendarBlock";
 
 const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
     blocks: any,
     tabIndex?: number
 }, ref: ForwardedRef<any>) {
     return <>{
-        blocks.map((block: unknown, index: number) => {
+        blocks.map((block: any, index: number) => {
             let typedBlock = block as { blockType: string };
             switch (typedBlock.blockType) {
                 case "MenuButton":
                     return <MenuButton tabIndex={tabIndex}
-                                       block={block as any}/>
+                                       block={block}/>
                 case "MenuWithSubMenu":
-                    return <MenuWithSubMenu tabIndex={tabIndex} block={block as any}
-                                            key={(block as any).id}/>
+                    return <MenuWithSubMenu tabIndex={tabIndex} block={block}
+                                            key={(block).id}/>
                 case "photoMenu":
-                    return <PhotoMenuBlock tabIndex={tabIndex} block={block as any}
-                                           key={(block as any).id}/>
+                    return <PhotoMenuBlock tabIndex={tabIndex} block={block}
+                                           key={(block).id}/>
                 case "SimpleMenu":
                     return <div key={(block as any).id}
                                 className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
@@ -65,6 +66,8 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
                     return <TimeLine block={block as any} key={(block as any).id}/>
                 case "ImageCard":
                     return <ImageCard block={block as any} key={(block as any).id}/>
+                case "CalendarBlock":
+                    return <CalendarBlock key={(block as any).id}/>
                 default:
                     return <div key={(block as any).id}
                                 className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown Block
