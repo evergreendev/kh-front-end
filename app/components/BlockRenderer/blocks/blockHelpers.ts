@@ -17,7 +17,11 @@ export function getSlugFromCollection(item: (Page | MuseumCollection | StudentSp
     }
     if (collectionSlug === "media") {
         return `${(item as Media)?.url}`
-    } else {
+    }
+    if(collectionSlug === "eventCat"){
+        return `/event/category/${(item as Impact)?.slug}`
+    }
+    else {
         return `/${camelCaseToKebabCase(collectionSlug)}/${(item as Impact)?.slug}`
     }
 }
