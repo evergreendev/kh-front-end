@@ -191,7 +191,7 @@ export const CalendarBlock = () => {
         }
 
         setDateElements(updatedDateElements);
-    }, [calendarItems, currDateObj, currMonth, currYear, handleDateClick, isCurrSelected]);
+    }, [calendarItems, currDateObj, currMonth, currYear, isCurrSelected]);
 
     useEffect(() => {
         setCurrentDateObj(new Date(currYear, currMonth, 1));
@@ -237,7 +237,7 @@ export const CalendarBlock = () => {
                         return <div className="text-center mb-6" key={item.id}>
                             <h4 className="font-bold text-xl">{item.title} {item.location ? `- ${item.location}` : ""} </h4>
                             {
-                                item.description ? <div className="max-w-prose mx-auto">{item.description}</div> : ""
+                                item.description ? <div className="max-w-prose mx-auto mb-4">{item.description}</div> : ""
                             }
                             {
                                 item?.times?.map(time => {
@@ -266,7 +266,7 @@ export const CalendarBlock = () => {
                             {
                                 item.eventPage && typeof item?.eventPage?.value !== "number"
                                     ? <Link className="italic font-bold underline"
-                                            href={"/event/" + item.eventPage.value.slug || "/"}>More</Link>
+                                            href={"/event/" + item.eventPage.value.slug || "/"}>More Info</Link>
                                     : ""
                             }
                         </div>
