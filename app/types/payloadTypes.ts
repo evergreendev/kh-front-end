@@ -4191,6 +4191,7 @@ export interface Calendar {
     calendarItems?:
         | {
         title?: string | null;
+        description?: string | null;
         eventPage?: {
             relationTo: 'event';
             value: number | Event;
