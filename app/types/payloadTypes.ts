@@ -4135,6 +4135,8 @@ export interface Hour {
     id: number;
     Schedules?:
         | {
+        schedule_start?: string | null;
+        schedule_end?: string | null;
         hours?:
             | {
             title?: string | null;
@@ -4193,6 +4195,9 @@ export interface Calendar {
             relationTo: 'event';
             value: number | Event;
         } | null;
+        location?:
+            | ('Cultural Center' | 'Covered Porch' | 'Museum Galleries' | 'Veranda Stage' | 'Sign up in WC Lobby')
+            | null;
         monthLongEvent?: boolean | null;
         dates?:
             | {
@@ -4200,8 +4205,13 @@ export interface Calendar {
             id?: string | null;
         }[]
             | null;
-        hour_start?: string | null;
-        hour_end?: string | null;
+        times?:
+            | {
+            hour_start?: string | null;
+            hour_end?: string | null;
+            id?: string | null;
+        }[]
+            | null;
         id?: string | null;
     }[]
         | null;

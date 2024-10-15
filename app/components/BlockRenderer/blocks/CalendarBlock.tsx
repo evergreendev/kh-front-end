@@ -1,6 +1,20 @@
 "use client"
 
 import {ReactNode, useCallback, useEffect, useState} from "react";
+import {Calendar} from "@/app/types/payloadTypes";
+
+async function getCalendarData(): Promise<Calendar>{
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/globals/calendar?locale=undefined&draft=false&depth=1`,
+        {
+            next: {
+                tags: ["siteOptions_"]
+            }
+        });
+    const data = await res.json();
+
+    return data;
+}
 
 const firstDayOfWeek = (date = new Date()) =>
     new Date(date.getFullYear(), date.getMonth(), 1).getDay();
@@ -22,6 +36,21 @@ function getDaysInMonth(month: number, year: number): number {
     return month === 1 && year % 4 === 0 ? 29 : daysInMonth[month];
 }
 
+// @ts-ignore
+function hasEventToday(calendarItem: Calendar["calendarItems"][0], currDate:Date): boolean {
+
+    if (!calendarItem || !calendarItem.dates) return false;
+
+    return calendarItem.dates.find((date: any) => {
+        const dateToCheck = new Date(date.date);
+        const year = currDate.getFullYear();
+        const month = currDate.getMonth();
+        const day = currDate.getDate();
+
+        return year === dateToCheck.getFullYear() && month === dateToCheck.getMonth() && day === dateToCheck.getDate();
+    });
+}
+
 export const CalendarBlock = () => {
     const dateObj = new Date();
 
@@ -32,6 +61,18 @@ export const CalendarBlock = () => {
     const [currYear, setCurrYear] = useState<number>(dateObj.getFullYear());
     const [dateElements, setDateElements] = useState<ReactNode[]>([]);
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+    const [calendarItems, setCalendarItems] = useState<Calendar["calendarItems"]|null>(null);
+
+
+    useEffect(() => {
+        async function getData(){
+            const data = await getCalendarData();
+
+            setCalendarItems(data.calendarItems)
+        }
+
+        getData();
+    }, []);
 
     const isCurrSelected = useCallback((date: number, month: number, year: number) => {
         if (selectedDate === null) return false;
@@ -84,7 +125,6 @@ export const CalendarBlock = () => {
 
         const dayOffset = firstDayOfWeek(currDateObj);
 
-        console.log(currDateObj.toDateString())
 
         const updatedDateElements = [];
 
@@ -104,6 +144,13 @@ export const CalendarBlock = () => {
                         className={`${isCurrSelected(i+1,currMonth,currYear) ? "font-bold border-brand-yellow bg-white":""} size-[14%] grow hover:bg-blue-100 border border-slate-200 aspect-square bg-slate-50 flex flex-col p-1`}
                         key={i}>
                     {i + 1}
+                    {
+                        calendarItems?.filter(x => {
+                            return hasEventToday(x, new Date(currYear, currMonth, i+1));
+                        }).map((item) => {
+                            return <div className="text-sm font-normal w-full bg-blue-100" key={item.id}>{item.title}</div>
+                        })
+                    }
                 </button>
             )
         }
@@ -122,7 +169,7 @@ export const CalendarBlock = () => {
         }
 
         setDateElements(updatedDateElements);
-    }, [currDateObj, currMonth, currYear, isCurrSelected]);
+    }, [calendarItems, currDateObj, currMonth, currYear, isCurrSelected]);
 
     useEffect(() => {
         setCurrentDateObj(new Date(currYear, currMonth, 1));
