@@ -9,7 +9,7 @@ async function getMeta() {
     const hoursRes = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/globals/hours?locale=undefined&draft=false&depth=1`,
         {
             next: {
-                tags: ["hours_"]
+                tags: ["siteOptions_"]
             }
         })
     const footerRes = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/globals/footer?locale=undefined&draft=false&depth=1`, {

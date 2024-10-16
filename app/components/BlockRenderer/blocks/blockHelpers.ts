@@ -11,7 +11,8 @@ export function camelCaseToKebabCase(str: string) {
 }
 
 
-export function getSlugFromCollection(item: (Page | MuseumCollection | StudentSpotlight | Passion | Impact | Media), collectionSlug: string): string {
+export function getSlugFromCollection(item: (Page | MuseumCollection | StudentSpotlight | Passion | Impact | Media | null | undefined | number), collectionSlug: string): string {
+    if (!item || typeof item === "number") return "";
     if (collectionSlug === "pages") {
         return `/${(item as Page)?.full_path}`
     }

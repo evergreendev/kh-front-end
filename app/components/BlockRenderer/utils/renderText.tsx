@@ -3,6 +3,7 @@ import Link from "next/link";
 import Button from "@/app/components/Button";
 import {getSlugFromCollection} from "@/app/components/BlockRenderer/blocks/blockHelpers";
 import LeavingSiteLink from "@/app/components/LeavingSiteLink";
+import BlockRenderer from "@/app/components/BlockRenderer";
 
 const lexicalFormats = [[""]
 ,["bold"]
@@ -577,6 +578,8 @@ function renderText(root: any, key: number, id:string, styleOverride?: string, l
         case "quote":
             return <blockquote key={key + id}
                                className={`max-w-[58ch] mx-auto border-l-2 pl-6 py-4 ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</blockquote>
+        case "block":
+            return <BlockRenderer blocks={[root.fields]}/>
         default:
             break;
     }

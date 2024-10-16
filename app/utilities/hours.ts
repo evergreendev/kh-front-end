@@ -7,26 +7,51 @@ type Hours = {
     id?: string | null;
 }
 
+export const getFutureSchedules = (hour: Hour) => {
+    const schedules = hour.Schedules
+
+    if (!schedules) return null;
+
+    return schedules.filter((schedule) => {
+        if (!schedule.schedule_start) return false;
+        if (!schedule.schedule_end) return false;
+
+        const start = new Date(schedule.schedule_start);
+        start.setUTCHours(0,0,0,0);
+        const end = new Date(schedule.schedule_end);
+        const today = new Date();
+        today.setUTCHours(0,0,0,0);
+
+        end.setUTCHours(23,59,59,999);
+
+        return start.getTime() >= today.getTime();
+    })
+}
+
 export const getCurrentSchedule = (hour: Hour) => {
     const schedules = hour.Schedules
 
     if (!schedules) return null;
-    const now = new Date().getTime();
 
     return schedules.find((schedule) => {
         if (!schedule.schedule_start) return false;
         if (!schedule.schedule_end) return false;
 
-        const start = new Date(schedule.schedule_start).getTime();
-        const end = new Date(schedule.schedule_end).getTime();
+        const start = new Date(schedule.schedule_start);
+        start.setUTCHours(0,0,0,0);
+        const end = new Date(schedule.schedule_end);
+        const today = new Date();
+        today.setUTCHours(0,0,0,0);
 
-        return now > start && now < end;
+        end.setUTCHours(23,59,59,999);
+
+        return today.getTime() >= start.getTime() && today.getTime() < end.getTime();
     })
 }
 
 const getHourText = (hour: number, minutes: string) => {
     const a = hour > 12 ? "pm" : "am";
-    const hourText = a === "am" ? hour : hour - 12;
+    const hourText = a === "am" ? hour : (hour - 12)||12;
 
     return hourText + ":" + minutes + a;
 }
