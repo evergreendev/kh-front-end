@@ -1,6 +1,6 @@
 "use client"
 
-import {ReactNode, useCallback, useEffect, useState} from "react";
+import React, {ReactNode, useCallback, useEffect, useState} from "react";
 import {Calendar} from "@/app/types/payloadTypes";
 import Link from "next/link";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
@@ -53,12 +53,59 @@ function hasEventToday(calendarItem: Calendar["calendarItems"][0], currDate: Dat
     });
 }
 
-export const CalendarBlock = () => {
+const CalendarButton = (
+    {
+        onClick,
+        isSelected,
+        isCurrentMonth,
+        date,
+        currYear,
+        currMonth,
+        items
+    }:{onClick: () => void,
+        isSelected: boolean,
+        isCurrentMonth: boolean,
+        date: number,
+        currMonth: number,
+        currYear: number,
+        items:Calendar["calendarItems"]}
+    ) => {
+    if (currMonth < 0){
+        currMonth = 11;
+        currYear -= 1;
+    }
+    if (currMonth > 11){
+        currMonth = 0;
+        currYear += 1;
+    }
+
+    return <button
+        onClick={onClick}
+        className={`
+        ${isSelected
+            ? "font-bold border-brand-yellow bg-white"
+            : ""} 
+            size-[14%] grow hover:bg-blue-100 border border-slate-200 aspect-[1/2] sm:aspect-square ${isCurrentMonth ? "bg-slate-50" : "bg-gray-400"} flex flex-col p-1`}
+    >
+        {date}
+        {
+            items?.filter(x => {
+                return hasEventToday(x, new Date(currYear, currMonth, date));
+            }).map((item) => {
+                return <div className="text-sm font-normal w-full bg-blue-100 mb-1 size-2 sm:size-auto"
+                            key={item.id}><span className="hidden sm:inline">{item.title}</span></div>
+            })
+        }
+    </button>
+}
+
+
+export const CalendarBlock = ({block}:{block:any}) => {
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const {replace} = useRouter();
     const dateObj = new Date();
-    
+
     const [currDateObj, setCurrentDateObj] = useState(dateObj);
     const [currMonth, setCurrMonth] = useState<number>(dateObj.getMonth());
     const [currYear, setCurrYear] = useState<number>(dateObj.getFullYear());
@@ -117,7 +164,7 @@ export const CalendarBlock = () => {
         params.set('month', month.toString());
         params.set('date', date.toString());
         params.set('year', year.toString());
-        
+
 
         setCurrMonth(month);
 
@@ -151,29 +198,28 @@ export const CalendarBlock = () => {
 
         for (let i = 0; i < dayOffset; i++) {
             updatedDateElements.push(
-                <button
+                <CalendarButton
                     onClick={() => handleDateClick((getDaysInMonth(currMonth - 1, currYear) + (i + 1)) - dayOffset, currMonth - 1, currYear)}
-                    className={`${isCurrSelected((getDaysInMonth(currMonth - 1, currYear) + (i + 1)) - dayOffset, currMonth - 1, currYear) ? "font-bold border-brand-yellow bg-white" : ""} size-[14%] grow border hover:bg-blue-100 border-slate-200 aspect-square bg-gray-400 flex flex-col p-1`}>
-                    {(getDaysInMonth(currMonth - 1, currYear) + (i + 1)) - dayOffset}
-                </button>
+                    isSelected={false}
+                    isCurrentMonth={false}
+                    date={(getDaysInMonth(currMonth - 1, currYear) + (i + 1)) - dayOffset}
+                    currMonth={currMonth - 1}
+                    currYear={currYear}
+                    items={calendarItems}/>
             )
         }
 
         for (let i = 0; i < getDaysInMonth(currMonth, currYear); i++) {
             updatedDateElements.push(
-                <button onClick={() => handleDateClick(i + 1, currMonth, currYear)}
-                        className={`${isCurrSelected(i + 1, currMonth, currYear) ? "font-bold border-brand-yellow bg-white" : ""} size-[14%] grow hover:bg-blue-100 border border-slate-200 aspect-square bg-slate-50 flex flex-col p-1`}
-                        key={i}>
-                    {i + 1}
-                    {
-                        calendarItems?.filter(x => {
-                            return hasEventToday(x, new Date(currYear, currMonth, i + 1));
-                        }).map((item) => {
-                            return <div className="text-sm font-normal w-full bg-blue-100 mb-1"
-                                        key={item.id}>{item.title}</div>
-                        })
-                    }
-                </button>
+                <CalendarButton
+                    key={block.id+i}
+                    items={calendarItems}
+                    currMonth={currMonth}
+                    currYear={currYear}
+                    date={i+1}
+                    onClick={() => handleDateClick(i + 1, currMonth, currYear)}
+                    isCurrentMonth={true}
+                    isSelected={isCurrSelected(i + 1, currMonth, currYear)}/>
             )
         }
 
@@ -182,11 +228,10 @@ export const CalendarBlock = () => {
 
         for (let i = 0; i < 6 - lastDayOfMonth; i++) {
             updatedDateElements.push(
-                <button
+                <CalendarButton
                     onClick={() => handleDateClick((i + 1), currMonth + 1, currYear)}
-                    className={`${isCurrSelected((i + 1), currMonth + 1, currYear) ? "font-bold border-brand-yellow bg-white" : ""} size-[14%] grow border hover:bg-blue-100 border-slate-200 aspect-square bg-gray-400 flex flex-col p-1`}>
-                    {i + 1}
-                </button>
+                    isSelected={false}
+                    isCurrentMonth={false} date={i + 1} currMonth={currMonth+1} currYear={currYear} items={calendarItems}/>
             )
         }
 
@@ -201,9 +246,9 @@ export const CalendarBlock = () => {
     return <div className="max-w-screen-lg mx-auto">
         <div className="flex justify-between">
             <button onClick={() => handleMonthClick(currMonth - 1)}>prev</button>
-            <DatePicker dateFormat="MMMM, yyyy" selected={currDateObj} onChange={(date)=>{
-                if (date){
-                    handleDateClick(date.getDate(),date.getMonth(),date.getFullYear())
+            <DatePicker dateFormat="MMMM, yyyy" selected={currDateObj} onChange={(date) => {
+                if (date) {
+                    handleDateClick(date.getDate(), date.getMonth(), date.getFullYear())
                 }
                 setSelectedDate(date);
             }}/>
@@ -221,11 +266,11 @@ export const CalendarBlock = () => {
         <div className="flex flex-wrap">
             {dateElements.map(x => x)}
         </div>
-        <div>
+        <div className="sticky bottom-0 sm:relative bg-white py-1 shadow-sm max-h-[30vh] sm:max-h-screen overflow-y-auto">
             {
                 selectedDate
                     ?
-                    <h3 className={`font-ptserif text-center font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 text-3xl mb-6 mt-2`}>
+                    <h3 className={`font-ptserif text-center font-bold underline underline-offset-8 decoration-brand-yellow decoration-4 text-lg sm:text-3xl mb-6 mt-2`}>
                         Happening {selectedDate?.getMonth() + 1}/{selectedDate.getDate()}/{selectedDate.getFullYear()}
                     </h3>
                     : ""
@@ -234,10 +279,11 @@ export const CalendarBlock = () => {
                 selectedDate
                     ?
                     calendarItems?.filter(x => hasEventToday(x, new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate()))).map((item) => {
-                        return <div className="text-center mb-6" key={item.id}>
-                            <h4 className="font-bold text-xl">{item.title} {item.location ? `- ${item.location}` : ""} </h4>
+                        return <div className="sm:text-center sm:mb-6 p-2" key={item.id}>
+                            <h4 className="font-bold sm:text-xl">{item.title} {item.location ? `- ${item.location}` : ""} </h4>
                             {
-                                item.description ? <div className="max-w-prose mx-auto mb-4">{item.description}</div> : ""
+                                item.description ?
+                                    <div className="hidden sm:block max-w-prose mx-auto mb-4">{item.description}</div> : ""
                             }
                             {
                                 item?.times?.map(time => {

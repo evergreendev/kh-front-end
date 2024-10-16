@@ -36,40 +36,41 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
                     return <PhotoMenuBlock tabIndex={tabIndex} block={block}
                                            key={(block).id}/>
                 case "SimpleMenu":
-                    return <div key={(block as any).id}
+                    return <div key={(block).id}
                                 className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown</div>
                 case "Breaker":
-                    return <BreakerBlock block={block as any} key={(block as any).id}/>
+                    return <BreakerBlock block={block} key={(block).id}/>
                 case "collectionCards":
-                    return <CollectionCardsBlock key={(block as any).id} block={block as any}/>
+                    return <CollectionCardsBlock key={(block).id} block={block}/>
                 case "MediaBlock":
-                    return <MediaBlock block={block as any} key={(block as any).id}/>
+                    return <MediaBlock block={block} key={(block).id}/>
                 case "TextBlock":
-                    return <TextBlock block={block as any} key={(block as any).id}/>
+                    return <TextBlock block={block} key={(block).id}/>
                 case "column":
-                    return <Columns block={block as any} key={(block as any).id} altMobileBackground={(block as any).grayBackground ? "" : index % 2 === 0 ? "bg-pale-1 md:bg-transparent" : "bg-pale-2 md:bg-transparent"}/>
+                    return <Columns block={block} key={(block).id}
+                                    altMobileBackground={(block).grayBackground ? "" : index % 2 === 0 ? "bg-pale-1 md:bg-transparent" : "bg-pale-2 md:bg-transparent"}/>
                 case "HeaderBlock":
-                    return <HeaderBlock key={(block as any).id} block={block as any}/>
+                    return <HeaderBlock key={(block).id} block={block}/>
                 case "CompareSliderBlock":
-                    return <CompareSliderBlock block={block as any} key={(block as any).id}/>
+                    return <CompareSliderBlock block={block} key={(block).id}/>
                 case "FormBlock":
-                    return <FormBlock key={(block as any).id} block={block as any}/>
+                    return <FormBlock key={(block).id} block={block}/>
                 case "EmploymentBlock":
-                    return <EmploymentBlock key={(block as any).id} block={block as any}/>
+                    return <EmploymentBlock key={(block).id} block={block}/>
                 case "singleCollectionBlock":
-                    return <SingleCollectionBlock block={block as any} key={(block as any).id}/>
+                    return <SingleCollectionBlock block={block} key={(block).id}/>
                 case "SpacerBlock":
-                    return <SpacerBlock block={block as any} key={(block as any).id}/>
+                    return <SpacerBlock block={block} key={(block).id}/>
                 case "gallery":
-                    return <GalleryBlock block={block as any} key={(block as any).id}/>
+                    return <GalleryBlock block={block} key={(block).id}/>
                 case "timeline":
-                    return <TimeLine block={block as any} key={(block as any).id}/>
+                    return <TimeLine block={block} key={(block).id}/>
                 case "ImageCard":
-                    return <ImageCard block={block as any} key={(block as any).id}/>
+                    return <ImageCard block={block} key={(block).id}/>
                 case "CalendarBlock":
-                    return <CalendarBlock key={(block as any).id}/>
+                    return <CalendarBlock block={block} key={(block).id}/>
                 default:
-                    return <div key={(block as any).id}
+                    return <div key={(block).id}
                                 className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown Block
                         Type</div>
             }
