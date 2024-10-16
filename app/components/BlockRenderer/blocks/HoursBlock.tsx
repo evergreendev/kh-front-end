@@ -127,7 +127,7 @@ const HoursBlock = async ({block}: {
                 if(!hour) return null;
 
                 return <div className="mb-2" key={hour.id}>
-                    {schedulesToShow.hours.length !== 1 ? <h3 className="text-xl">{hour.title} {hour.hour_start ? ` - ${getHoursFromSchedule(hour)}` : ``}</h3> : <div className='flex items-center text-xl mb-7'>Open Today: {getHoursFromSchedule(hour)}</div>}
+                    {schedulesToShow.hours.length !== 1 ? <h3 className="text-xl mb-2">{hour.title} {hour.hour_start ? ` - ${getHoursFromSchedule(hour)}` : ``}</h3> : <div className='flex items-center text-xl mb-7'>Open Today: {getHoursFromSchedule(hour)}</div>}
                 </div>
             })
         }
