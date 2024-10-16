@@ -106,10 +106,10 @@ const HoursBlock = async ({block}: {
                     const startDate = new Date(x.schedule_start);
                     const endDate = new Date(x.schedule_end);
 
-                    return <div key={x.id} className="mb-4">
+                    return <div key={x.id} className="mb-6">
                         <h2>{startDate.getMonth()+1}/{startDate.getDate()}/{startDate.getFullYear()}-{endDate.getMonth()+1}/{endDate.getDate()}/{endDate.getFullYear()}</h2>
                         {x.hours?.map(hour => {
-                            return <h3 key={hour.id} className="text-xl">{hour.title} - {getHoursFromSchedule(hour)}</h3>
+                            return <h3 key={hour.id} className="text-xl">{hour.title} {hour.hour_start ? ` - ${getHoursFromSchedule(hour)}` : ``}</h3>
                         })}
                     </div>
                 })
@@ -127,7 +127,7 @@ const HoursBlock = async ({block}: {
                 if(!hour) return null;
 
                 return <div className="mb-2" key={hour.id}>
-                    {schedulesToShow.hours.length !== 1 ? <h3 className="text-xl">{hour.title} - {getHoursFromSchedule(hour)}</h3> : <div className='flex items-center text-xl mb-7'>Open Today: {getHoursFromSchedule(hour)}</div>}
+                    {schedulesToShow.hours.length !== 1 ? <h3 className="text-xl">{hour.title} {hour.hour_start ? ` - ${getHoursFromSchedule(hour)}` : ``}</h3> : <div className='flex items-center text-xl mb-7'>Open Today: {getHoursFromSchedule(hour)}</div>}
                 </div>
             })
         }
