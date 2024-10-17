@@ -59,7 +59,8 @@ const getHourText = (hour: number, minutes: string) => {
 export const getHoursFromSchedule = (hours: Hours) => {
     if (!hours.hour_start || !hours.hour_end) return null;
     const start = new Date(hours.hour_start);
+
     const end = new Date(hours.hour_end);
 
-    return getHourText(start.getHours(), (start.getMinutes() < 10 ? '0' : '') + start.getMinutes()) + "-" + getHourText(end.getHours(), (end.getMinutes() < 10 ? '0' : '') + end.getMinutes());
+    return getHourText(start.getHours() - (start.getTimezoneOffset()/60), (start.getMinutes() < 10 ? '0' : '') + start.getMinutes()) + "-" + getHourText(end.getHours()-(end.getTimezoneOffset()/60), (end.getMinutes() < 10 ? '0' : '') + end.getMinutes());
 }
