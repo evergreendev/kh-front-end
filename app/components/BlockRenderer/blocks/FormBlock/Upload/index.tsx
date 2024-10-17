@@ -20,7 +20,7 @@ export const Upload = ({field, errors}: {
         {errors?.fieldName === field.name ? <FieldError message={errors.message}/> : ""}
         <label className="mr-2 font-opensans font-normal text-sm"
                htmlFor={field.name}>
-            {field.label || field.name} {field.required ? "(required)" : ""} {field.maxSize ? `(max upload size: ${field.maxSize}MB)`:"(max upload size: 25MB)"}
+            {field.label || field.name} {field.required ? "(required field)" : ""} {field.maxSize ? `(max upload size: ${field.maxSize}MB)`:"(max upload size: 25MB)"}
         </label>
         <div className="max-w-full mt-auto">
             <input
