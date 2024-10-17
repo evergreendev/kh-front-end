@@ -19,7 +19,7 @@ async function getData(query: any, tag: string, page?: string) {
     );
 
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/employment/${stringifiedQuery}&depth=2&limit=20`,
+        `${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/employment/${stringifiedQuery}&depth=2&limit=50&sort=title`,
         {
             next: {
                 tags: [tag]
