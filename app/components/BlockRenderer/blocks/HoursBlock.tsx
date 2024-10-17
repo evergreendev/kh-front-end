@@ -1,6 +1,5 @@
 import {getCurrentSchedule, getFutureSchedules, getHoursFromSchedule} from "@/app/utilities/hours";
 import {ReactNode} from "react";
-import {className} from "postcss-selector-parser";
 import Link from "next/link";
 import {
     Event,
@@ -11,7 +10,6 @@ import {
     StudentSpotlight,
     Support,
     Page,
-    Hour
 } from "@/app/types/payloadTypes";
 import {getSlugFromCollection} from "@/app/components/BlockRenderer/blocks/blockHelpers";
 
@@ -27,19 +25,26 @@ async function getData() {
     return await hoursRes.json();
 }
 
-const MaybeLinkWrapper = ({children, href, isExternal,className}:{children:ReactNode,href?:string|null,isExternal?:boolean|null,className?:string|null}) => {
-    if (!href) return <div className={className||""}>
-            {children}
-        </div>
-    if (isExternal) return <a className={className||""} href={href}>{children}</a>
+const MaybeLinkWrapper = ({children, href, isExternal, className}: {
+    children: ReactNode,
+    href?: string | null,
+    isExternal?: boolean | null,
+    className?: string | null
+}) => {
+    if (!href) return <div className={className || ""}>
+        {children}
+    </div>
+    if (isExternal) return <a className={className || ""} href={href}>{children}</a>
 
-    return <Link href={href} className={className||""}>{children}</Link>
+    return <Link href={href} className={className || ""}>{children}</Link>
 }
 
 const HoursBlock = async ({block}: {
     block: {
         showAllCurrent?: boolean | null;
         showAllFuture?: boolean | null;
+        centerText?: boolean | null;
+        boldText?: boolean | null;
         external?: boolean | null;
         Relation?:
             | ({
@@ -93,23 +98,25 @@ const HoursBlock = async ({block}: {
         };
     }
 
-    if (block.showAllFuture){
+    if (block.showAllFuture) {
         schedulesToShow = getFutureSchedules(data);
 
         return <MaybeLinkWrapper
             className={``}
             href={block.external
                 ? block.external_url
-                : getSlugFromCollection(block.Relation?.value, block.Relation?.relationTo||"")}>
+                : getSlugFromCollection(block.Relation?.value, block.Relation?.relationTo || "")}>
             {
                 schedulesToShow?.map(x => {
                     const startDate = new Date(x.schedule_start);
                     const endDate = new Date(x.schedule_end);
 
-                    return <div key={x.id} className="mb-6">
-                        <h2>{startDate.getMonth()+1}/{startDate.getDate()}/{startDate.getFullYear()}-{endDate.getMonth()+1}/{endDate.getDate()}/{endDate.getFullYear()}</h2>
+                    return <div key={x.id}
+                                className={`mb-2 ${block.centerText ? "text-center" : ""} ${block.boldText ? "font-bold" : ""}`}>
+                        <h2>{startDate.getMonth() + 1}/{startDate.getDate()}/{startDate.getFullYear()}-{endDate.getMonth() + 1}/{endDate.getDate()}/{endDate.getFullYear()}</h2>
                         {x.hours?.map(hour => {
-                            return <h3 key={hour.id} className="text-xl mb-2">{hour.title} {hour.hour_start ? ` - ${getHoursFromSchedule(hour)}` : ``}</h3>
+                            return <h3 key={hour.id}
+                                       className="text-xl mb-2">{hour.title} {hour.hour_start ? ` - ${getHoursFromSchedule(hour)}` : ``}</h3>
                         })}
                     </div>
                 })
@@ -121,13 +128,17 @@ const HoursBlock = async ({block}: {
         className={``}
         href={block.external
             ? block.external_url
-            : getSlugFromCollection(block.Relation?.value, block.Relation?.relationTo||"")}>
+            : getSlugFromCollection(block.Relation?.value, block.Relation?.relationTo || "")}>
         {
             schedulesToShow?.hours?.map(hour => {
-                if(!hour) return null;
+                if (!hour) return null;
 
-                return <div className="mb-2" key={hour.id}>
-                    {schedulesToShow.hours.length !== 1 ? <h3 className="text-xl mb-2">{hour.title} {hour.hour_start ? ` - ${getHoursFromSchedule(hour)}` : ``}</h3> : <div className='flex items-center text-xl mb-7'>Open Today: {getHoursFromSchedule(hour)}</div>}
+                return <div
+                    className={`mb-2 ${block.centerText ? "text-center" : ""} ${block.boldText ? "font-bold" : ""}`}
+                    key={hour.id}>
+                    {schedulesToShow.hours.length !== 1 ?
+                        <h3 className="text-xl mb-2">{hour.title} {hour.hour_start ? ` - ${getHoursFromSchedule(hour)}` : ``}</h3> :
+                        <div className='flex items-center text-xl mb-7'>Open Today: {getHoursFromSchedule(hour)}</div>}
                 </div>
             })
         }
