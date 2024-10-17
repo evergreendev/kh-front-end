@@ -28,7 +28,7 @@ const PageContent = ({data, meta}: { data: Page, meta: any }) => {
                 }
             </div>
         </div>
-        <div className="w-full pt-16">
+        <div className="w-full">
             <BlockRenderer blocks={data.layout}/>
         </div>
         <Footer footer={meta.footer}/>
