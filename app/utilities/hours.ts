@@ -51,7 +51,7 @@ export const getCurrentSchedule = (hour: Hour) => {
 
 const getHourText = (hour: number, minutes: string) => {
     const a = hour > 12 ? "pm" : "am";
-    const hourText = a === "am" ? hour : (hour - 12)||12;
+    const hourText = a === "am" ? hour||12 : (hour - 12)||12;
 
     return hourText + ":" + minutes + a;
 }
@@ -62,5 +62,5 @@ export const getHoursFromSchedule = (hours: Hours) => {
 
     const end = new Date(hours.hour_end);
 
-    return getHourText(start.getHours() - (start.getTimezoneOffset()/60), (start.getMinutes() < 10 ? '0' : '') + start.getMinutes()) + "-" + getHourText(end.getHours()-(end.getTimezoneOffset()/60), (end.getMinutes() < 10 ? '0' : '') + end.getMinutes());
+    return getHourText(start.getHours(), (start.getMinutes() < 10 ? '0' : '') + start.getMinutes()) + "-" + getHourText(end.getHours(), (end.getMinutes() < 10 ? '0' : '') + end.getMinutes());
 }
