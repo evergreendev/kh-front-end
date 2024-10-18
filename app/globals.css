@@ -115,3 +115,7 @@ body {
 .dots .slick-active button{
   background: #e5e5e5;
 }
+
+img{
+  pointer-events: none;
+}
