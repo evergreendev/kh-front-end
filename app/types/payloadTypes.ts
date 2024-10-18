@@ -32,6 +32,7 @@ export interface Config {
         hours: Hour;
         footer: Footer;
         calendar: Calendar;
+        admission: Admission;
     };
 }
 /**
@@ -513,6 +514,47 @@ export interface Page {
                 blockName?: string | null;
                 blockType: 'HoursBlock';
             }
+                | {
+                showAllFuture?: boolean | null;
+                external?: boolean | null;
+                Relation?:
+                    | ({
+                    relationTo: 'pages';
+                    value: number | Page;
+                } | null)
+                    | ({
+                    relationTo: 'museumCollections';
+                    value: number | MuseumCollection;
+                } | null)
+                    | ({
+                    relationTo: 'impact';
+                    value: number | Impact;
+                } | null)
+                    | ({
+                    relationTo: 'passions';
+                    value: number | Passion;
+                } | null)
+                    | ({
+                    relationTo: 'studentSpotlight';
+                    value: number | StudentSpotlight;
+                } | null)
+                    | ({
+                    relationTo: 'support';
+                    value: number | Support;
+                } | null)
+                    | ({
+                    relationTo: 'event';
+                    value: number | Event;
+                } | null)
+                    | ({
+                    relationTo: 'eventCat';
+                    value: number | EventCat;
+                } | null);
+                external_url?: string | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'AdmissionBlock';
+            }
                 )[]
                 | null;
             width?: ('1/3' | '2/3' | '1/2' | '1/4' | '3/4' | '1/1') | null;
@@ -860,6 +902,47 @@ export interface Page {
         id?: string | null;
         blockName?: string | null;
         blockType: 'HoursBlock';
+    }
+        | {
+        showAllFuture?: boolean | null;
+        external?: boolean | null;
+        Relation?:
+            | ({
+            relationTo: 'pages';
+            value: number | Page;
+        } | null)
+            | ({
+            relationTo: 'museumCollections';
+            value: number | MuseumCollection;
+        } | null)
+            | ({
+            relationTo: 'impact';
+            value: number | Impact;
+        } | null)
+            | ({
+            relationTo: 'passions';
+            value: number | Passion;
+        } | null)
+            | ({
+            relationTo: 'studentSpotlight';
+            value: number | StudentSpotlight;
+        } | null)
+            | ({
+            relationTo: 'support';
+            value: number | Support;
+        } | null)
+            | ({
+            relationTo: 'event';
+            value: number | Event;
+        } | null)
+            | ({
+            relationTo: 'eventCat';
+            value: number | EventCat;
+        } | null);
+        external_url?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'AdmissionBlock';
     }
         )[]
         | null;
@@ -4932,4 +5015,36 @@ export interface Calendar {
     updatedAt?: string | null;
     createdAt?: string | null;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "admission".
+ */
+export interface Admission {
+    id: number;
+    Admissions?:
+        | {
+        admission_start: string;
+        admission_end: string;
+        body?: {
+            root: {
+                type: string;
+                children: {
+                    type: string;
+                    version: number;
+                    [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+            };
+            [k: string]: unknown;
+        } | null;
+        id?: string | null;
+    }[]
+        | null;
+    updatedAt?: string | null;
+    createdAt?: string | null;
+}
+
 

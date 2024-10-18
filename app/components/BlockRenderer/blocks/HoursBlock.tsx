@@ -1,6 +1,6 @@
+"use client"
 import {getCurrentSchedule, getFutureSchedules, getHoursFromSchedule} from "@/app/utilities/hours";
-import {ReactNode} from "react";
-import Link from "next/link";
+import {useEffect, useState} from "react";
 import {
     Event,
     EventCat,
@@ -12,34 +12,10 @@ import {
     Page,
 } from "@/app/types/payloadTypes";
 import {getSlugFromCollection} from "@/app/components/BlockRenderer/blocks/blockHelpers";
+import Skeleton from "react-loading-skeleton";
+import MaybeLinkWrapper from "@/app/components/MaybeLinkWrapper";
 
-
-async function getData() {
-    const hoursRes = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/globals/hours?locale=undefined&draft=false&depth=1`,
-        {
-            next: {
-                tags: ["siteOptions_"]
-            }
-        })
-
-    return await hoursRes.json();
-}
-
-const MaybeLinkWrapper = ({children, href, isExternal, className}: {
-    children: ReactNode,
-    href?: string | null,
-    isExternal?: boolean | null,
-    className?: string | null
-}) => {
-    if (!href) return <div className={className || ""}>
-        {children}
-    </div>
-    if (isExternal) return <a className={className || ""} href={href}>{children}</a>
-
-    return <Link href={href} className={className || ""}>{children}</Link>
-}
-
-const HoursBlock = async ({block}: {
+const HoursBlock = ({block}: {
     block: {
         showAllCurrent?: boolean | null;
         showAllFuture?: boolean | null;
@@ -85,8 +61,27 @@ const HoursBlock = async ({block}: {
         blockType: 'HoursBlock';
     }
 }) => {
-    const data = await getData();
+    useEffect(() => {
+        async function getData() {
+            const hoursRes = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/globals/hours?locale=undefined&draft=false&depth=1`,
+                {
+                    next: {
+                        tags: ["siteOptions_"]
+                    }
+                })
+
+            const res =  await hoursRes.json();
+
+            setData(res);
+        }
+
+        getData();
+    }, []);
+    const [data,setData] = useState(null);
+
     let schedulesToShow;
+
+    if(!data) return <Skeleton height={24}/>
 
     if (!block.showAllFuture) {
         schedulesToShow = getCurrentSchedule(data);

@@ -18,6 +18,7 @@ import TimeLine from "@/app/components/BlockRenderer/blocks/TimeLine";
 import ImageCard from "@/app/components/BlockRenderer/blocks/ImageCard";
 import {CalendarBlock} from "@/app/components/BlockRenderer/blocks/CalendarBlock";
 import HoursBlock from "./blocks/HoursBlock";
+import AdmissionBlock from "@/app/components/BlockRenderer/blocks/AdmissionBlock";
 
 const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
     blocks: any,
@@ -72,6 +73,8 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
                     return <CalendarBlock block={block} key={(block).id}/>
                 case "HoursBlock":
                     return <HoursBlock block={block} key={block.id} />
+                case "AdmissionBlock":
+                    return <AdmissionBlock block={block} key={block.id}/>
                 default:
                     return <div key={(block).id}
                                 className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown Block
