@@ -1435,6 +1435,11 @@ export interface MuseumCollection {
     title: string;
     slug?: string | null;
     publishedAt?: string | null;
+    meta?: {
+        title?: string | null;
+        description?: string | null;
+        image?: number | Media | null;
+    };
     updatedAt: string;
     createdAt: string;
     _status?: ('draft' | 'published') | null;
@@ -1916,6 +1921,11 @@ export interface Impact {
     title: string;
     slug?: string | null;
     publishedAt?: string | null;
+    meta?: {
+        title?: string | null;
+        description?: string | null;
+        image?: number | Media | null;
+    };
     updatedAt: string;
     createdAt: string;
     _status?: ('draft' | 'published') | null;
@@ -2397,6 +2407,11 @@ export interface Passion {
     title: string;
     slug?: string | null;
     publishedAt?: string | null;
+    meta?: {
+        title?: string | null;
+        description?: string | null;
+        image?: number | Media | null;
+    };
     updatedAt: string;
     createdAt: string;
     _status?: ('draft' | 'published') | null;
@@ -2878,6 +2893,11 @@ export interface StudentSpotlight {
     title: string;
     slug?: string | null;
     publishedAt?: string | null;
+    meta?: {
+        title?: string | null;
+        description?: string | null;
+        image?: number | Media | null;
+    };
     updatedAt: string;
     createdAt: string;
     _status?: ('draft' | 'published') | null;
@@ -3359,6 +3379,11 @@ export interface Support {
     title: string;
     slug?: string | null;
     publishedAt?: string | null;
+    meta?: {
+        title?: string | null;
+        description?: string | null;
+        image?: number | Media | null;
+    };
     updatedAt: string;
     createdAt: string;
     _status?: ('draft' | 'published') | null;
@@ -3840,6 +3865,11 @@ export interface Event {
     slug?: string | null;
     publishedAt?: string | null;
     eventCategory?: (number | null) | EventCat;
+    meta?: {
+        title?: string | null;
+        description?: string | null;
+        image?: number | Media | null;
+    };
     updatedAt: string;
     createdAt: string;
     _status?: ('draft' | 'published') | null;
@@ -4280,6 +4310,11 @@ export interface EventCat {
     title: string;
     slug?: string | null;
     publishedAt?: string | null;
+    meta?: {
+        title?: string | null;
+        description?: string | null;
+        image?: number | Media | null;
+    };
     updatedAt: string;
     createdAt: string;
     _status?: ('draft' | 'published') | null;
