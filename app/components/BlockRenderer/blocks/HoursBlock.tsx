@@ -107,11 +107,11 @@ const HoursBlock = ({block}: {
                     const endDate = new Date(x.schedule_end);
 
                     return <div key={x.id}
-                                className={`mb-2 ${block.centerText ? "text-center flex flex-col items-center" : ""} ${block.boldText ? "font-bold" : ""}`}>
+                                className={`mb-6 bg-pale-1 ${block.centerText ? "text-center flex flex-col items-center" : ""} ${block.boldText ? "font-bold" : ""}`}>
                         <h2>{startDate.getMonth() + 1}/{startDate.getDate()}/{startDate.getFullYear()}-{endDate.getMonth() + 1}/{endDate.getDate()}/{endDate.getFullYear()}</h2>
                         {x.hours?.map(hour => {
                             return <h3 key={hour.id}
-                                       className="text-xl mb-2">{hour.title} {hour.hour_start ? ` - ${getHoursFromSchedule(hour)}` : ``}</h3>
+                                       className="text-xl mb-2"><span className="font-bold">{hour.title}</span> {hour.hour_start ? ` - ${getHoursFromSchedule(hour)}` : ``}</h3>
                         })}
                     </div>
                 })
@@ -132,7 +132,7 @@ const HoursBlock = ({block}: {
                     className={`mb-2 ${block.centerText ? "text-center flex flex-col items-center" : ""} ${block.boldText ? "font-bold" : ""}`}
                     key={hour.id}>
                     {schedulesToShow.hours.length !== 1 ?
-                        <h3 className="text-xl mb-2">{hour.title} {hour.hour_start ? ` - ${getHoursFromSchedule(hour)}` : ``}</h3> :
+                        <h3 className="text-xl mb-2"><span className="font-bold">{hour.title}</span> {hour.hour_start ? ` - ${getHoursFromSchedule(hour)}` : ``}</h3> :
                         <div className='flex items-center text-xl mb-7'>Open Today: {getHoursFromSchedule(hour)}</div>}
                 </div>
             })
