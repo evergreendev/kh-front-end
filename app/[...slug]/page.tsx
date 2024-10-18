@@ -1,11 +1,11 @@
 import qs from "qs";
 import React from "react";
-import {notFound} from "next/navigation";
 import PageContent from "@/app/components/standardPageContents/PageContent";
 import PageClient from "@/app/components/standardPageContents/page.client";
 import getMeta from "@/app/data/getMeta";
+import attemptRedirect from "@/app/utilities/attemptRedirect";
 
-async function getData(query: any, tag: string, page?: string) {
+async function getData(query: any, tag: string) {
     const stringifiedQuery = qs.stringify(
         {
             where: query,
@@ -24,7 +24,7 @@ async function getData(query: any, tag: string, page?: string) {
         }
     );
 
-    if (res.status !== 200) notFound();
+    if (res.status !== 200) return null;
 
     return res.json();
 }
@@ -40,7 +40,7 @@ export default async function Page({params, searchParams}: { params: { slug: str
     const data = res.docs[0];
     const meta = await getMeta();
 
-    if (!data) notFound();
+    if(!data) await attemptRedirect(params.slug);
 
     if (secret === process.env.NEXT_PUBLIC_DRAFT_SECRET){
         return (
