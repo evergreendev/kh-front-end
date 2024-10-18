@@ -99,7 +99,7 @@ const AdmissionBlock = ({block}: {
 
                     return <div key={x.id}
                                 className={`mb-2`}>
-                        <h2 className="text-3xl font-bold underline underline-offset-8 decoration-brand-yellow mb-4 decoration-4 text-center">{startDate.getMonth() + 1}/{startDate.getDate()}/{startDate.getFullYear()} - {endDate.getMonth() + 1}/{endDate.getDate()}/{endDate.getFullYear()}</h2>
+                        <h2 className="mb-3 text-2xl font-normal font-opensans undefined">{startDate.getMonth() + 1}/{startDate.getDate()}/{startDate.getFullYear()} - {endDate.getMonth() + 1}/{endDate.getDate()}/{endDate.getFullYear()}</h2>
                         <div>{renderText(x?.body?.root, 1, x?.id || "1")}</div>
                     </div>
                 })
