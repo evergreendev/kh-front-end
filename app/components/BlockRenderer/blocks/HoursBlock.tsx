@@ -108,7 +108,7 @@ const HoursBlock = ({block}: {
 
                     return <div key={x.id}
                                 className={`mb-6 bg-pale-1 p-2 ${block.centerText ? "text-center flex flex-col items-center" : ""} ${block.boldText ? "font-bold" : ""}`}>
-                        <h2 className="mb-4">{startDate.getMonth() + 1}/{startDate.getDate()}/{startDate.getFullYear()}-{endDate.getMonth() + 1}/{endDate.getDate()}/{endDate.getFullYear()}</h2>
+                        <h2 className="mb-4">{startDate.getMonth() + 1}/{startDate.getDate()}/{startDate.getFullYear()} - {endDate.getMonth() + 1}/{endDate.getDate()}/{endDate.getFullYear()}</h2>
                         {x.hours?.map(hour => {
                             return <h3 key={hour.id}
                                        className="text-xl mb-2"><span className="font-bold">{hour.title}</span> {hour.hour_start ? ` - ${getHoursFromSchedule(hour)}` : ``}</h3>
