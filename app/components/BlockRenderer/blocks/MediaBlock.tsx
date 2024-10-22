@@ -16,6 +16,7 @@ const MediaBlock = ({block}: {
         blockType: 'MediaBlock';
     }
 }) => {
+    console.log(block)
     if (typeof block.media === "number") return null;
     if (block.media?.mimeType?.includes("image")) {
         return <Image className={`max-w-full mx-auto ${block.expandImage ? "w-full" : ""}`}
@@ -27,7 +28,7 @@ const MediaBlock = ({block}: {
         return <div className={`${block.expandImage ? "md:aspect-auto aspect-square h-full w-full" : "aspect-video"} group  mx-auto`}>
             {
                 <NeedsWindow>
-                    <ReactPlayer width="100%" height="100%"
+                    <ReactPlayer playsinline={true} playing={true} width="100%" height="100%"
                                  playIcon={<Image className="size-14 xl:size-52 group-hover:opacity-100 transition-opacity opacity-70"
                                                   src={PlayButton} alt="Play"/>} controls={true}
                                  light={typeof block.thumbnail === "number" ? "" : block.thumbnail?.url || ""}
@@ -39,7 +40,7 @@ const MediaBlock = ({block}: {
     return <div className={`${block.expandImage ? "md:aspect-auto aspect-square h-full w-full" : "aspect-video"} group  mx-auto`}>
         {
             <NeedsWindow>
-                <ReactPlayer width="100%" height="100%"
+                <ReactPlayer playsinline={true} playing={true} width="100%" height="100%"
                              playIcon={<Image className="size-14 xl:size-52 group-hover:opacity-100 transition-opacity opacity-70"
                                               src={PlayButton} alt="Play"/>} controls={true}
                              light={typeof block.thumbnail === "number" ? "" : block.thumbnail?.url || ""}
