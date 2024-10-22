@@ -40,6 +40,9 @@ const Footer = ({footer}: { footer: FooterType }) => {
                     className="size-14 text-gray-400 hover:text-gray-100"
                     icon={faYoutubeSquare}/></a>
             </div>
+            <div className="w-full">
+                <p className="text-sm italic">Photos and videos ©Crazy Horse Memorial Foundation</p>
+            </div>
         </div>
     </div>
 }
