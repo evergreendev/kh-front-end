@@ -28,10 +28,10 @@ export const GalleryBlock = ({block}: {
                              height={item?.image?.height || 0}
                              width={item?.image?.width || 0}>
                     {({ref, open}) => (
-                        <Image className="grow" ref={ref} onClick={open} key={item.id} src={item?.image?.sizes?.thumbnail?.url || ""}
+                        <div className="grow flex" onClick={open}><Image className="grow" ref={ref} key={item.id} src={item?.image?.sizes?.thumbnail?.url || ""}
                                alt={item?.image?.alt || ""}
                                height={item?.image?.sizes?.thumbnail?.height || 0}
-                               width={item?.image?.sizes?.thumbnail?.width || 0}/>
+                                    width={item?.image?.sizes?.thumbnail?.width || 0}/></div>
                     )}
                 </Item>
             })}
