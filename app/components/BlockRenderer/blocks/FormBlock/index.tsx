@@ -65,11 +65,13 @@ const FormBlock = ({block}: {
     const initialState: {
         message: boolean | null,
         error: { message: string, fieldName: string } | null
-        fields: any
+        fields: any,
+        form: null|number
     } = {
         message: false,
         error: null,
         fields: typeof block.form !== "number" ? block.form?.fields : null,
+        form: typeof block.form !== "number" ? block.form?.id || null : block.form || null
     }
 
     const [state, formAction] = useFormState(submitPayloadForm, initialState);

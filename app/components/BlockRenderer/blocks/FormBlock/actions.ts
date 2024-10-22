@@ -19,7 +19,8 @@ function fileIsAccepted(fileType: string, allowedTypes: "Images" | "Video" | "PD
 export async function submitPayloadForm(prevState: {
     message: boolean | null,
     error: { message: string, fieldName: string } | null
-    fields: any
+    fields: any,
+    form: null|number
 }, formData: FormData) {
     const formDataArr = Array.from(formData);
     const filesToUpload = [];
@@ -41,6 +42,7 @@ export async function submitPayloadForm(prevState: {
                         message: `File is too large. Max upload size for this field is ${currField.maxSize}MB`,
                     },
                     fields: prevState.fields,
+                    form: prevState.form,
                 }
             }
 
@@ -52,12 +54,19 @@ export async function submitPayloadForm(prevState: {
                     message: `This file type is not accepted. Please upload one of the following: ${currField.fileTypes.join(", ")}`,
                 },
                 fields: prevState.fields,
+                form: prevState.form,
             }
         }
 
     }
 
     const dataToSend = formDataArr.map((value) => {
+        if (typeof value[1] !== "string"){
+            return {
+                field: value[0],
+                value: "upload:-"+value[1].name,
+            }
+        }
         return {
             field: value[0],
             value: value[1],
@@ -65,31 +74,37 @@ export async function submitPayloadForm(prevState: {
     });
 
     try {
+
+        for (const file of filesToUpload) {
+        await axios.postForm(`${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/userUploadedFormDocuments`, {
+            file: file.formData[1],
+        }, {headers: {"Content-Type": "multipart/form-data"}});
+    }
         const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/form-submissions`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                form: 1,
+                form: prevState.form,
                 submissionData: dataToSend,
             }),
         })
         const data = await res.json();
 
-        for (const file of filesToUpload) {
-            await axios.postForm(`${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/userUploadedFormDocuments`, {
-                file: file.formData[1],
-                _payload: JSON.stringify({
-                    associatedFormSubmission: data.doc.id
-                }),
-            }, {headers: {"Content-Type": "multipart/form-data"}});
-        }
+/*        await axios.post(`${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/userUploadedFormDocuments`, {
+            _payload: JSON.stringify({
+                associatedFormSubmission: data.doc.id
+            }),
+        })*/
+
+
 
         return {
             message: true,
             error: null,
             fields: prevState.fields,
+            form: prevState.form
         }
 
     } catch (err: any) {
@@ -102,6 +117,7 @@ export async function submitPayloadForm(prevState: {
                 fieldName: "all"
             },
             fields: prevState.fields,
+            form: prevState.form,
         }
     }
 }
