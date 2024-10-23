@@ -114,7 +114,7 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
     }, [escFunction]);
 
     const menuRef = useRef<HTMLDivElement>(null);
-    const firstFocusableElementRef = useRef<HTMLElement>(null);
+    const firstFocusableElementRef = useRef<any>(null);
 
     useOutsideAlerter(menuRef, () => {
         setIsExpanded(false)
@@ -155,12 +155,13 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
                                 item.columns?.length === 0 ? <>
                                     {item.external
                                         ?
-                                        <a className={`bg-gray-900 flex border-l border-l-slate-800 border-t-4 border-transparent group text-white hover:border-t-brand-yellow`}
+                                        <a ref={index === 1 ? firstFocusableElementRef : undefined} className={`bg-gray-900 flex border-l border-l-slate-800 border-t-4 border-transparent group text-white hover:border-t-brand-yellow`}
                                            href={item.external_url || ""}>
                                     <span
                                         className="flex items-center p-4 hover:bg-gray-900 hover:text-white group-focus:bg-gray-700">{item.title || (item.Relation?.value as Page)?.title}</span>
                                         </a>
                                         : <Link
+                                            ref={index === 1 ? firstFocusableElementRef : undefined}
                                             className={`bg-gray-900 flex border-l border-l-slate-800 border-t-4 border-transparent group text-white hover:border-t-brand-yellow`}
                                             href={getSlugFromCollection((item.Relation?.value as Page), item.Relation?.relationTo || "page")}>
                                     <span
@@ -307,8 +308,8 @@ const MegaMenu = ({nav}: { nav: Navigation }) => {
                 }}
                 onKeyDown={(e) => {
                     if (e.key === "Enter") {
-                        firstFocusableElementRef.current?.focus();
-                        setIsExpanded(!isExpanded)
+                        setIsExpanded(false)
+                        setActiveMenuId(null)
                     }
                 }}
         >
