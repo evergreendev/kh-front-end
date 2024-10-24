@@ -543,7 +543,7 @@ function renderText(root: any, key: number, id:string, styleOverride?: string, l
             }
         case "paragraph":
             return root.children?.length > 0 ? <p key={key}
-                      className={`${styleOverride||"text-lg xl:text-xl max-w-[58ch] mx-auto font-opensans"}   mx-auto 
+                      className={`${styleOverride||"text-lg xl:text-xl max-w-[43rem] mx-auto font-opensans"}   mx-auto 
                       ${alignment[root.format as keyof {}]||""}
                       
                       `}>{root.children.map((child: any,i:number) => {
@@ -558,9 +558,9 @@ function renderText(root: any, key: number, id:string, styleOverride?: string, l
             return <hr key={key + id} className="my-3"/>
         case "link":
             return root.fields.linkType === "internal" ?
-                <Link key={key + id} className={`max-w-[58ch] mx-auto underline text-slate-700 ${linkStyleOverride||""} ${alignment[root.format as keyof {}]}`}
+                <Link key={key + id} className={`max-w-[43rem] mx-auto underline text-slate-700 ${linkStyleOverride||""} ${alignment[root.format as keyof {}]}`}
                       href={getSlugFromCollection(root.fields.doc.value, root.fields.doc.relationTo)}>{root.children.map((child: any,i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</Link> :
-                <LeavingSiteLink rel={root.fields.newTab ? "noopener noreferrer" : ""} key={key + id} href={root.fields.url} className={`max-w-[58ch] mx-auto underline text-slate-700 ${linkStyleOverride||""} ${alignment[root.format as keyof {}]}`}>
+                <LeavingSiteLink rel={root.fields.newTab ? "noopener noreferrer" : ""} key={key + id} href={root.fields.url} className={`max-w-[43rem] mx-auto underline text-slate-700 ${linkStyleOverride||""} ${alignment[root.format as keyof {}]}`}>
                     {root.children.map((child: any,i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}
                 </LeavingSiteLink>
         case "relationship":
@@ -568,16 +568,16 @@ function renderText(root: any, key: number, id:string, styleOverride?: string, l
         case "list":
             if (root.tag === "ol") {
                 return <ol key={key + id}
-                           className={`max-w-[58ch] mx-auto list-decimal list-inside pl-2 ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</ol>
+                           className={`max-w-[43rem] mx-auto list-decimal list-inside pl-2 ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</ol>
             }
             return <ul key={key + id}
-                       className={`max-w-[58ch] mx-auto list-disc pl-2 list-inside ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</ul>
+                       className={`max-w-[43rem] mx-auto list-disc pl-2 list-inside ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</ul>
         case "listitem":
             return <li key={key + id}
                        className={`${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</li>
         case "quote":
             return <blockquote key={key + id}
-                               className={`max-w-[58ch] mx-auto border-l-2 pl-6 py-4 ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</blockquote>
+                               className={`max-w-[43rem] mx-auto border-l-2 pl-6 py-4 ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</blockquote>
         case "block":
             return <BlockRenderer blocks={[root.fields]}/>
         default:
