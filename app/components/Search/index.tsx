@@ -108,6 +108,7 @@ const SearchBar = () => {
                     results.length > 0
                         ? <>
                             {results.map(result => {
+                                if (!result) return;
                             return <Link className="block p-2 hover:bg-gray-200" href={`/id-redirect-to-slug/${result.doc?.relationTo}/${result.doc.value}`} key={result.id}>{result.title}</Link>
                         })}
                             {
