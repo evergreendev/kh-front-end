@@ -568,10 +568,10 @@ function renderText(root: any, key: number, id:string, styleOverride?: string, l
         case "list":
             if (root.tag === "ol") {
                 return <ol key={key + id}
-                           className={`max-w-[43rem] mx-auto list-decimal list-inside pl-2 ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</ol>
+                           className={`max-w-[43rem] mx-auto list-decimal list-inside pl-4 ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</ol>
             }
             return <ul key={key + id}
-                       className={`max-w-[43rem] mx-auto list-disc pl-2 list-inside ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</ul>
+                       className={`max-w-[43rem] mx-auto list-disc pl-4 list-inside ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</ul>
         case "listitem":
             return <li key={key + id}
                        className={`${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</li>
