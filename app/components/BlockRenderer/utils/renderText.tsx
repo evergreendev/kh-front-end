@@ -574,7 +574,7 @@ function renderText(root: any, key: number, id:string, styleOverride?: string, l
                        className={`max-w-[43rem] mx-auto list-disc pl-4 list-inside ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</ul>
         case "listitem":
             return <li key={key + id}
-                       className={`mb-3 ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</li>
+                       className={`mb-2 ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</li>
         case "quote":
             return <blockquote key={key + id}
                                className={`max-w-[43rem] mx-auto border-l-2 pl-6 py-4 ${alignment[root.format as keyof {}]}`}>{root.children.map((child: any, i:number) => renderText(child, key + i, id, styleOverride,linkStyleOverride))}</blockquote>
