@@ -16,7 +16,6 @@ const MediaBlock = ({block}: {
         blockType: 'MediaBlock';
     }
 }) => {
-    console.log(block)
     if (typeof block.media === "number") return null;
     if (block.media?.mimeType?.includes("image")) {
         return <Image className={`max-w-full mx-auto ${block.expandImage ? "w-full" : ""}`}

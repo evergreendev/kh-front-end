@@ -2,7 +2,6 @@ import {notFound, redirect} from "next/navigation";
 import {camelCaseToKebabCase} from "@/app/components/BlockRenderer/blocks/blockHelpers";
 
 async function getData(tag: string, id: string,collection:string) {
-    console.log(collection);
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_PAYLOAD_SERVER_URL}/api/${collection}/${id}?depth=0`,
         {

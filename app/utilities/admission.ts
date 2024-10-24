@@ -4,7 +4,6 @@ export const getFutureAdmissions = (admission: Admission) => {
     const admissions = admission.Admissions
 
     if (!admissions) return null;
-    console.log(admissions)
 
     return admissions.filter((admission) => {
         if (!admission.admission_start) return false;
