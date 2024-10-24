@@ -97,7 +97,7 @@ const SearchBar = () => {
         };
     }, [resultRef]);
 
-    return <div className="flex text-gray-500 items-center text-xl mt-auto ml-2.5 relative">
+    return <div className="z-30 flex text-gray-500 items-center text-xl mt-auto ml-2.5 relative">
         <FontAwesomeIcon className="size-5 mr-2" icon={faMagnifyingGlass} size="sm"/>
         <input ref={inputRef} value={value} onChange={(e) => setValue(e.target.value)} placeholder="Search"/>
         {
@@ -108,7 +108,7 @@ const SearchBar = () => {
                     results.length > 0
                         ? <>
                             {results.map(result => {
-                            return <Link className="block p-2 hover:bg-gray-200" href={`/id-redirect-to-slug/${result.doc.relationTo}/${result.doc.value}`} key={result.id}>{result.title}</Link>
+                            return <Link className="block p-2 hover:bg-gray-200" href={`/id-redirect-to-slug/${result.doc?.relationTo}/${result.doc.value}`} key={result.id}>{result.title}</Link>
                         })}
                             {
                                 hasMoreResults && <Link className="block p-2 hover:bg-gray-200" href={`/search?search=${debouncedValue}`}>View all {totalResults} results</Link>
