@@ -159,7 +159,9 @@ const HomeLayout = ({data, meta}: { data: Page, meta: Meta}) => {
                             <div className="w-full">
                                 <Video
                                     thumbnail={typeof data.intro_content.thumbnail === "number" ? undefined : data.intro_content.thumbnail}
-                                    src={(data.intro_content.videoFile as Media).url || ""}/>
+                                    src={(data.intro_content.videoFile as Media).url || ""}
+                                    mobileSrc={(data.intro_content.mobileVideoFile as Media).url || ""}
+                                />
                             </div> :
                             ""
                     }

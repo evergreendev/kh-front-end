@@ -109,6 +109,7 @@ export interface Page {
     intro_content?: {
         video?: string | null;
         videoFile?: number | Media | null;
+        mobileVideoFile?: number | Media | null;
         thumbnail?: number | Media | null;
         images?:
             | {
