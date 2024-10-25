@@ -6,9 +6,11 @@ import {Media, Page} from "@/app/types/payloadTypes";
 import Footer from "@/app/components/Footer";
 import BlockRenderer from "@/app/components/BlockRenderer";
 import ImageSlider from "@/app/components/ImageSlider";
+import Announcement from "@/app/components/Announcement";
 
 const PageContent = ({data, meta}: { data: Page, meta: any }) => {
     return <main className="flex min-h-screen flex-col items-center w-full">
+        <Announcement data={meta.banner}/>
         <div className="p-2 xl:px-24 xl:py-7 flex flex-col items-center w-full">
             <TopBar siteOption={meta.siteOptions} nav={meta.nav}/>
         </div>

@@ -23,6 +23,7 @@ import MegaMenu from "@/app/components/MegaMenu";
 import BlockRenderer from "@/app/components/BlockRenderer";
 import SearchBar from "@/app/components/Search";
 import {buttonConfig} from "@/app/components/ButtonConfig";
+import Announcement from "@/app/components/Announcement";
 
 const MobileOnlyInfo = ({meta}: { meta: Meta }) => {
     const currentSchedule = getCurrentSchedule(meta.hours)
@@ -125,9 +126,10 @@ const SideBar = ({meta}: { meta: Meta }) => {
     </div>
 }
 
-const HomeLayout = ({data, meta}: { data: Page, meta: Meta }) => {
+const HomeLayout = ({data, meta}: { data: Page, meta: Meta}) => {
     return (
         <main className="flex min-h-screen flex-col justify-between">
+                <Announcement data={meta.banner}/>
             <div className="flex flex-wrap xl:flex-nowrap w-full mb-4 max-w-top ml-auto mt-4 pl-0 xl:pl-7">
                 <SideBar meta={meta}/>
                 <div className="font-ptserif mx-auto grow pl-0 xl:pl-10">
