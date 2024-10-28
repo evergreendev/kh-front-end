@@ -287,15 +287,17 @@ export const CalendarBlock = ({block}:{block:any}) => {
                             }
                             {
                                 item?.times?.map(time => {
-                                    if (!time.hour_start || !time.hour_end) return;
+                                    if (!time.hour_start) return;
 
                                     const startTime = new Date(time.hour_start);
                                     const startAmPm = startTime.getHours() <= 11 ? "AM" : "PM";
                                     const startHour = (startAmPm === "AM" ? startTime.getHours() : startTime.getHours() - 12) || 12;
 
-                                    if (time.hour_start && !time.hour_end) {
+
+
+                                    if (!time.hour_end) {
                                         return <div key={time.id}>
-                                            {startHour}:{startTime.getMinutes()}
+                                            {startHour}:{startTime.getMinutes()} {startAmPm}
                                         </div>
                                     }
                                     const endTime = new Date(time.hour_end);
