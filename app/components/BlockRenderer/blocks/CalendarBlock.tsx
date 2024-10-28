@@ -94,7 +94,7 @@ const CalendarButton = (
             items?.filter(x => {
                 return hasEventToday(x, new Date(currYear, currMonth, date));
             }).map((item) => {
-                return <div className="text-sm font-normal w-full bg-blue-100 mb-1 size-2 sm:size-auto"
+                return <div className="text-sm font-normal w-full bg-blue-100 mb-1 size-2 sm:size-auto sm:w-full"
                             key={item.id}><span className="hidden sm:inline">{item.title}</span></div>
             })
         }
