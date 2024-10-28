@@ -62,19 +62,21 @@ const CalendarButton = (
         currYear,
         currMonth,
         items
-    }:{onClick: () => void,
+    }: {
+        onClick: () => void,
         isSelected: boolean,
         isCurrentMonth: boolean,
         date: number,
         currMonth: number,
         currYear: number,
-        items:Calendar["calendarItems"]}
-    ) => {
-    if (currMonth < 0){
+        items: Calendar["calendarItems"]
+    }
+) => {
+    if (currMonth < 0) {
         currMonth = 11;
         currYear -= 1;
     }
-    if (currMonth > 11){
+    if (currMonth > 11) {
         currMonth = 0;
         currYear += 1;
     }
@@ -100,7 +102,7 @@ const CalendarButton = (
 }
 
 
-export const CalendarBlock = ({block}:{block:any}) => {
+export const CalendarBlock = ({block}: { block: any }) => {
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const {replace} = useRouter();
@@ -212,11 +214,11 @@ export const CalendarBlock = ({block}:{block:any}) => {
         for (let i = 0; i < getDaysInMonth(currMonth, currYear); i++) {
             updatedDateElements.push(
                 <CalendarButton
-                    key={block.id+i}
+                    key={block.id + i}
                     items={calendarItems}
                     currMonth={currMonth}
                     currYear={currYear}
-                    date={i+1}
+                    date={i + 1}
                     onClick={() => handleDateClick(i + 1, currMonth, currYear)}
                     isCurrentMonth={true}
                     isSelected={isCurrSelected(i + 1, currMonth, currYear)}/>
@@ -231,7 +233,8 @@ export const CalendarBlock = ({block}:{block:any}) => {
                 <CalendarButton
                     onClick={() => handleDateClick((i + 1), currMonth + 1, currYear)}
                     isSelected={false}
-                    isCurrentMonth={false} date={i + 1} currMonth={currMonth+1} currYear={currYear} items={calendarItems}/>
+                    isCurrentMonth={false} date={i + 1} currMonth={currMonth + 1} currYear={currYear}
+                    items={calendarItems}/>
             )
         }
 
@@ -266,7 +269,8 @@ export const CalendarBlock = ({block}:{block:any}) => {
         <div className="flex flex-wrap">
             {dateElements.map(x => x)}
         </div>
-        <div className="sticky bottom-0 sm:relative bg-white py-1 shadow-sm max-h-[30vh] sm:max-h-screen overflow-y-auto">
+        <div
+            className="sticky bottom-0 sm:relative bg-white py-1 shadow-sm max-h-[30vh] sm:max-h-screen overflow-y-auto">
             {
                 selectedDate
                     ?
@@ -283,7 +287,8 @@ export const CalendarBlock = ({block}:{block:any}) => {
                             <h4 className="font-bold sm:text-xl">{item.title} {item.location ? `- ${item.location}` : ""} </h4>
                             {
                                 item.description ?
-                                    <div className="hidden sm:block max-w-prose mx-auto mb-4">{item.description}</div> : ""
+                                    <div
+                                        className="hidden sm:block max-w-prose mx-auto mb-4">{item.description}</div> : ""
                             }
                             {
                                 item?.times?.map(time => {
@@ -294,10 +299,9 @@ export const CalendarBlock = ({block}:{block:any}) => {
                                     const startHour = (startAmPm === "AM" ? startTime.getHours() : startTime.getHours() - 12) || 12;
 
 
-
                                     if (!time.hour_end) {
                                         return <div key={time.id}>
-                                            {startHour}:{startTime.getMinutes()} {startAmPm}
+                                            {startHour}:{startTime.getMinutes().toString().padStart(2, "0")} {startAmPm}
                                         </div>
                                     }
                                     const endTime = new Date(time.hour_end);
@@ -305,7 +309,7 @@ export const CalendarBlock = ({block}:{block:any}) => {
                                     const endHour = (endAmPm === "AM" ? endTime.getHours() : endTime.getHours() - 12) || 12;
 
                                     return <div key={time.id}>
-                                        {startHour}:{startTime.getMinutes()}{startAmPm === endAmPm ? "" : startAmPm} - {endHour}:{endTime.getMinutes()}{endAmPm}
+                                        {startHour}:{startTime.getMinutes().toString().padStart(2, "0")}{startAmPm === endAmPm ? "" : startAmPm} - {endHour}:{endTime.getMinutes().toString().padStart(2, "0")}{endAmPm}
                                     </div>
 
 
