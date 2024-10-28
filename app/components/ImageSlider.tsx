@@ -24,7 +24,7 @@ const ImageSlider = ({images, headerText, bodyText}: { images: Media[], headerTe
         return <div
             className="w-full bg-pale-1 xl:bg-transparent p-4 xl:p-0 flex flex-col mx-auto max-w-screen-lg xl:mt-6 text-center">
             <div className="flex xl:justify-center xl:mx-auto">
-                <h2 className="text-2xl text-left xl:text-4xl font-bold border-b-brand-yellow border-b-4">{headerText}</h2>
+                <h2 className="font-ptserif text-2xl text-left xl:text-4xl font-bold border-b-brand-yellow border-b-4">{headerText}</h2>
             </div>
             <p className="text-lg text-left xl:text-center xl:text-3xl font-normal max-w-full">
                 {bodyText}
@@ -52,7 +52,7 @@ const ImageSlider = ({images, headerText, bodyText}: { images: Media[], headerTe
         <div
             className="w-full bg-pale-1 xl:bg-transparent p-4 xl:p-0 flex flex-col mx-auto xl:mt-6 text-center xl:hidden">
             <div className="flex xl:justify-center xl:mx-auto font-ptserif">
-                <h2 className="text-2xl text-left xl:text-4xl font-bold border-b-brand-yellow border-b-4">{headerText}</h2>
+                <h2 className="font-ptserif text-2xl text-left xl:text-4xl font-bold border-b-brand-yellow border-b-4">{headerText}</h2>
             </div>
             <p className="text-lg text-left xl:text-center xl:text-3xl font-normal max-w-full">
                 {bodyText}
