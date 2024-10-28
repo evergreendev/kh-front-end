@@ -4,10 +4,12 @@ export const pt_serif = PT_Serif({
     subsets: ['latin'],
     weight: ["400", "700"],
     variable: '--font-ptserif',
+    display: "swap"
 });
 
 export const open_sans = Open_Sans({
     subsets: ['latin'],
     weight: ["800", "700", "600", "500", "400", "300"],
-    variable: '--font-open-sans'
+    variable: '--font-open-sans',
+    display: "swap"
 });
