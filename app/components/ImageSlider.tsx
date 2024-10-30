@@ -32,7 +32,7 @@ const ImageSlider = ({images, headerText, bodyText}: { images: Media[], headerTe
         </div>
     }
 
-    return <div className="max-h-screen max-w-full relative w-full">
+    return <div className="sm:max-h-screen max-w-full relative w-full">
         {images.length === 1
             ? <div className="flex w-full bg-pale-2"><Image priority style={{
                 maxWidth: `${(images[0].width || 0) * 1.1}px`,
