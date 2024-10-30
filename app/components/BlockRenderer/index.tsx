@@ -21,6 +21,7 @@ import HoursBlock from "./blocks/HoursBlock";
 import AdmissionBlock from "@/app/components/BlockRenderer/blocks/AdmissionBlock";
 import CollectionList from "@/app/components/BlockRenderer/blocks/CollectionList";
 import WebcamBlock from "@/app/components/BlockRenderer/blocks/WebcamBlock";
+import IFrameBlock from "@/app/components/BlockRenderer/blocks/IFrameBlock";
 
 const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
     blocks: any,
@@ -81,6 +82,8 @@ const BlockRenderer = forwardRef(function BlockRenderer({blocks, tabIndex}: {
                     return <CollectionList block={block} key={block.id}/>
                 case "WebcamBlock":
                     return <WebcamBlock key={block.id}/>
+                case "IFrame":
+                    return <IFrameBlock block={block} key={block.id}/>
                 default:
                     return <div key={(block).id}
                                 className="bg-red-100 text-red-800 text-center w-96 mx-auto p-8">Unknown Block
