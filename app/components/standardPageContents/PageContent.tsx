@@ -19,7 +19,7 @@ const PageContent = ({data, meta}: { data: Page, meta: any }) => {
         }).map(image => {
             return image.media
         }) || []}/>
-        <div className="px-7 xl:px-24 py-7 flex-col items-center w-full hidden lg:flex">
+{/*        <div className="px-7 xl:px-24 py-7 flex-col items-center w-full hidden lg:flex">
             <div className="flex max-w-[calc(1800px-3.5rem)] w-full justify-between">
                 {
                     data?.full_path &&
@@ -29,7 +29,7 @@ const PageContent = ({data, meta}: { data: Page, meta: any }) => {
                     data?.jump_menu && data.jump_menu.length > 0 && <JumpMenu items={data.jump_menu}/>
                 }
             </div>
-        </div>
+        </div>*/}
         <div className="w-full">
             <BlockRenderer blocks={data.layout}/>
         </div>
