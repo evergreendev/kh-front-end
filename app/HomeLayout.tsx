@@ -145,9 +145,9 @@ const HomeLayout = ({data, meta}: { data: Page, meta: Meta}) => {
                                 />
                             </Link>
                             <MegaMenu nav={meta.nav}/>
-                            <div className="my-8 hidden xl:block">
+{/*                            <div className="my-8 hidden xl:block">
                                 <SearchBar/>
-                            </div>
+                            </div>*/}
 
                         </div>
 {/*                        <div>

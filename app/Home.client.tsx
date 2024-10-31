@@ -153,9 +153,9 @@ export const HomeClient: React.FC<{
                                 />
                             </Link>
                             <MegaMenu nav={meta.nav}/>
-                            <div className="my-8 hidden xl:block">
+{/*                            <div className="my-8 hidden xl:block">
                                 <SearchBar/>
-                            </div>
+                            </div>*/}
 
                         </div>
 {/*                        <div>
