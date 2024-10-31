@@ -123,7 +123,7 @@ const EmploymentBlock = ({block}: {
                     <h3 className="text-xl font-bold">{position.title}</h3>
                     {position.description ? <p className="text-slate-600">{position.description}</p> : ""}
                     <div className="ml-auto mt-auto">
-                        <Button isExternal={position.linksToOnlineEmploymentForm} config={buttonConfig.tertiary} icon={faChevronCircleRight} text="Click Here to Apply" href={(position.linksToOnlineEmploymentForm ? "/about/employment/employment-application":(position.PDF as Media).url)||""}/>
+                        <Button isExternal={position.linksToOnlineEmploymentForm} config={buttonConfig.tertiary} icon={faChevronCircleRight} text="Click Here to Apply" href={(position.linksToOnlineEmploymentForm ? "/employment-application":(position.PDF as Media).url)||""}/>
                     </div>
                 </div>
             </div>
