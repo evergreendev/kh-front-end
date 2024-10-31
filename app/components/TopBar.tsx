@@ -33,10 +33,10 @@ const TopBar = ({siteOption, nav}: { siteOption: SiteOption, nav: Navigation }) 
 
             </div>
 
-            <div className="ml-auto">
+{/*            <div className="ml-auto">
                 <Button config={buttonConfig.highlight + " mb-5 self-start ml-auto w-48  text-center justify-around"}
                         text="DONATE" href="https://donate.crazyhorsememorial.org/"/>
-            </div>
+            </div>*/}
             <div className="flex-col ml-auto mb-4 lg:mb-0 lg:ml-0 w-full items-end lg:items-start lg:hidden flex">
                 <MegaMenu nav={nav}/>
             </div>
@@ -53,10 +53,10 @@ const TopBar = ({siteOption, nav}: { siteOption: SiteOption, nav: Navigation }) 
                         />
                     </Link>
                 </div>
-                <div>
+{/*                <div>
                     <Button text="DONATE" href="https://donate.crazyhorsememorial.org/"
                             config={buttonConfig.highlight + " text-center justify-around"}/>
-                </div>
+                </div>*/}
             </div>
             <div className="w-full flex justify-end">
                 <MegaMenu nav={nav}/>

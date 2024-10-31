@@ -150,10 +150,10 @@ const HomeLayout = ({data, meta}: { data: Page, meta: Meta}) => {
                             </div>
 
                         </div>
-                        <div>
+{/*                        <div>
                             <Button isExternal text="DONATE" href="https://donate.crazyhorsememorial.org/"
                                     config={buttonConfig.highlight + " text-center justify-around"}/>
-                        </div>
+                        </div>*/}
                     </div>
                     {
                         data.intro_content?.videoFile ?
