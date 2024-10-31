@@ -25,7 +25,7 @@ const TopBar = ({siteOption, nav}: { siteOption: SiteOption, nav: Navigation }) 
             </Link>
 
             <div
-                className="flex-col ml-auto mb-4 lg:mb-0 lg:ml-0 w-full sm:w-auto items-end lg:items-start hidden lg:flex">
+                className="mr-auto flex-col ml-auto mb-4 lg:mb-0 lg:ml-0 w-full sm:w-auto items-end lg:items-start hidden lg:flex">
                 <MegaMenu nav={nav}/>
 {/*                <div className="mt-auto hidden lg:block">
                     <SearchBar/>
