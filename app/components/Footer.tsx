@@ -1,11 +1,4 @@
 import {Footer as FooterType} from "@/app/types/payloadTypes";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-    faFacebookSquare,
-    faInstagramSquare,
-    faSquareXTwitter,
-    faYoutubeSquare
-} from "@awesome.me/kit-2a2dc088e2/icons/classic/brands";
 import React from "react";
 import renderText from "@/app/components/BlockRenderer/utils/renderText";
 
@@ -27,22 +20,6 @@ const Footer = ({footer}: { footer: FooterType }) => {
                     </div>
                 })
             }
-            <div className="md:w-3/12 flex gap-4 mt-4 flex-wrap">
-                <a href="https://www.facebook.com/crazyhorsememorial">
-                    <FontAwesomeIcon className="size-14 text-gray-400 hover:text-gray-100" icon={faFacebookSquare}/>
-                </a>
-                <a href="https://x.com/CrazyHorseMem"><FontAwesomeIcon
-                    className="size-14 text-gray-400 hover:text-gray-100" icon={faSquareXTwitter}/></a>
-                <a href="https://www.instagram.com/crazyhorsememorial/"><FontAwesomeIcon
-                    className="size-14 text-gray-400 hover:text-gray-100"
-                    icon={faInstagramSquare}/></a>
-                <a href="https://www.youtube.com/@CrazyHorseMemorial"><FontAwesomeIcon
-                    className="size-14 text-gray-400 hover:text-gray-100"
-                    icon={faYoutubeSquare}/></a>
-            </div>
-            <div className="w-full">
-                <p className="text-sm italic">Photos and videos ©Crazy Horse Memorial Foundation</p>
-            </div>
         </div>
     </div>
 }
