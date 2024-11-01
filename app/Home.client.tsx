@@ -151,7 +151,8 @@ export const HomeClient: React.FC<{
                             </div> :
                             data.intro_content?.images && data.intro_content?.images.length > 0
                                 ? <Image
-                                className="w-full h-full object-cover"
+                                    style={{objectPosition: `${(data.intro_content.images[0].media as Media).focalX}% ${(data.intro_content.images[0].media as Media).focalY}%`}}
+                                    className="w-full object-cover"
                                     alt={(data.intro_content.images[0].media as Media).alt||""}
                                     src={(data.intro_content.images[0].media as Media).url||""}
                                     width={(data.intro_content.images[0].media as Media).width || 0}
