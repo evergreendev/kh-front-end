@@ -149,7 +149,15 @@ export const HomeClient: React.FC<{
                                     thumbnail={typeof data.intro_content.thumbnail === "number" ? undefined : data.intro_content.thumbnail}
                                     src={(data.intro_content.videoFile as Media).url || ""}/>
                             </div> :
-                            ""
+                            data.intro_content?.images && data.intro_content?.images.length > 0
+                                ? <Image
+                                className="w-full h-full object-cover"
+                                    alt={(data.intro_content.images[0].media as Media).alt||""}
+                                    src={(data.intro_content.images[0].media as Media).url||""}
+                                    width={(data.intro_content.images[0].media as Media).width || 0}
+                                    height={(data.intro_content.images[0].media as Media).height || 0}
+                                />
+                                : ""
                     }
                     <div
                         className="w-full bg-pale-1 xl:bg-transparent p-4 xl:p-0 flex flex-col mx-auto max-w-screen-lg xl:mt-6 text-center">
