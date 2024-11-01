@@ -68,9 +68,6 @@ const SideBar = ({meta}: { meta: Meta }) => {
                 <address className="not-italic">
                     12151 Avenue of the Chiefs<br/>
                     Crazy Horse, SD 57730-8900<br/>
-                    <Link className="underline" href={`/plan-your-visit#location-hours`}>more
-                        direction
-                        information</Link>
                 </address>
             </div>
         </div>
